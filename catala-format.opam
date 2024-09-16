@@ -1,0 +1,39 @@
+opam-version: "2.0"
+
+maintainer: "vincent.botbol@inria.fr"
+authors: [ "Vincent Botbol" ]
+
+homepage: "https://github.com/CatalaLang/catala-format"
+bug-reports: "https://github.com/CatalaLang/catala-format"
+dev-repo: "git+https://github.com/CatalaLang/catala-format.git"
+
+license: "Apache-2.0"
+depends: ["conf-rust-2021"]
+
+build:[
+  [ "cargo" "build"
+      "--release"
+      "--package" "topiary-cli" ]
+  [ "sh" "make-wrapper.sh"
+         "--query-file" "%{share}%/topiary/queries/catala.scm"
+         "--config-file" "%{share}%/topiary/configs/catala.ncl"
+         "--topiary-wrapped" "%{bin}%/.topiary-wrapped/topiary"
+         "--output-file" "catala-format" ]
+]
+
+install: [
+  [ "mkdir" "-p" "%{bin}%/.topiary-wrapped" ]
+  [ "cp" "target/release/topiary" "%{bin}%/.topiary-wrapped/topiary" ]
+  [ "cp" "catala-format" "%{bin}%/catala-format" ]
+  [ "mkdir" "-p" "%{share}%/topiary/queries" ]
+  [ "cp" "catala.scm" "%{share}%/topiary/queries" ]
+  [ "mkdir" "-p" "%{share}%/topiary/configs" ]
+  [ "cp" "catala.ncl" "%{share}%/topiary/configs" ]
+]
+
+synopsis: "A formatter for Catala based on the Topiary universal formatting engine"
+description: """
+A formatter for Catala based on the Topiary universal formatting engine.
+
+Topiary repository: https://github.com/tweag/topiary
+"""
