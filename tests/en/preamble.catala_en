@@ -1,0 +1,6 @@
+## The US Tax Code
+
+```catala-metadata
+declaration structure Person:
+  data id content integer
+```

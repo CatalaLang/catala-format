@@ -1,0 +1,12 @@
+> Usage de France
+> Usage de Smic
+
+> Module Prestations_familiales
+
+> Inclusion: prologue.catala_fr
+
+# Code de la sécurité sociale
+
+> Inclusion: sécurité_sociale_L.catala_fr
+
+> Inclusion: sécurité_sociale_R.catala_fr
