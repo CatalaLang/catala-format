@@ -639,3 +639,7 @@
 ;; Miscellaneous
 
 ((DEFINED_AS) @append_spaced_softline (expression (e_ifthenelse)))
+
+(e_unop
+ (MINUS) @append_antispace
+)
