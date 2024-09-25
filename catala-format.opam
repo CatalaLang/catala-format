@@ -11,9 +11,12 @@ license: "Apache-2.0"
 depends: ["conf-rust-2021"]
 
 build:[
+  [ "tar" "xfJ" "vendor.tar.xz" ]
   [ "cargo" "build"
       "--release"
-      "--package" "topiary-cli" ]
+      "--package" "topiary-cli"
+      "--offline"
+  ]
   [ "sh" "make-wrapper.sh"
          "--query-file" "%{share}%/topiary/queries/catala.scm"
          "--config-file" "%{share}%/topiary/configs/catala.ncl"
