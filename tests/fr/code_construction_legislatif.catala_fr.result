@@ -853,11 +853,10 @@ champ d'application CalculAidePersonnaliséeLogementLocatif:
   définition traitement_aide_finale
     de aide_finale état réduction_loyer_solidarité
     égal à
-      soit aide_finale égal à
-          traitement_aide_finale de aide_finale dans
-        si aide_finale - réduction_loyer_solidarité * fraction_l832_3 >= 0€ alors
-          aide_finale - réduction_loyer_solidarité * fraction_l832_3
-        sinon 0€
+      soit aide_finale égal à traitement_aide_finale de aide_finale dans
+      si aide_finale - réduction_loyer_solidarité * fraction_l832_3 >= 0€ alors
+        aide_finale - réduction_loyer_solidarité * fraction_l832_3
+      sinon 0€
 
   assertion fraction_l832_3 >= 90% et fraction_l832_3 <= 98%
 ```
@@ -1144,21 +1143,24 @@ champ d'application CalculetteAidesAuLogement:
 
   définition traitement_aide_finale de aide_finale égal à
     soit aide_finale_apl égal à
-        calcul_aide_personnalisée_logement.traitement_aide_finale de aide_finale dans
-      soit aide_finale_al égal à
-          calcul_allocation_logement.traitement_aide_finale de aide_finale dans si non éligibilité alors
-          aide_finale
-        sinon si éligibilité_aide_personnalisée_logement.éligibilité
-          et non (éligibilité_allocation_logement.éligibilité sous forme PasÉligible) alors
-          (
-            si aide_finale_apl > aide_finale_al alors
-              aide_finale_apl
-            sinon aide_finale_al
-          )
-        sinon si éligibilité_aide_personnalisée_logement.éligibilité alors
+      calcul_aide_personnalisée_logement.traitement_aide_finale de aide_finale
+    dans
+    soit aide_finale_al égal à
+      calcul_allocation_logement.traitement_aide_finale de aide_finale
+    dans
+    si non éligibilité alors
+      aide_finale
+    sinon si éligibilité_aide_personnalisée_logement.éligibilité
+      et non (éligibilité_allocation_logement.éligibilité sous forme PasÉligible) alors
+      (
+        si aide_finale_apl > aide_finale_al alors
           aide_finale_apl
-        sinon
-          aide_finale_al
+        sinon aide_finale_al
+      )
+    sinon si éligibilité_aide_personnalisée_logement.éligibilité alors
+      aide_finale_apl
+    sinon
+      aide_finale_al
 ```
 
 ###### Article L841-3 | LEGIARTI000038814860

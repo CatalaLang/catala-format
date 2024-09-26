@@ -1507,9 +1507,12 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          37,67€ + 9,69€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            37,67€ + 9,69€ * 6,0 dans si montant > limite alors limite sinon montant
+        37,67€ + 9,69€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        37,67€ + 9,69€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2022-07-01| et date_courante < |2023-01-01|:
@@ -1527,9 +1530,12 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          37,67€ + 9,69€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            37,67€ + 9,69€ * 6,0 dans si montant > limite alors limite sinon montant
+        37,67€ + 9,69€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        37,67€ + 9,69€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementFoyer
   sous condition date_courante >= |2022-07-01| et date_courante < |2023-01-01|:
@@ -1547,9 +1553,12 @@ champ d'application CalculAllocationLogementFoyer
       )
     conséquence égal à
       soit montant égal à
-          37,67€ + 9,69€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            37,67€ + 9,69€ * 6,0 dans si montant > limite alors limite sinon montant
+        37,67€ + 9,69€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        37,67€ + 9,69€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 b) Les montants des colocataires et des copropriétaires prévus respectivement aux articles D. 823-18 et
@@ -1579,19 +1588,22 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 19,38€
-            -- Couple : 37,67€
-          )
-          + 9,69€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 19,38€
-              -- Couple : 37,67€
-            )
-            + 9,69€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 19,38€
+          -- Couple : 37,67€
+        )
+        + 9,69€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 19,38€
+          -- Couple : 37,67€
+        )
+        + 9,69€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2022-07-01| et date_courante < |2023-01-01|:
@@ -1609,19 +1621,22 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 19,38€
-            -- Couple : 37,67€
-          )
-          + 9,69€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 19,38€
-              -- Couple : 37,67€
-            )
-            + 9,69€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 19,38€
+          -- Couple : 37,67€
+        )
+        + 9,69€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 19,38€
+          -- Couple : 37,67€
+        )
+        + 9,69€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 4° Les valeurs du taux " TF " fixées à l'article 14, taux fonction de la taille de la famille visé au 3°
@@ -2036,9 +2051,12 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,40€ + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,40€ + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2022-01-01| et date_courante < |2022-07-01|:
@@ -2056,9 +2074,12 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,40€ + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,40€ + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementFoyer
   sous condition date_courante >= |2022-01-01| et date_courante < |2022-07-01|:
@@ -2076,9 +2097,12 @@ champ d'application CalculAllocationLogementFoyer
       )
     conséquence égal à
       soit montant égal à
-          36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,40€ + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,40€ + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 b) Les montants des colocataires et des copropriétaires prévus respectivement aux articles D. 823-18 et
@@ -2108,19 +2132,22 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 18,72€
-            -- Couple : 36,40€
-          )
-          + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 18,72€
-              -- Couple : 36,40€
-            )
-            + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,72€
+          -- Couple : 36,40€
+        )
+        + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,72€
+          -- Couple : 36,40€
+        )
+        + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2022-01-01| et date_courante < |2022-07-01|:
@@ -2138,19 +2165,22 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 18,72€
-            -- Couple : 36,40€
-          )
-          + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 18,72€
-              -- Couple : 36,40€
-            )
-            + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,72€
+          -- Couple : 36,40€
+        )
+        + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,72€
+          -- Couple : 36,40€
+        )
+        + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 4° Les valeurs du taux " TF " fixées à l'article 14, taux fonction de la taille de la famille visé au 3° de
@@ -3229,9 +3259,12 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,40€ + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,40€ + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2021-10-01| et date_courante < |2022-01-01|:
@@ -3249,9 +3282,12 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,40€ + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,40€ + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementFoyer
   sous condition date_courante >= |2021-10-01| et date_courante < |2022-01-01|:
@@ -3269,9 +3305,12 @@ champ d'application CalculAllocationLogementFoyer
       )
     conséquence égal à
       soit montant égal à
-          36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,40€ + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,40€ + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,40€ + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 b) Les montants des colocataires et des copropriétaires prévus respectivement aux articles D. 823-18 et
@@ -3301,19 +3340,22 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 18,72€
-            -- Couple : 36,40€
-          )
-          + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 18,72€
-              -- Couple : 36,40€
-            )
-            + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,72€
+          -- Couple : 36,40€
+        )
+        + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,72€
+          -- Couple : 36,40€
+        )
+        + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2021-10-01| et date_courante < |2022-01-01|:
@@ -3331,19 +3373,22 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 18,72€
-            -- Couple : 36,40€
-          )
-          + 9,36€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 18,72€
-              -- Couple : 36,40€
-            )
-            + 9,36€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,72€
+          -- Couple : 36,40€
+        )
+        + 9,36€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,72€
+          -- Couple : 36,40€
+        )
+        + 9,36€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 4° Les valeurs du taux " TF " fixées à l'article 14, taux fonction de la taille de la famille visé au 3°
@@ -4390,9 +4435,12 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          36,25€ + 9,32€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,25€ + 9,32€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,25€ + 9,32€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,25€ + 9,32€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2020-10-01| et date_courante < |2021-10-01|:
@@ -4410,9 +4458,12 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          36,25€ + 9,32€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,25€ + 9,32€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,25€ + 9,32€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,25€ + 9,32€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementFoyer
   sous condition date_courante >= |2020-10-01| et date_courante < |2021-10-01|:
@@ -4430,9 +4481,12 @@ champ d'application CalculAllocationLogementFoyer
       )
     conséquence égal à
       soit montant égal à
-          36,25€ + 9,32€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,25€ + 9,32€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,25€ + 9,32€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,25€ + 9,32€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 b) Les montants des colocataires et des copropriétaires prévus respectivement aux articles D. 823-18
@@ -4462,19 +4516,22 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 18,64€
-            -- Couple : 36,25€
-          )
-          + 9,32€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 18,64€
-              -- Couple : 36,25€
-            )
-            + 9,32€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,64€
+          -- Couple : 36,25€
+        )
+        + 9,32€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,64€
+          -- Couple : 36,25€
+        )
+        + 9,32€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2020-10-01| et date_courante < |2021-10-01|:
@@ -4492,19 +4549,22 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 18,64€
-            -- Couple : 36,25€
-          )
-          + 9,32€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 18,64€
-              -- Couple : 36,25€
-            )
-            + 9,32€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,64€
+          -- Couple : 36,25€
+        )
+        + 9,32€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,64€
+          -- Couple : 36,25€
+        )
+        + 9,32€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 4° Les valeurs du taux " TF " fixées à l'article 14, taux fonction de la taille de la famille
@@ -4967,9 +5027,12 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          36,14€ + 9,29€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,14€ + 9,29€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,14€ + 9,29€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,14€ + 9,29€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2020-01-01| et date_courante < |2020-10-01|:
@@ -4987,9 +5050,12 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          36,14€ + 9,29€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,14€ + 9,29€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,14€ + 9,29€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,14€ + 9,29€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementFoyer
   sous condition date_courante >= |2020-01-01| et date_courante < |2020-10-01|:
@@ -5007,9 +5073,12 @@ champ d'application CalculAllocationLogementFoyer
       )
     conséquence égal à
       soit montant égal à
-          36,14€ + 9,29€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            36,14€ + 9,29€ * 6,0 dans si montant > limite alors limite sinon montant
+        36,14€ + 9,29€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        36,14€ + 9,29€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 b) Les montants des colocataires et des copropriétaires prévus respectivement aux articles
@@ -5039,19 +5108,22 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 18,58€
-            -- Couple : 36,14€
-          )
-          + 9,29€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 18,58€
-              -- Couple : 36,14€
-            )
-            + 9,29€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,58€
+          -- Couple : 36,14€
+        )
+        + 9,29€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,58€
+          -- Couple : 36,14€
+        )
+        + 9,29€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 
 champ d'application CalculAllocationLogementAccessionPropriété
   sous condition date_courante >= |2020-01-01| et date_courante < |2020-10-01|:
@@ -5069,19 +5141,22 @@ champ d'application CalculAllocationLogementAccessionPropriété
       )
     conséquence égal à
       soit montant égal à
-          (
-            selon situation_familiale_calcul_apl sous forme
-            -- PersonneSeule : 18,58€
-            -- Couple : 36,14€
-          )
-          + 9,29€ * (décimal de nombre_personnes_à_charge) dans
-        soit limite égal à
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 18,58€
-              -- Couple : 36,14€
-            )
-            + 9,29€ * 6,0 dans si montant > limite alors limite sinon montant
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,58€
+          -- Couple : 36,14€
+        )
+        + 9,29€ * (décimal de nombre_personnes_à_charge)
+      dans
+      soit limite égal à
+        (
+          selon situation_familiale_calcul_apl sous forme
+          -- PersonneSeule : 18,58€
+          -- Couple : 36,14€
+        )
+        + 9,29€ * 6,0
+      dans
+      si montant > limite alors limite sinon montant
 ```
 
 4° Les valeurs du taux " TF " fixées à l'article 14, taux fonction de la taille de la famille

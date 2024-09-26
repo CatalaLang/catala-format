@@ -401,27 +401,20 @@
 ((ALT) (match_case ((COLON) @prepend_space @append_spaced_softline @append_indent_start) (_) @append_indent_end .)) @prepend_spaced_softline
 
 ;; Let-bindings
-(expression
- (e_letin
-  ((LET) @prepend_begin_scope
-   (IN) @append_spaced_scoped_softline
-   body: (_) @append_end_scope))
+(e_letin
+ (LET) @prepend_begin_scope
+ (binder)
+ (DEFINED_AS) @append_indent_start @append_spaced_scoped_softline
+ def: (_)
+ (IN) @prepend_indent_end @append_end_scope @append_spaced_softline
+ .
+ body: (_)
  (#scope_id! "let-binding")
 )
 
-(e_letin .
- ((IN) @append_spaced_scoped_softline
-  body: (_)
-  )
- (#scope_id! "let-binding")
-)
-
-(e_letin .
- ((LET) . (binder)
-  ((DEFINED_AS) @append_begin_scope @append_indent_start @append_spaced_scoped_softline)
-  def: (_) ((IN) @prepend_indent_end @prepend_end_scope)
- )
- (#scope_id! "let-binding-def")
+(e_letin
+ def: (_)
+ (IN) @prepend_input_softline
 )
 
 ;; Pattern-tests
