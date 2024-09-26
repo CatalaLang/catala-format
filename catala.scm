@@ -302,7 +302,8 @@
 )
 
 ;; generic variable definition
-((DEFINED_AS) @prepend_begin_scope
+((LET)? @do_nothing
+ (DEFINED_AS) @prepend_begin_scope
               @append_indent_start
               @append_spaced_scoped_softline
  body: (_) @append_indent_end @append_end_scope
