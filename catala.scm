@@ -250,8 +250,10 @@
  (param_decl)
 )
 
-;; declaration item
+;; declaration items
+
 (scope_decl_item) @append_hardline
+
 (scope_decl_item
  (scope_decl_item_attribute) @append_indent_start
  (CONTENT) @prepend_spaced_softline
@@ -259,6 +261,12 @@
  (_) @append_indent_end
  .
 )
+
+(scope_decl_item                                         ;;
+ (variable) @append_indent_start @append_spaced_softline ;;
+ (SCOPE)                                                 ;;
+ (qscope) @append_indent_end                             ;;
+)                                                        ;;
 
 ;; struct decl item
 (struct_decl_item) @append_hardline

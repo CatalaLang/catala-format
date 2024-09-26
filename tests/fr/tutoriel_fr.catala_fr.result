@@ -943,7 +943,8 @@ semaines travaillées.
 ```catala
 déclaration champ d'application FraisDeRepas_A:
   entrée nombre_de_semaines_travaillées contenu entier
-  nombre_de_jours_travaillés_par_semaine champ d'application NombreDeJoursTravaillésParSemaine
+  nombre_de_jours_travaillés_par_semaine
+    champ d'application NombreDeJoursTravaillésParSemaine
   # Le sous-champ d'application doit être déclaré pour accéder à sa valeur.
   # Dans certains cas, il peut être bon d’avoir une dépendance explicite.
   résultat valeur contenu argent
