@@ -32,7 +32,7 @@ or a non-profit organisation,
 scope GamingAuthorized:
   definition benefitingOrg equals
     noDrawLottery.typeOrg with pattern OrganisationType.Charitable
-      or noDrawLottery.typeOrg with pattern OrganisationType.NonProfit
+    or noDrawLottery.typeOrg with pattern OrganisationType.NonProfit
 ```
 (b) not less than 40% of the gross proceeds of the gaming activity are paid to the
 benefiting organisation,
@@ -52,7 +52,7 @@ scope GamingAuthorized:
   definition maxTicketsProduced equals noDrawLottery.maxTickets <= 3000
 
 scope GamingAuthorized:
-  rule authorized
-    under condition benefitingOrg and minimumProceeds and maxValueOfPrizes and maxTicketsProduced
-    consequence fulfilled
+  rule authorized under condition
+    benefitingOrg and minimumProceeds and maxValueOfPrizes and maxTicketsProduced
+  consequence fulfilled
 ```

@@ -326,22 +326,22 @@
 (scope
  (definition
    (DEFINITION)
-   name: (scope_var) @append_indent_start @append_spaced_softline
-   (UNDER_CONDITION)
-   condition: (expression) @prepend_indent_start @append_indent_end @append_spaced_softline
+   name: (scope_var)
+   (UNDER_CONDITION) @append_spaced_softline @append_indent_start
+   condition: (expression) @append_indent_end @append_spaced_softline
    (CONSEQUENCE)
-  ) @append_indent_end
+ )
 )
 
 ;; rules
 (scope
  (rule
    (RULE)
-   name: (scope_var) @append_indent_start @append_spaced_softline
-   (UNDER_CONDITION)
-   condition: (expression) @prepend_indent_start @append_indent_end @append_spaced_softline
+   name: (scope_var)
+   (UNDER_CONDITION) @append_spaced_softline @append_indent_start
+   condition: (expression) @append_indent_end @append_spaced_softline
    (CONSEQUENCE) (NOT)? (FILLED) .
- ) @append_indent_end
+ )
 )
 
 ;; labels and exceptions
@@ -427,11 +427,12 @@
 
 ;; Pattern-tests
 
-((e_test_match) @append_indent_start @prepend_begin_scope
- [ (AND) (OR) (XOR) ] @prepend_spaced_softline
- (_) @append_indent_end @append_end_scope
- (#scope_id! "test_match")
-)
+((e_test_match) @prepend_begin_scope           ;;
+ [ (AND) (OR) (XOR) ] @prepend_spaced_softline ;;
+ (_)  @append_end_scope                        ;;
+ (#scope_id! "test_match")                     ;;
+ )                                             ;;
+
 ;; FIXME: probably introduce a better ast node
 ;; problematic case example:
 ;; definition x equals 3 with pattern Case1 of x

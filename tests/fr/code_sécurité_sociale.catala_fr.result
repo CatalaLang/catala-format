@@ -115,9 +115,9 @@ soixante-deux ans pour les assurés nés à compter du 1er janvier 1955.
 
 ```catala
 champ d'application OuvertureDroitsRetraite:
-  définition âge_ouverture_droit
-    sous condition date_naissance_assuré >= |1955-01-01|
-    conséquence égal à 62 an
+  définition âge_ouverture_droit sous condition
+    date_naissance_assuré >= |1955-01-01|
+  conséquence égal à 62 an
 
 champ d'application ÉligibilitéAidesPersonnelleLogement:
   définition ouverture_droits_retraite.date_naissance_assuré égal à
@@ -299,9 +299,9 @@ L'âge prévu au second alinéa de l'article L. 161-17-2 est fixé à :
 
 ```catala
 champ d'application OuvertureDroitsRetraite:
-  définition âge_ouverture_droit
-    sous condition date_naissance_assuré < |1951-07-01|
-    conséquence égal à 60 an
+  définition âge_ouverture_droit sous condition
+    date_naissance_assuré < |1951-07-01|
+  conséquence égal à 60 an
 ```
 
 2° Soixante ans et quatre mois pour les assurés nés entre le 1er juillet
@@ -309,37 +309,37 @@ champ d'application OuvertureDroitsRetraite:
 
 ```catala
 champ d'application OuvertureDroitsRetraite:
-  définition âge_ouverture_droit
-    sous condition date_naissance_assuré >= |1951-07-01|
-      et date_naissance_assuré <= |1951-12-31|
-    conséquence égal à 60 an + 4 mois
+  définition âge_ouverture_droit sous condition
+    date_naissance_assuré >= |1951-07-01|
+    et date_naissance_assuré <= |1951-12-31|
+  conséquence égal à 60 an + 4 mois
 ```
 
 3° Soixante ans et neuf mois pour les assurés nés en 1952 ;
 
 ```catala
 champ d'application OuvertureDroitsRetraite:
-  définition âge_ouverture_droit
-    sous condition accès_année de date_naissance_assuré = 1952
-    conséquence égal à 60 an + 9 mois
+  définition âge_ouverture_droit sous condition
+    accès_année de date_naissance_assuré = 1952
+  conséquence égal à 60 an + 9 mois
 ```
 
 4° Soixante et un ans et deux mois pour les assurés nés en 1953 ;
 
 ```catala
 champ d'application OuvertureDroitsRetraite:
-  définition âge_ouverture_droit
-    sous condition accès_année de date_naissance_assuré = 1953
-    conséquence égal à 61 an + 2 mois
+  définition âge_ouverture_droit sous condition
+    accès_année de date_naissance_assuré = 1953
+  conséquence égal à 61 an + 2 mois
 ```
 
 5° Soixante et un ans et sept mois pour les assurés nés en 1954 ;
 
 ```catala
 champ d'application OuvertureDroitsRetraite:
-  définition âge_ouverture_droit
-    sous condition accès_année de date_naissance_assuré = 1954
-    conséquence égal à 61 an + 7 mois
+  définition âge_ouverture_droit sous condition
+    accès_année de date_naissance_assuré = 1954
+  conséquence égal à 61 an + 7 mois
 ```
 
 6° Soixante deux ans pour les assurés nés à compter du 1er janvier 1955.
@@ -371,20 +371,20 @@ janvier 2019 et à 10 838,40 euros par an à compter du 1er janvier 2020 ;
 # l'éligibilité aux APL.
 
 champ d'application ÉligibilitéAidesPersonnelleLogement:
-  définition plafond_individuel_l815_9_sécu
-    sous condition date_courante >= |2018-04-01|
-      et date_courante < |2019-01-01|
-    conséquence égal à 9 998,40€
+  définition plafond_individuel_l815_9_sécu sous condition
+    date_courante >= |2018-04-01|
+    et date_courante < |2019-01-01|
+  conséquence égal à 9 998,40€
 
-  définition plafond_individuel_l815_9_sécu
-    sous condition date_courante >= |2019-01-01|
-      et date_courante < |2020-01-01|
-    conséquence égal à 10 418,40€
+  définition plafond_individuel_l815_9_sécu sous condition
+    date_courante >= |2019-01-01|
+    et date_courante < |2020-01-01|
+  conséquence égal à 10 418,40€
 
-  définition plafond_individuel_l815_9_sécu
-    sous condition date_courante >= |2020-01-01|
-      et date_courante < |2021-01-01|
-    conséquence égal à 10 838,40€
+  définition plafond_individuel_l815_9_sécu sous condition
+    date_courante >= |2020-01-01|
+    et date_courante < |2021-01-01|
+  conséquence égal à 10 838,40€
 ```
 
 b) Lorsque les deux conjoints, concubins ou partenaires liés par un pacte civil

@@ -192,19 +192,19 @@ scope Section121SinglePerson:
   # Regulation 1.121-1(c)(1): 2 years = 730 days
   # Regulation 1.121-1(c)(1): the periods of ownage and usage
   # don't have to overlap
-  rule requirements_ownership_met
-    under condition aggregate_periods_from_last_five_years of property_ownage >= 730 day
-    consequence fulfilled
+  rule requirements_ownership_met under condition
+    aggregate_periods_from_last_five_years of property_ownage >= 730 day
+  consequence fulfilled
 
-  rule requirements_usage_met
-    under condition aggregate_periods_from_last_five_years of
-        property_usage_as_principal_residence
-      >= 730 day
-    consequence fulfilled
+  rule requirements_usage_met under condition
+    aggregate_periods_from_last_five_years of
+      property_usage_as_principal_residence
+    >= 730 day
+  consequence fulfilled
 
-  rule requirements_met
-    under condition requirements_ownership_met and requirements_usage_met
-    consequence fulfilled
+  rule requirements_met under condition
+    requirements_ownership_met and requirements_usage_met
+  consequence fulfilled
 
   definition income_excluded_from_gross_income_uncapped equals
     if requirements_met then gain_from_sale_or_exchange_of_property
@@ -275,34 +275,34 @@ respect to such property by reason of paragraph (3).
 
 ```catala
 scope Section121TwoPersons:
-  rule section_121_b_2_A_condition
-    under condition (return_type with pattern JointReturn)
-      and
-      # i)
-      (
-        section121Person1.requirements_ownership_met
-        or section121Person2.requirements_ownership_met
-      )
-      and
-      # ii)
-      (
-        section121Person1.requirements_usage_met
-        and section121Person2.requirements_usage_met
-      )
-      # iii)
-      and (not (section121Person1.section_121_b_3_applies))
-      and (not (section121Person2.section_121_b_3_applies))
-    consequence fulfilled
+  rule section_121_b_2_A_condition under condition
+    (return_type with pattern JointReturn)
+    and
+    # i)
+    (
+      section121Person1.requirements_ownership_met
+      or section121Person2.requirements_ownership_met
+    )
+    and
+    # ii)
+    (
+      section121Person1.requirements_usage_met
+      and section121Person2.requirements_usage_met
+    )
+    # iii)
+    and (not (section121Person1.section_121_b_3_applies))
+    and (not (section121Person2.section_121_b_3_applies))
+  consequence fulfilled
 
   exception
-  rule section121a_requirements_met
-    under condition section_121_b_2_A_condition
-    consequence fulfilled
+  rule section121a_requirements_met under condition
+    section_121_b_2_A_condition
+  consequence fulfilled
 
   exception
-  definition gain_cap
-    under condition section_121_b_2_A_condition
-    consequence equals $500,000
+  definition gain_cap under condition
+    section_121_b_2_A_condition
+  consequence equals $500,000
 ```
 
 ##### (B) Other joint returns
@@ -360,15 +360,15 @@ was any other sale or exchange by the taxpayer to which subsection (a) applied.
 
 ```catala
 scope Section121SinglePerson:
-  rule section_121_b_3_applies
-    under condition other_section_121a_sale with pattern MostRecentSaleWhereSection121aApplied of other_sale
-        and date_of_sale_or_exchange - other_sale.date_of_sale_or_exchange <= 2 year
-    consequence fulfilled
+  rule section_121_b_3_applies under condition
+    other_section_121a_sale with pattern MostRecentSaleWhereSection121aApplied of other_sale
+    and date_of_sale_or_exchange - other_sale.date_of_sale_or_exchange <= 2 year
+  consequence fulfilled
 
   exception
-  definition income_excluded_from_gross_income_uncapped
-    under condition section_121_b_3_applies
-    consequence equals $0
+  definition income_excluded_from_gross_income_uncapped under condition
+    section_121_b_3_applies
+  consequence equals $0
 ```
 
 #### (4) Special rule for certain sales by surviving spouses
@@ -386,8 +386,8 @@ years after the date of death of such spouse and the requirements of paragraph
 ```catala
 scope Section121TwoPasses
   under condition return_type with pattern SingleReturnSurvivingSpouse of single_data
-    and single_data.date_of_spouse_death < date_of_sale_or_exchange
-    and date_of_sale_or_exchange <= single_data.date_of_spouse_death + 2 year:
+  and single_data.date_of_spouse_death < date_of_sale_or_exchange
+  and date_of_sale_or_exchange <= single_data.date_of_spouse_death + 2 year:
 
   definition first_pass.date_of_sale_or_exchange equals
     match return_type with pattern
@@ -410,9 +410,9 @@ scope Section121TwoPasses
     -- JointReturn of return : JointReturn content return
   # does not happen
 
-  definition second_pass.gain_cap
-    under condition first_pass.section_121_b_2_A_condition
-    consequence equals $500,000
+  definition second_pass.gain_cap under condition
+    first_pass.section_121_b_2_A_condition
+  consequence equals $500,000
 ```
 
 #### (5) Exclusion of gain allocated to nonqualified use

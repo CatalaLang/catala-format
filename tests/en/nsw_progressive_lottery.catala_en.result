@@ -35,7 +35,7 @@ scope GamingAuthorized:
     )
 
 scope GamingAuthorized:
-  rule authorized
-    under condition maxCashPrize and amountOfPrizesGreaterThan30000
-    consequence fulfilled
+  rule authorized under condition
+    maxCashPrize and amountOfPrizesGreaterThan30000
+  consequence fulfilled
 ```

@@ -240,9 +240,9 @@ Catala permet de redéfinir précisément une variable sous une condition :
 
 ```catala
 champ d'application CalculImpôtRevenu:
-  définition pourcentage_fixe
-    sous condition personne.nombre_enfants >= 2
-    conséquence égal à 15%
+  définition pourcentage_fixe sous condition
+    personne.nombre_enfants >= 2
+  conséquence égal à 15%
 # Ecrire 15% est juste une abbréviation pour « 0.15 »
 ```
 
@@ -419,9 +419,9 @@ sur le revenu prévu à l’article 1.
 champ d'application NouveauCalculImpôtRevenu:
   # Ici, nous définissons simplement une nouvelle définition conditionnelle
   # pour « l’impôt sur le revenu », qui manipule le cas particulier.
-  définition impôt_revenu
-    sous condition personne.revenu <= 10 000€
-    conséquence égal à 0€
+  définition impôt_revenu sous condition
+    personne.revenu <= 10 000€
+  conséquence égal à 0€
 # Quoi ? Pensez-vous que quelque chose peut-être faux avec ceci ?
 # Hmmm… Nous verrons cela plus tard !
 ```
@@ -541,9 +541,9 @@ champ d'application NouveauCalculImpôtRevenuCorrect:
 
   # Puis, vous pouvez déclarez l’exception qui se réfère à l’étiquette
   exception article_5
-  définition impôt_revenu
-    sous condition personne.revenu <= 10 000€
-    conséquence égal à 0€
+  définition impôt_revenu sous condition
+    personne.revenu <= 10 000€
+  conséquence égal à 0€
 ```
 
 Et le test devrait désormais fonctionner :
@@ -585,9 +585,9 @@ mentionné à l’article 1.
 ```catala
 champ d'application NouveauCalculImpôtRevenuCorrect:
   exception article_5
-  définition impôt_revenu
-    sous condition personne.nombre_enfants >= 7
-    conséquence égal à 0€
+  définition impôt_revenu sous condition
+    personne.nombre_enfants >= 7
+  conséquence égal à 0€
 ```
 
 Le même problème devrait être déclenché ci-dessus, pour des familles avec un
@@ -705,9 +705,9 @@ champ d'application DétermineBaseAmende:
   # Pour en revenir à notre petit problème, la solution est ici de fournir,
   # depuis l’extérieur, une définition exceptionnelle de l’impôt sur le revenu
   # pour les personnes gagnant moins de 10 000€.
-  définition calcul_impôt.impôt_revenu
-    sous condition personne.revenu <= 10 000€
-    conséquence égal à 500€
+  définition calcul_impôt.impôt_revenu sous condition
+    personne.revenu <= 10 000€
+  conséquence égal à 500€
 ```
 
 ## Une variable, plusieurs états
@@ -816,9 +816,9 @@ déclaration champ d'application ValeursDécimales:
   interne valeur2 contenu décimal
 
 champ d'application ValeursDécimales:
-  définition valeur1
-    sous condition 12,655465446655426 - 0,45265426541654 < 12,3554654652
-    conséquence égal à 45 / 9
+  définition valeur1 sous condition
+    12,655465446655426 - 0,45265426541654 < 12,3554654652
+  conséquence égal à 45 / 9
   # L’opérateur « / » correspond à une division éxacte.
   # La division d’entiers produit une décimale.
   définition valeur2 égal à valeur1 * valeur1 * 65%
@@ -844,9 +844,9 @@ déclaration champ d'application ValeursMonétaires:
   interne valeur2 contenu argent
 
 champ d'application ValeursMonétaires:
-  définition valeur1
-    sous condition 12,655465446655426 - 0,45265426541654 < 12,3554654652
-    conséquence égal à (décimal de 45) / (décimal de 9)
+  définition valeur1 sous condition
+    12,655465446655426 - 0,45265426541654 < 12,3554654652
+  conséquence égal à (décimal de 45) / (décimal de 9)
   définition valeur2 égal à
     1,00€ * (((6 520,23€ - 320,45€) * valeur1) / 45€)
 ```

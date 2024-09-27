@@ -41,7 +41,7 @@ scope GamingAuthorized:
 scope GamingAuthorized:
   definition contentPrize equals not clubBingo.prizeContent
 
-  rule authorized
-    under condition conductor and prizeValueIsSmall and bonusPrize and contentPrize
-    consequence fulfilled
+  rule authorized under condition
+    conductor and prizeValueIsSmall and bonusPrize and contentPrize
+  consequence fulfilled
 ```

@@ -222,9 +222,9 @@ you precisely to redefine a variable under a condition:
 
 ```catala
 scope IncomeTaxComputation:
-  definition fixed_percentage
-    under condition individual.number_of_children >= 2
-    consequence equals 15%
+  definition fixed_percentage under condition
+    individual.number_of_children >= 2
+  consequence equals 15%
 # Writing 15% is just an abbreviation for "0.15".
 ```
 While conditional definitions are a powerful tool for expressing legal conditions,
@@ -384,9 +384,9 @@ at article 1.
 scope NewIncomeTaxComputation:
   # Here, we simply define a new conditional definition for "income tax"
   # that handles the special case.
-  definition income_tax
-    under condition individual.income <= $10,000
-    consequence equals $0
+  definition income_tax under condition
+    individual.income <= $10,000
+  consequence equals $0
 # What, you think something might be wrong with this? Hmmm... We'll see
 # later!
 ```
@@ -544,9 +544,9 @@ scope NewIncomeTaxComputationFixed:
 
   # Then, you can declare the exception by referring back to the label
   exception article_5
-  definition income_tax
-    under condition individual.income <= $10,000
-    consequence equals $0
+  definition income_tax under condition
+    individual.income <= $10,000
+  consequence equals $0
 ```
 
 And the test that should now work:
@@ -595,9 +595,9 @@ at article 1.
 ```catala
 scope NewIncomeTaxComputationFixed:
   exception article_5
-  definition income_tax
-    under condition individual.number_of_children >= 7
-    consequence equals $0
+  definition income_tax under condition
+    individual.number_of_children >= 7
+  consequence equals $0
 ```
 
 The same problem as above would be triggered for families with an income below
@@ -780,9 +780,9 @@ scope BasisForFineDetermination:
   # Back to our little problem, the solution is here to provide from the outside
   # an exceptional definition for income tax for people earning less than
   # $10,0000.
-  definition tax_computation.income_tax
-    under condition individual.income <= $10,000
-    consequence equals $500
+  definition tax_computation.income_tax under condition
+    individual.income <= $10,000
+  consequence equals $500
 ```
 
 ## One variable, multiple states
@@ -904,9 +904,9 @@ declaration scope DecimalValues:
   output value2 content decimal
 
 scope DecimalValues:
-  definition value1
-    under condition 12.655465446655426 - 0.45265426541654 < 12.3554654652
-    consequence equals 45 / 8
+  definition value1 under condition
+    12.655465446655426 - 0.45265426541654 < 12.3554654652
+  consequence equals 45 / 8
   # The / operator corresponds to an exact division. The division of integers
   # yields a decimal.
   definition value2 equals value1 * value1 * 65%
@@ -929,9 +929,9 @@ declaration scope MoneyValues:
   output value2 content money
 
 scope MoneyValues:
-  definition value1
-    under condition 12.655465446655426 - 0.45265426541654 < 12.3554654652
-    consequence equals 45 / 8
+  definition value1 under condition
+    12.655465446655426 - 0.45265426541654 < 12.3554654652
+  consequence equals 45 / 8
   definition value2 equals
     $1.00 * ((($6,520.23 - $320.45) * value1) / $45)
 ```

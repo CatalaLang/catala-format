@@ -81,9 +81,9 @@ than one-half of such taxable year,
 
 ```catala
 scope BaseChildTaxpayerQualification:
-  rule residence_requirement
-    under condition same_residence_child_taxpayer
-    consequence fulfilled
+  rule residence_requirement under condition
+    same_residence_child_taxpayer
+  consequence fulfilled
 ```
 
 (C) who meets the age requirements of paragraph (3),
@@ -99,13 +99,13 @@ of the taxpayer begins.
 
 ```catala
 scope BaseChildTaxpayerQualification:
-  rule is_qualifying
-    under condition relationship_requirement
-      and residence_requirement
-      and age_requirement
-      and self_support_requirement
-      and child_joint_return_requirement
-    consequence fulfilled
+  rule is_qualifying under condition
+    relationship_requirement
+    and residence_requirement
+    and age_requirement
+    and self_support_requirement
+    and child_joint_return_requirement
+  consequence fulfilled
 ```
 
 ### (2) Relationship

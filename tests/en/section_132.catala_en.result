@@ -40,13 +40,13 @@ the property is being offered by the employer to customers, or
 
 ```catala
 scope QualifiedEmployeeDiscount:
-  definition qualified_employee_discount
-    under condition is_property
-    consequence equals
-      if employee_discount
-        > customer_price * gross_profit_percentage then
-        customer_price * gross_profit_percentage
-      else employee_discount
+  definition qualified_employee_discount under condition
+    is_property
+  consequence equals
+    if employee_discount
+      > customer_price * gross_profit_percentage then
+      customer_price * gross_profit_percentage
+    else employee_discount
 ```
 
 (B) in the case of services, 20 percent of the price at which the services are
@@ -54,13 +54,13 @@ being offered by the employer to customers.
 
 ```catala
 scope QualifiedEmployeeDiscount:
-  definition qualified_employee_discount
-    under condition is_services
-    consequence equals
-      if employee_discount
-        > customer_price * 20% then
-        customer_price * 20%
-      else employee_discount
+  definition qualified_employee_discount under condition
+    is_services
+  consequence equals
+    if employee_discount
+      > customer_price * 20% then
+      customer_price * 20%
+    else employee_discount
 
 scope QualifiedEmployeeDiscount under condition is_services:
   # When selling a service, one does not need the aggregate cost.

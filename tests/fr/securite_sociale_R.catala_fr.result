@@ -77,10 +77,10 @@ champ d'application AllocationFamilialesAvril2008:
 
 champ d'application AllocationsFamiliales:
   exception
-  définition âge_minimum_alinéa_1_l521_3
-    de enfant sous condition (enfant.date_de_naissance + 11 an <= |2008-04-30|)
-    conséquence égal à
-      version_avril_2008.âge_minimum_alinéa_1_l521_3
+  définition âge_minimum_alinéa_1_l521_3 de enfant sous condition
+    (enfant.date_de_naissance + 11 an <= |2008-04-30|)
+  conséquence égal à
+    version_avril_2008.âge_minimum_alinéa_1_l521_3
 ```
 
 ###### Article R521-2|LEGIARTI000006750608
@@ -216,8 +216,8 @@ multiplié par 169.
 ```catala
 champ d'application PrestationsFamiliales:
   exception
-  définition plafond_l512_3_2
-    sous condition régime_outre_mer_l751_1
-    conséquence égal à
-      (smic.brut_horaire * 55%) * 169,0
+  définition plafond_l512_3_2 sous condition
+    régime_outre_mer_l751_1
+  conséquence égal à
+    (smic.brut_horaire * 55%) * 169,0
 ```
