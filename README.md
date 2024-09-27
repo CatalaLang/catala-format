@@ -14,6 +14,6 @@ generic formatting tool.
 
 ## License
 
-The compiler and all the code contained in this repository is released under
-the [Apache license (version 2)](LICENSE.txt) unless another license is explicited
+The code contained in this repository is released under the [Apache
+license (version 2)](LICENSE.txt) unless another license is explicited
 for a sub-directory.
