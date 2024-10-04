@@ -463,11 +463,35 @@
 
 (e_fieldaccess (DOT) @prepend_antispace [(qfield) (TUPLE_INDEX)])
 
-(qenum_struct
- (DOT) @prepend_antispace)
+(qenum_struct (DOT) @prepend_antispace)
+((qenum_struct) (DOT) @prepend_antispace)
 
-((qenum_struct)
- (DOT) @prepend_antispace)
+(qconstructor
+ (qenum_struct)
+ (DOT) @prepend_antispace
+ (constructor_name)
+)
+
+((variable) @append_indent_start
+ (DOT) @prepend_antispace @append_input_softline
+ . (variable) @append_indent_end
+ (#multi_line_only!)
+)
+
+(e_fieldaccess
+ (e_variable) @append_indent_start
+ (DOT) @append_input_softline
+ . (qfield) @append_indent_end
+ (#multi_line_only!))
+
+(qconstructor
+ (qenum_struct) @append_indent_start
+ (DOT) @append_input_softline
+ . (constructor_name) @append_indent_end
+ (#multi_line_only!)
+)
+
+;; TODO? should we close the indent later?
 
 ;; Struct expression
 

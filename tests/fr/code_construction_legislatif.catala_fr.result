@@ -684,7 +684,8 @@ champ d'application ÉligibilitéAidePersonnaliséeLogement:
       (
         selon location.bailleur sous forme
         -- BailleurSocial de convention :
-          convention.conventionné_livre_III_titre_V_chap_III
+          convention.
+            conventionné_livre_III_titre_V_chap_III
         -- BailleurPrivéAvecConventionnementSocial de convention :
             convention.conventionné_livre_III_titre_II_chap_I_sec_3
         -- n'importe quel : faux
@@ -1183,7 +1184,8 @@ champ d'application ÉligibilitéAllocationLogement:
     demandeur.personne_hébergée_centre_soin_l_L162_22_3_sécurité_sociale
     et (
       ménage.logement.mode_occupation sous forme AccessionPropriétéLocalUsageExclusifHabitation
-      ou demandeur.magistrat_fonctionnaire_centre_intérêts_matériels_familiaux_hors_mayotte
+      ou demandeur.
+        magistrat_fonctionnaire_centre_intérêts_matériels_familiaux_hors_mayotte
     )
   )
 
@@ -1670,7 +1672,8 @@ champ d'application ÉligibilitéAllocationLogement
   définition éligibilité
     état l841_2
     sous condition
-      demandeur.magistrat_fonctionnaire_centre_intérêts_matériels_familiaux_hors_mayotte
+      demandeur.
+        magistrat_fonctionnaire_centre_intérêts_matériels_familiaux_hors_mayotte
     conséquence égal à PasÉligible
 ```
 ###### Section V : Contrôles, luttes contre la fraude et sanctions
