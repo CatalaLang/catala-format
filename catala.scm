@@ -571,6 +571,15 @@
  (#scope_id! "filter_map")
  )
 
+;; List aggregation
+
+((SUM) @prepend_begin_scope @append_indent_start
+ (_)
+ (OF) @prepend_spaced_scoped_softline @append_indent_end
+ (e_coll_map . (_) @append_end_scope)
+ (#scope_id! "aggregate")
+)
+
 ;; List extremum
 
 (e_coll_extremum
@@ -604,6 +613,14 @@
  (EMPTY)
  (THEN)
  dft: (_) @append_indent_end
+)
+
+;; Amongs
+
+((binder) @prepend_begin_scope
+ (AMONG) @prepend_spaced_scoped_softline
+ coll: (_) @append_end_scope
+ (#scope_id! "among")
 )
 
 ;; Directives

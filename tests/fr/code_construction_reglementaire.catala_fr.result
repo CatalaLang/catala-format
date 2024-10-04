@@ -4164,7 +4164,8 @@ champ d'application CalculÉquivalenceLoyerMinimale:
       (
         (
           (
-            somme décimal de (
+            somme décimal
+              de (
               (
                 si ressources_ménage_arrondies <= tranche.bas alors 0,0
                 sinon
