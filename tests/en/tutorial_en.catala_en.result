@@ -422,8 +422,9 @@ declaration scope Test1:
 #     catala Interpret --scope=Test1 tutorial_en.catala_en
 
 scope Test1:
-  definition tax_computation.individual
-  # We define the argument to the subscope
+  definition
+    tax_computation.individual
+    # We define the argument to the subscope
   equals
     # The four lines below define a whole structure by giving a value to
     # each of its fields
@@ -816,19 +817,17 @@ declaration scope WealthTax:
     state after_capping
 
 scope WealthTax:
-  definition wealth
-    state total
-    equals total_wealth
+  definition wealth state total equals total_wealth
   definition wealth
     state after_charity_deductions
-    equals
-      wealth
-      - # Here, "wealth" refers to the state "total"
-      value_of_buildings_used_for_charity
+  equals
+    wealth
+    - # Here, "wealth" refers to the state "total"
+    value_of_buildings_used_for_charity
   definition wealth
     state after_capping
-    equals
-      if wealth >= $2,500,000 then $2,500,000 else wealth
+  equals
+    if wealth >= $2,500,000 then $2,500,000 else wealth
   # Here, "wealth" refers to the state "after_charity_deductions"
 
   assertion wealth > $0

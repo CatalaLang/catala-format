@@ -684,7 +684,8 @@ champ d'application ÉligibilitéAidePersonnaliséeLogement:
       (
         selon location.bailleur sous forme
         -- BailleurSocial de convention :
-          convention.conventionné_livre_III_titre_V_chap_III
+          convention.
+            conventionné_livre_III_titre_V_chap_III
         -- BailleurPrivéAvecConventionnementSocial de convention :
             convention.conventionné_livre_III_titre_II_chap_I_sec_3
         -- n'importe quel : faux
@@ -850,11 +851,11 @@ est fixée par voie réglementaire.
 champ d'application CalculAidePersonnaliséeLogementLocatif:
   définition traitement_aide_finale
     de aide_finale état réduction_loyer_solidarité
-    égal à
-      soit aide_finale égal à traitement_aide_finale de aide_finale dans
-      si aide_finale - réduction_loyer_solidarité * fraction_l832_3 >= 0€ alors
-        aide_finale - réduction_loyer_solidarité * fraction_l832_3
-      sinon 0€
+  égal à
+    soit aide_finale égal à traitement_aide_finale de aide_finale dans
+    si aide_finale - réduction_loyer_solidarité * fraction_l832_3 >= 0€ alors
+      aide_finale - réduction_loyer_solidarité * fraction_l832_3
+    sinon 0€
 
   assertion fraction_l832_3 >= 90% et fraction_l832_3 <= 98%
 ```
@@ -881,13 +882,13 @@ champ d'application ÉligibilitéAllocationLogement:
   # règlement rappelant ce fait, nous le traduisons en code ici.
   définition éligibilité
     état dispositions_communes
-    égal à
-      si (non éligibilité_commune.éligibilité)
-        ou (non condition_accession_propriété) alors
-        PasÉligible
-      sinon
-        # Valeur par défaut, sera réécrit à l'application de L841-2.
-        TypeÉligibilitéAllocationLogement.AllocationLogementSociale
+  égal à
+    si (non éligibilité_commune.éligibilité)
+      ou (non condition_accession_propriété) alors
+      PasÉligible
+    sinon
+      # Valeur par défaut, sera réécrit à l'application de L841-2.
+      TypeÉligibilitéAllocationLogement.AllocationLogementSociale
 ```
 
 ###### Article L841-1 | LEGIARTI000038814864
@@ -1075,16 +1076,16 @@ champ d'application ÉligibilitéAllocationLogement:
   étiquette base
   définition éligibilité
     état l841_2
-    égal à
-      si éligibilité = PasÉligible ou bénéficie_aide_personnalisée_logement alors
-        PasÉligible
-      sinon
-        (
-          si éligibilité_allocation_logement_familiale alors
-            TypeÉligibilitéAllocationLogement.AllocationLogementFamiliale
-          sinon
-            TypeÉligibilitéAllocationLogement.AllocationLogementSociale
-        )
+  égal à
+    si éligibilité = PasÉligible ou bénéficie_aide_personnalisée_logement alors
+      PasÉligible
+    sinon
+      (
+        si éligibilité_allocation_logement_familiale alors
+          TypeÉligibilitéAllocationLogement.AllocationLogementFamiliale
+        sinon
+          TypeÉligibilitéAllocationLogement.AllocationLogementSociale
+      )
 
 champ d'application CalculetteAidesAuLogement:
   # Le champ d'application CalculetteAidesAuLogement suppose un scenario type
@@ -1093,7 +1094,9 @@ champ d'application CalculetteAidesAuLogement:
   # ce scénario, le ménage ne bénéficie pas encore de l'aide personnalisée
   # au logement et nous pouvons évaluer l'éligibilité à l'allocation logement
   # indépendamment de ce fait.
-  définition éligibilité_allocation_logement.bénéficie_aide_personnalisée_logement égal à faux
+  définition
+    éligibilité_allocation_logement.bénéficie_aide_personnalisée_logement
+  égal à faux
 
   # Nous mettons ici la logique de notre interprétation de l'article L841-2
   # qui prend le maximum des deux types d'aide.
@@ -1183,17 +1186,18 @@ champ d'application ÉligibilitéAllocationLogement:
     demandeur.personne_hébergée_centre_soin_l_L162_22_3_sécurité_sociale
     et (
       ménage.logement.mode_occupation sous forme AccessionPropriétéLocalUsageExclusifHabitation
-      ou demandeur.magistrat_fonctionnaire_centre_intérêts_matériels_familiaux_hors_mayotte
+      ou demandeur.
+        magistrat_fonctionnaire_centre_intérêts_matériels_familiaux_hors_mayotte
     )
   )
 
   exception base
   définition éligibilité
     état l841_2
-    sous condition
-      demandeur.personne_hébergée_centre_soin_l_L162_22_3_sécurité_sociale
-    conséquence égal à
-      TypeÉligibilitéAllocationLogement.AllocationLogementSociale
+  sous condition
+    demandeur.personne_hébergée_centre_soin_l_L162_22_3_sécurité_sociale
+  conséquence égal à
+    TypeÉligibilitéAllocationLogement.AllocationLogementSociale
 ```
 
 ###### Article L841-4 | LEGIARTI000038814858
@@ -1206,12 +1210,12 @@ champ d'application ÉligibilitéAllocationLogement:
   étiquette accession_propriété exception base
   définition éligibilité
     état l841_2
-    sous condition
-      selon ménage.logement.mode_occupation sous forme
-      -- AccessionPropriétéLocalUsageExclusifHabitation de propriétaire :
-        propriétaire.prêt.date_signature > |2017-12-31|
-      -- n'importe quel : faux
-    conséquence égal à PasÉligible
+  sous condition
+    selon ménage.logement.mode_occupation sous forme
+    -- AccessionPropriétéLocalUsageExclusifHabitation de propriétaire :
+      propriétaire.prêt.date_signature > |2017-12-31|
+    -- n'importe quel : faux
+  conséquence égal à PasÉligible
 ```
 
 ###### Article L841-5 | LEGIARTI000038814856
@@ -1633,18 +1637,18 @@ champ d'application ÉligibilitéAllocationLogement
   étiquette accession_propriété_outre_mer exception accession_propriété
   définition éligibilité
     état l841_2
-    sous condition
-      selon ménage.logement.mode_occupation sous forme
-      -- AccessionPropriétéLocalUsageExclusifHabitation de propriétaire :
-        propriétaire.prêt.date_signature > |2017-12-31|
-        ou (
-          propriétaire.prêt.date_signature > |2019-12-31|
-          et selon propriétaire.prêt.accord_financement_représentant_État_outre_mer sous forme
-          -- Accord de date_accord : date_accord <= |2018-12-31|
-          -- PasdAccord : faux
-        )
-      -- n'importe quel : faux
-    conséquence égal à PasÉligible
+  sous condition
+    selon ménage.logement.mode_occupation sous forme
+    -- AccessionPropriétéLocalUsageExclusifHabitation de propriétaire :
+      propriétaire.prêt.date_signature > |2017-12-31|
+      ou (
+        propriétaire.prêt.date_signature > |2019-12-31|
+        et selon propriétaire.prêt.accord_financement_représentant_État_outre_mer sous forme
+        -- Accord de date_accord : date_accord <= |2018-12-31|
+        -- PasdAccord : faux
+      )
+    -- n'importe quel : faux
+  conséquence égal à PasÉligible
 ```
 
 ####### Article L861-7 | LEGIARTI000038814773
@@ -1669,9 +1673,10 @@ champ d'application ÉligibilitéAllocationLogement
   exception accession_propriété_outre_mer
   définition éligibilité
     état l841_2
-    sous condition
-      demandeur.magistrat_fonctionnaire_centre_intérêts_matériels_familiaux_hors_mayotte
-    conséquence égal à PasÉligible
+  sous condition
+    demandeur.
+      magistrat_fonctionnaire_centre_intérêts_matériels_familiaux_hors_mayotte
+  conséquence égal à PasÉligible
 ```
 ###### Section V : Contrôles, luttes contre la fraude et sanctions
 

@@ -13,7 +13,9 @@ champ d'application Exemple1:
   définition calcul.loyer_principal égal à 700 €
   définition calcul.date_courante égal à |2022-02-03|
   définition calcul.logement_est_chambre égal à faux
-  définition calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à faux
+  définition
+    calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à faux
   définition calcul.zone égal à Zone1
   définition calcul.situation_familiale_calcul_apl égal à Couple
   définition calcul.nombre_personnes_à_charge égal à 3
@@ -49,7 +51,9 @@ champ d'application Exemple2:
   définition calcul.colocation égal à faux
   définition calcul.réduction_loyer_solidarité égal à 0 €
   définition calcul.ressources_ménage_arrondies égal à 11500 €
-  définition calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à faux
+  définition
+    calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à faux
   définition calcul.bénéficiaire_aide_adulte_ou_enfant_handicapés égal à faux
   définition calcul.logement_meublé_d842_2 égal à faux
   définition calcul.résidence égal à Métropole
@@ -71,7 +75,9 @@ champ d'application Exemple3:
   définition calcul.loyer_principal égal à 408 €
   définition calcul.date_courante égal à |2022-01-18|
   définition calcul.logement_est_chambre égal à faux
-  définition calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à faux
+  définition
+    calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à faux
   définition calcul.zone égal à Zone3
   définition calcul.situation_familiale_calcul_apl égal à PersonneSeule
   définition calcul.nombre_personnes_à_charge égal à 3
@@ -100,7 +106,9 @@ champ d'application Exemple4:
   définition calcul.loyer_principal égal à 680 €
   définition calcul.date_courante égal à |2022-02-19|
   définition calcul.logement_est_chambre égal à faux
-  définition calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à faux
+  définition
+    calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à faux
   définition calcul.zone égal à Zone1
   définition calcul.situation_familiale_calcul_apl égal à Couple
   définition calcul.nombre_personnes_à_charge égal à 1
@@ -129,7 +137,9 @@ champ d'application Exemple5:
   définition calcul.loyer_principal égal à 610 €
   définition calcul.date_courante égal à |2022-04-05|
   définition calcul.logement_est_chambre égal à faux
-  définition calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à faux
+  définition
+    calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à faux
   définition calcul.zone égal à Zone1
   définition calcul.situation_familiale_calcul_apl égal à PersonneSeule
   définition calcul.nombre_personnes_à_charge égal à 0
@@ -158,7 +168,9 @@ champ d'application Exemple6:
   définition calcul.loyer_principal égal à 436 €
   définition calcul.date_courante égal à |2022-05-02|
   définition calcul.logement_est_chambre égal à faux
-  définition calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à faux
+  définition
+    calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à faux
   définition calcul.zone égal à Zone2
   définition calcul.situation_familiale_calcul_apl égal à Couple
   définition calcul.nombre_personnes_à_charge égal à 0
@@ -187,7 +199,9 @@ champ d'application Exemple7:
   définition calcul.loyer_principal égal à 527 €
   définition calcul.date_courante égal à |2022-02-13|
   définition calcul.logement_est_chambre égal à faux
-  définition calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à faux
+  définition
+    calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à faux
   définition calcul.zone égal à Zone2
   définition calcul.situation_familiale_calcul_apl égal à Couple
   définition calcul.nombre_personnes_à_charge égal à 6
@@ -216,7 +230,9 @@ champ d'application Exemple8:
   définition calcul.loyer_principal égal à 310 €
   définition calcul.date_courante égal à |2022-04-02|
   définition calcul.logement_est_chambre égal à vrai
-  définition calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à faux
+  définition
+    calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à faux
   définition calcul.zone égal à Zone1
   définition calcul.situation_familiale_calcul_apl égal à Couple
   définition calcul.nombre_personnes_à_charge égal à 0
@@ -247,7 +263,9 @@ champ d'application Exemple9:
   définition calcul.loyer_principal égal à 400 €
   définition calcul.date_courante égal à |2022-06-10|
   définition calcul.logement_est_chambre égal à faux
-  définition calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à faux
+  définition
+    calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à faux
   définition calcul.zone égal à Zone1
   définition calcul.situation_familiale_calcul_apl égal à PersonneSeule
   définition calcul.nombre_personnes_à_charge égal à 0

@@ -10,7 +10,9 @@ declaration scope Test1:
   my_gaming scope GamingAuthorized
 
 scope Test1:
-  definition my_gaming.artUnion equals
+  definition
+    my_gaming.artUnion
+  equals
     ArtUnion {
       -- grossProceeds: $50000
       -- typeOrg: NonProfit
@@ -35,7 +37,9 @@ declaration scope Test2:
   my_gaming scope GamingAuthorized
 
 scope Test2:
-  definition my_gaming.artUnion equals
+  definition
+    my_gaming.artUnion
+  equals
     ArtUnion {
       -- grossProceeds: $50000
       -- typeOrg: Charitable
@@ -60,7 +64,9 @@ declaration scope Test3:
   my_gaming scope GamingAuthorized
 
 scope Test3:
-  definition my_gaming.artUnion equals
+  definition
+    my_gaming.artUnion
+  equals
     ArtUnion {
       -- grossProceeds: $15000
       -- typeOrg: Charitable
@@ -85,7 +91,9 @@ declaration scope Test4:
   my_gaming scope GamingAuthorized
 
 scope Test4:
-  definition my_gaming.artUnion equals
+  definition
+    my_gaming.artUnion
+  equals
     ArtUnion {
       -- grossProceeds: $20000
       -- typeOrg: Charitable

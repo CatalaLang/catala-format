@@ -10,7 +10,9 @@ declaration scope Test1:
   my_gaming scope GamingAuthorized
 
 scope Test1:
-  definition my_gaming.noDrawLottery equals
+  definition
+    my_gaming.noDrawLottery
+  equals
     NoDrawLottery {
       -- typeOrg: NonProfit
       -- grossProceeds: $3000
@@ -34,7 +36,9 @@ declaration scope Test2:
   my_gaming scope GamingAuthorized
 
 scope Test2:
-  definition my_gaming.noDrawLottery equals
+  definition
+    my_gaming.noDrawLottery
+  equals
     NoDrawLottery {
       -- typeOrg: Charitable
       -- grossProceeds: $3000
@@ -58,7 +62,9 @@ declaration scope Test3:
   my_gaming scope GamingAuthorized
 
 scope Test3:
-  definition my_gaming.noDrawLottery equals
+  definition
+    my_gaming.noDrawLottery
+  equals
     NoDrawLottery {
       -- typeOrg: ProfitOrg
       -- grossProceeds: $2000
@@ -82,7 +88,9 @@ declaration scope Test4:
   my_gaming scope GamingAuthorized
 
 scope Test4:
-  definition my_gaming.noDrawLottery equals
+  definition
+    my_gaming.noDrawLottery
+  equals
     NoDrawLottery {
       -- typeOrg: Charitable
       -- grossProceeds: $9000

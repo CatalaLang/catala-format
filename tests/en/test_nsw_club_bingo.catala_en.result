@@ -11,7 +11,9 @@ declaration scope Test1:
   my_gaming scope GamingAuthorized
 
 scope Test1:
-  definition my_gaming.clubBingo equals
+  definition
+    my_gaming.clubBingo
+  equals
     ClubBingo {
       -- registeredClub: true
       -- totalValuePrizePerGame: $60
@@ -36,7 +38,9 @@ declaration scope Test2:
   my_gaming scope GamingAuthorized
 
 scope Test2:
-  definition my_gaming.clubBingo equals
+  definition
+    my_gaming.clubBingo
+  equals
     ClubBingo {
       -- registeredClub: true
       -- totalValuePrizePerGame: $60
@@ -61,7 +65,9 @@ declaration scope Test3:
   my_gaming scope GamingAuthorized
 
 scope Test3:
-  definition my_gaming.clubBingo equals
+  definition
+    my_gaming.clubBingo
+  equals
     ClubBingo {
       -- registeredClub: false
       -- totalValuePrizePerGame: $60
@@ -86,7 +92,9 @@ declaration scope Test4:
   my_gaming scope GamingAuthorized
 
 scope Test4:
-  definition my_gaming.clubBingo equals
+  definition
+    my_gaming.clubBingo
+  equals
     ClubBingo {
       -- registeredClub: false
       -- totalValuePrizePerGame: $80
@@ -111,7 +119,9 @@ declaration scope Test5:
   my_gaming scope GamingAuthorized
 
 scope Test5:
-  definition my_gaming.clubBingo equals
+  definition
+    my_gaming.clubBingo
+  equals
     ClubBingo {
       -- registeredClub: true
       -- totalValuePrizePerGame: $60

@@ -301,12 +301,15 @@
 ;; state variable def
 (definition
   (DEFINITION)
-  (scope_var) @append_hardline
-              @append_indent_start
+  (scope_var) @append_indent_start @append_spaced_softline
   (STATE)
-  (state_label) @append_hardline
-  (_) @append_indent_end
-  .
+  (state_label) @append_spaced_softline @append_indent_end
+)
+
+(e_var_state
+ (variable) @append_indent_start @append_spaced_softline
+ (STATE)
+ (state_label) @append_indent_end
 )
 
 ;; generic variable definition
@@ -318,9 +321,17 @@
  (#scope_id! "state_var_def")
 )
 
-;; unconditional scope def
+;; multiline scope var definition
 
-;; n/a
+(scope
+ (definition
+   (DEFINITION) @prepend_begin_scope @append_indent_start @append_spaced_scoped_softline
+   (scope_var) @append_spaced_scoped_softline
+   [(UNDER_CONDITION) (STATE)]? @do_nothing
+   (DEFINED_AS) @append_end_scope @append_spaced_scoped_softline @prepend_indent_end
+ )
+ (#scope_id! "scope_var_def")
+)
 
 ;; conditional scope def
 (scope
@@ -463,11 +474,35 @@
 
 (e_fieldaccess (DOT) @prepend_antispace [(qfield) (TUPLE_INDEX)])
 
-(qenum_struct
- (DOT) @prepend_antispace)
+(qenum_struct (DOT) @prepend_antispace)
+((qenum_struct) (DOT) @prepend_antispace)
 
-((qenum_struct)
- (DOT) @prepend_antispace)
+(qconstructor
+ (qenum_struct)
+ (DOT) @prepend_antispace
+ (constructor_name)
+)
+
+((variable) @append_indent_start
+ (DOT) @prepend_antispace @append_input_softline
+ . (variable) @append_indent_end
+ (#multi_line_only!)
+)
+
+(e_fieldaccess
+ (e_variable) @append_indent_start
+ (DOT) @append_input_softline
+ . (qfield) @append_indent_end
+ (#multi_line_only!))
+
+(qconstructor
+ (qenum_struct) @append_indent_start
+ (DOT) @append_input_softline
+ . (constructor_name) @append_indent_end
+ (#multi_line_only!)
+)
+
+;; TODO? should we close the indent later?
 
 ;; Struct expression
 
@@ -513,97 +548,114 @@
 ;; List existence test
 
 (e_coll_exists
- . (EXISTS)
- . (binder)
- . (AMONG)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (SUCH)
- . (THAT)
- . cond: (_) @append_indent_end
+ (EXISTS)
+ (binder)
+ (AMONG)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (SUCH)
+ (THAT)
+ cond: (_) @append_indent_end
  )
 
 ;; List For-all test
 
 (e_coll_forall
- . (FOR)
- . (ALL)
- . (binder)
- . (AMONG)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (WE_HAVE)
- . cond: (_) @append_indent_end
+ (FOR)
+ (ALL)
+ (binder)
+ (AMONG)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (WE_HAVE)
+ cond: (_) @append_indent_end
 )
 
 ;; List Mapping
 
 (e_coll_map
- . mapf: (_) @append_indent_start @append_spaced_softline
- . (FOR)
- . (binder)
- . (AMONG)
- . coll: (_) @append_indent_end
+ mapf: (_) @append_indent_start @append_spaced_softline
+ (FOR)
+ (binder)
+ (AMONG)
+ coll: (_) @append_indent_end
 )
 
 ;; List Filter
 
 (e_coll_filter
- . (LIST)
- . (OF)
- . (_)
- . (AMONG)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (SUCH)
- . (THAT)
- . cond: (_) @append_indent_end
+ (LIST)
+ (OF)
+ (_)
+ (AMONG)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (SUCH)
+ (THAT)
+ cond: (_) @append_indent_end
 )
 
 ;; List Filter + Map
 
 (e_coll_filter_map
- . mapf: (_) @prepend_begin_scope @append_indent_start @append_spaced_scoped_softline
- . (FOR)
- . (binder)
- . (AMONG)
- . coll: (_) @append_spaced_softline @append_end_scope
- . (SUCH)
- . (THAT)
- . cond: (_) @append_indent_end
+ mapf: (_) @prepend_begin_scope @append_indent_start @append_spaced_scoped_softline
+ (FOR)
+ (binder)
+ (AMONG)
+ coll: (_) @append_spaced_softline @append_end_scope
+ (SUCH)
+ (THAT)
+ cond: (_) @append_indent_end
  (#scope_id! "filter_map")
  )
+
+;; List aggregation
+
+((SUM) @prepend_begin_scope @append_indent_start
+ (_)
+ (OF) @prepend_spaced_scoped_softline @append_indent_end
+ (e_coll_map . (_) @append_end_scope)
+ (#scope_id! "aggregate")
+)
 
 ;; List extremum
 
 (e_coll_extremum
- . [(MAXIMUM) (MINIMUM)]
- . (OF)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (OR)
- . (IF)
- . (LIST)
- . (EMPTY)
- . (THEN)
- . dft: (_) @append_indent_end
+ [(MAXIMUM) (MINIMUM)]
+ (OF)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (OR)
+ (IF)
+ (LIST)
+ (EMPTY)
+ (THEN)
+ dft: (_) @append_indent_end
 )
 
 ;; List arg-extremum
 
 (e_coll_arg_extremum
- . (CONTENT)
- . (OF)
- . (_)
- . (AMONG)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (SUCH)
- . (THAT)
- . mapf: (_)
- . (IS)
- . [(MAXIMUM) (MINIMUM)] @append_spaced_softline
- . (OR)
- . (IF)
- . (LIST)
- . (EMPTY)
- . (THEN)
- . dft: (_) @append_indent_end
+ (CONTENT)
+ (OF)
+ (_)
+ (AMONG)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (SUCH)
+ (THAT)
+ mapf: (_)
+ (IS)
+ [(MAXIMUM) (MINIMUM)] @append_spaced_softline
+ (OR)
+ (IF)
+ (LIST)
+ (EMPTY)
+ (THEN)
+ dft: (_) @append_indent_end
+)
+
+;; Amongs
+
+((binder) @prepend_begin_scope
+ (AMONG) @prepend_spaced_scoped_softline
+ coll: (_) @append_end_scope
+ (#scope_id! "among")
 )
 
 ;; Directives

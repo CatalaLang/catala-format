@@ -7,7 +7,9 @@ declaration scope UnitTest1:
   tax_computation scope T .NewIncomeTaxComputation
 
 scope UnitTest1:
-  definition tax_computation.individual equals
+  definition
+    tax_computation.individual
+  equals
     T.Individual {
       -- income: $230,000
       -- number_of_children: 0

@@ -740,18 +740,16 @@ déclaration champ d'application ImpôtSurLaFortune:
     état après_plafonnement
 
 champ d'application ImpôtSurLaFortune:
-  définition patrimoine
-    état total
-    égal à total_du_patrimoine
+  définition patrimoine état total égal à total_du_patrimoine
   définition patrimoine
     état après_déduction_caritative
-    égal à
-      patrimoine - valeur_du_bâtiment_pour_exploitation_caritative
+  égal à
+    patrimoine - valeur_du_bâtiment_pour_exploitation_caritative
   # Ci-dessus, « patrimoine » se réfère à l’état « total »
   définition patrimoine
     état après_plafonnement
-    égal à
-      si patrimoine >= 2 500 000€ alors 2 500 000€ sinon patrimoine
+  égal à
+    si patrimoine >= 2 500 000€ alors 2 500 000€ sinon patrimoine
   # Ci-dessus, « patrimoine » réfère à l’état « après_déduction_caritative »
   assertion patrimoine > 0€
 # En dehors de la définition de « patrimoine », « patrimoine » réfère toujours
@@ -1005,9 +1003,7 @@ déclaration champ d'application Allocation:
     état final
 
 champ d'application Allocation:
-  définition valeur
-    état de_base
-    égal à loyer * 30%
+  définition valeur état de_base égal à loyer * 30%
 ```
 
 ### A. Avec la syntaxe actuelle
@@ -1018,8 +1014,8 @@ b. L’allocation finale est arrondie au multiple supérieur de 100€.
 champ d'application Allocation:
   définition valeur
     état final
-    égal à
-      arrondi de (valeur / 100,0 + 0,49€) * 100,0
+  égal à
+    arrondi de (valeur / 100,0 + 0,49€) * 100,0
 # Ici vous devriez expliquer pourquoi cette formule fait ce que
 # le texte exprime, puisque c’est loin d’être évident.
 # Ça n’est pas grave s’il est utilisé qu’une seule fois, mais c’est loin
@@ -1039,9 +1035,7 @@ dépend de montant contenu argent égal à
 # Cette définition pourrait même être mise dans le prologue.
 
 champ d'application Allocation:
-  définition valeur
-    état final
-    égal à arrondi_supérieur_à_100 de valeur
+  définition valeur état final égal à arrondi_supérieur_à_100 de valeur
 ```
 
 ## Exemple 3: Des fonctions avec plusieurs paramètres
