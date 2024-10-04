@@ -513,97 +513,97 @@
 ;; List existence test
 
 (e_coll_exists
- . (EXISTS)
- . (binder)
- . (AMONG)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (SUCH)
- . (THAT)
- . cond: (_) @append_indent_end
+ (EXISTS)
+ (binder)
+ (AMONG)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (SUCH)
+ (THAT)
+ cond: (_) @append_indent_end
  )
 
 ;; List For-all test
 
 (e_coll_forall
- . (FOR)
- . (ALL)
- . (binder)
- . (AMONG)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (WE_HAVE)
- . cond: (_) @append_indent_end
+ (FOR)
+ (ALL)
+ (binder)
+ (AMONG)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (WE_HAVE)
+ cond: (_) @append_indent_end
 )
 
 ;; List Mapping
 
 (e_coll_map
- . mapf: (_) @append_indent_start @append_spaced_softline
- . (FOR)
- . (binder)
- . (AMONG)
- . coll: (_) @append_indent_end
+ mapf: (_) @append_indent_start @append_spaced_softline
+ (FOR)
+ (binder)
+ (AMONG)
+ coll: (_) @append_indent_end
 )
 
 ;; List Filter
 
 (e_coll_filter
- . (LIST)
- . (OF)
- . (_)
- . (AMONG)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (SUCH)
- . (THAT)
- . cond: (_) @append_indent_end
+ (LIST)
+ (OF)
+ (_)
+ (AMONG)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (SUCH)
+ (THAT)
+ cond: (_) @append_indent_end
 )
 
 ;; List Filter + Map
 
 (e_coll_filter_map
- . mapf: (_) @prepend_begin_scope @append_indent_start @append_spaced_scoped_softline
- . (FOR)
- . (binder)
- . (AMONG)
- . coll: (_) @append_spaced_softline @append_end_scope
- . (SUCH)
- . (THAT)
- . cond: (_) @append_indent_end
+ mapf: (_) @prepend_begin_scope @append_indent_start @append_spaced_scoped_softline
+ (FOR)
+ (binder)
+ (AMONG)
+ coll: (_) @append_spaced_softline @append_end_scope
+ (SUCH)
+ (THAT)
+ cond: (_) @append_indent_end
  (#scope_id! "filter_map")
  )
 
 ;; List extremum
 
 (e_coll_extremum
- . [(MAXIMUM) (MINIMUM)]
- . (OF)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (OR)
- . (IF)
- . (LIST)
- . (EMPTY)
- . (THEN)
- . dft: (_) @append_indent_end
+ [(MAXIMUM) (MINIMUM)]
+ (OF)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (OR)
+ (IF)
+ (LIST)
+ (EMPTY)
+ (THEN)
+ dft: (_) @append_indent_end
 )
 
 ;; List arg-extremum
 
 (e_coll_arg_extremum
- . (CONTENT)
- . (OF)
- . (_)
- . (AMONG)
- . coll: (_) @append_indent_start @append_spaced_softline
- . (SUCH)
- . (THAT)
- . mapf: (_)
- . (IS)
- . [(MAXIMUM) (MINIMUM)] @append_spaced_softline
- . (OR)
- . (IF)
- . (LIST)
- . (EMPTY)
- . (THEN)
- . dft: (_) @append_indent_end
+ (CONTENT)
+ (OF)
+ (_)
+ (AMONG)
+ coll: (_) @append_indent_start @append_spaced_softline
+ (SUCH)
+ (THAT)
+ mapf: (_)
+ (IS)
+ [(MAXIMUM) (MINIMUM)] @append_spaced_softline
+ (OR)
+ (IF)
+ (LIST)
+ (EMPTY)
+ (THEN)
+ dft: (_) @append_indent_end
 )
 
 ;; Directives
