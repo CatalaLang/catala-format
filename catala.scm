@@ -301,12 +301,15 @@
 ;; state variable def
 (definition
   (DEFINITION)
-  (scope_var) @append_hardline
-              @append_indent_start
+  (scope_var) @append_indent_start @append_spaced_softline
   (STATE)
-  (state_label) @append_hardline
-  (_) @append_indent_end
-  .
+  (state_label) @append_spaced_softline @append_indent_end
+)
+
+(e_var_state
+ (variable) @append_indent_start @append_spaced_softline
+ (STATE)
+ (state_label) @append_indent_end
 )
 
 ;; generic variable definition

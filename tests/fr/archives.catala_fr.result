@@ -711,24 +711,24 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
   # résultat est le même à gauche et à droite.
   définition taux_loyer_éligible
     état formule
-    égal à
-      si rapport_loyers < 45% alors 0%
-      sinon
-        (
-          si rapport_loyers >= 45% et rapport_loyers < 75% alors
-            0,45% * (rapport_loyers - 45%)
-          sinon
-            (
-              si rapport_loyers >= 75% alors
-                0,45% * 30% + 0,68% * (rapport_loyers - 75%)
-              sinon 0,0
-            )
-        )
+  égal à
+    si rapport_loyers < 45% alors 0%
+    sinon
+      (
+        si rapport_loyers >= 45% et rapport_loyers < 75% alors
+          0,45% * (rapport_loyers - 45%)
+        sinon
+          (
+            si rapport_loyers >= 75% alors
+              0,45% * 30% + 0,68% * (rapport_loyers - 75%)
+            sinon 0,0
+          )
+      )
   définition taux_loyer_éligible
     état taux_arrondi
-    égal à
-      # La troisième décimale en pourcentage est en fait la cinquième décimale
-      (arrondi de (taux_loyer_éligible * 100000,0)) / 100000,0
+  égal à
+    # La troisième décimale en pourcentage est en fait la cinquième décimale
+    (arrondi de (taux_loyer_éligible * 100000,0)) / 100000,0
 ```
 
 Le loyer de référence LR est défini selon le tableau suivant (en euros) :
@@ -949,11 +949,11 @@ champ d'application CalculAidePersonnaliséeLogementAccessionPropriété
   sous condition date_courante >= |2022-07-01| et date_courante < |2023-10-01|:
   définition plafond_mensualité_d832_10_3
     état copropriétaires
-    égal à
-      si copropriété alors
-        plafond_mensualité_d832_10_3 * 75%
-      sinon
-        plafond_mensualité_d832_10_3
+  égal à
+    si copropriété alors
+      plafond_mensualité_d832_10_3 * 75%
+    sinon
+      plafond_mensualité_d832_10_3
 ```
 
 2° Le montant forfaitaire au titre des charges est fixé comme suit (en euros) :
@@ -1145,14 +1145,14 @@ champ d'application CalculAllocationLogementAccessionPropriété
   exception
   définition calcul_plafond_mensualité_d842_6
     de date_calcul, nombre_personnes_à_charge état avec_copropriété
-    sous condition
-      copropriété
-    conséquence égal à
-      (
-        calcul_plafond_mensualité_d842_6 de
-          date_calcul, nombre_personnes_à_charge
-      )
-      * 75%
+  sous condition
+    copropriété
+  conséquence égal à
+    (
+      calcul_plafond_mensualité_d842_6 de
+        date_calcul, nombre_personnes_à_charge
+    )
+    * 75%
 ```
 
 2° Le montant forfaitaire au titre des charges est fixé comme suit (en euros) :
@@ -1444,18 +1444,18 @@ champ d'application CalculAllocationLogementAccessionPropriété
   exception
   définition calcul_plafond_mensualité_d842_6
     de date_calcul, nombre_personnes_à_charge état avec_limitation_dom_tom
-    sous condition
-      nombre_personnes_à_charge >= 6
-      et selon résidence sous forme
-      -- Guadeloupe : vrai
-      -- Martinique : vrai
-      -- LaRéunion : vrai
-      -- Mayotte : vrai
-      -- SaintBarthélemy : vrai
-      -- SaintMartin : vrai
-      -- n'importe quel : faux
-    conséquence égal à
-      calcul_plafond_mensualité_d842_6 de date_calcul, 6
+  sous condition
+    nombre_personnes_à_charge >= 6
+    et selon résidence sous forme
+    -- Guadeloupe : vrai
+    -- Martinique : vrai
+    -- LaRéunion : vrai
+    -- Mayotte : vrai
+    -- SaintBarthélemy : vrai
+    -- SaintMartin : vrai
+    -- n'importe quel : faux
+  conséquence égal à
+    calcul_plafond_mensualité_d842_6 de date_calcul, 6
 ```
 
 2° La valeur fixée à l'article 15 du forfait " R0 ", visé au 5° de l'article D. 823-17 du même code, pour
@@ -1989,18 +1989,18 @@ champ d'application CalculAllocationLogementAccessionPropriété
   exception
   définition calcul_plafond_mensualité_d842_6
     de date_calcul, nombre_personnes_à_charge état avec_limitation_dom_tom
-    sous condition
-      nombre_personnes_à_charge >= 6
-      et selon résidence sous forme
-      -- Guadeloupe : vrai
-      -- Martinique : vrai
-      -- LaRéunion : vrai
-      -- Mayotte : vrai
-      -- SaintBarthélemy : vrai
-      -- SaintMartin : vrai
-      -- n'importe quel : faux
-    conséquence égal à
-      calcul_plafond_mensualité_d842_6 de date_calcul, 6
+  sous condition
+    nombre_personnes_à_charge >= 6
+    et selon résidence sous forme
+    -- Guadeloupe : vrai
+    -- Martinique : vrai
+    -- LaRéunion : vrai
+    -- Mayotte : vrai
+    -- SaintBarthélemy : vrai
+    -- SaintMartin : vrai
+    -- n'importe quel : faux
+  conséquence égal à
+    calcul_plafond_mensualité_d842_6 de date_calcul, 6
 ```
 
 2° La valeur fixée à l'article 15 du forfait " R0 ", visé au 5° de l'article D. 823-17 du même code, pour
@@ -2556,24 +2556,24 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
   # résultat est le même à gauche et à droite.
   définition taux_loyer_éligible
     état formule
-    égal à
-      si rapport_loyers < 45% alors 0%
-      sinon
-        (
-          si rapport_loyers >= 45% et rapport_loyers < 75% alors
-            0,45% * (rapport_loyers - 45%)
-          sinon
-            (
-              si rapport_loyers >= 75% alors
-                0,45% * 30% + 0,68% * (rapport_loyers - 75%)
-              sinon 0,0
-            )
-        )
+  égal à
+    si rapport_loyers < 45% alors 0%
+    sinon
+      (
+        si rapport_loyers >= 45% et rapport_loyers < 75% alors
+          0,45% * (rapport_loyers - 45%)
+        sinon
+          (
+            si rapport_loyers >= 75% alors
+              0,45% * 30% + 0,68% * (rapport_loyers - 75%)
+            sinon 0,0
+          )
+      )
   définition taux_loyer_éligible
     état taux_arrondi
-    égal à
-      # La troisième décimale en pourcentage est en fait la cinquième décimale
-      (arrondi de (taux_loyer_éligible * 100000,0)) / 100000,0
+  égal à
+    # La troisième décimale en pourcentage est en fait la cinquième décimale
+    (arrondi de (taux_loyer_éligible * 100000,0)) / 100000,0
 ```
 
 Le loyer de référence LR est défini selon le tableau suivant (en euros) :
@@ -2741,11 +2741,11 @@ champ d'application CalculAidePersonnaliséeLogementAccessionPropriété
   et date_courante < |2022-07-01|:
   définition plafond_mensualité_d832_10_3
     état copropriétaires
-    égal à
-      si copropriété alors
-        plafond_mensualité_d832_10_3 * 75%
-      sinon
-        plafond_mensualité_d832_10_3
+  égal à
+    si copropriété alors
+      plafond_mensualité_d832_10_3 * 75%
+    sinon
+      plafond_mensualité_d832_10_3
 ```
 
 2° Le montant forfaitaire au titre des charges est fixé comme suit (en euros) :
@@ -2896,14 +2896,14 @@ champ d'application CalculAllocationLogementAccessionPropriété
   exception
   définition calcul_plafond_mensualité_d842_6
     de date_calcul, nombre_personnes_à_charge état avec_copropriété
-    sous condition
-      copropriété
-    conséquence égal à
-      (
-        calcul_plafond_mensualité_d842_6 de
-          date_calcul, nombre_personnes_à_charge
-      )
-      * 75%
+  sous condition
+    copropriété
+  conséquence égal à
+    (
+      calcul_plafond_mensualité_d842_6 de
+        date_calcul, nombre_personnes_à_charge
+    )
+    * 75%
 ```
 
 2° Le montant forfaitaire au titre des charges est fixé comme suit (en euros) :
@@ -3199,18 +3199,18 @@ champ d'application CalculAllocationLogementAccessionPropriété
   exception
   définition calcul_plafond_mensualité_d842_6
     de date_calcul, nombre_personnes_à_charge état avec_limitation_dom_tom
-    sous condition
-      nombre_personnes_à_charge >= 6
-      et selon résidence sous forme
-      -- Guadeloupe : vrai
-      -- Martinique : vrai
-      -- LaRéunion : vrai
-      -- Mayotte : vrai
-      -- SaintBarthélemy : vrai
-      -- SaintMartin : vrai
-      -- n'importe quel : faux
-    conséquence égal à
-      calcul_plafond_mensualité_d842_6 de date_calcul, 6
+  sous condition
+    nombre_personnes_à_charge >= 6
+    et selon résidence sous forme
+    -- Guadeloupe : vrai
+    -- Martinique : vrai
+    -- LaRéunion : vrai
+    -- Mayotte : vrai
+    -- SaintBarthélemy : vrai
+    -- SaintMartin : vrai
+    -- n'importe quel : faux
+  conséquence égal à
+    calcul_plafond_mensualité_d842_6 de date_calcul, 6
 ```
 
 2° La valeur fixée à l'article 15 du forfait " R0 ", visé au 5° de l'article D. 823-17 du même code,
@@ -3731,24 +3731,24 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
   et date_courante < |2021-10-01|:
   définition taux_loyer_éligible
     état formule
-    égal à
-      si rapport_loyers < 45% alors 0%
-      sinon
-        (
-          si rapport_loyers >= 45% et rapport_loyers < 75% alors
-            0,45% * (rapport_loyers - 45%)
-          sinon
-            (
-              si rapport_loyers >= 75% alors
-                0,45% * 30% + 0,68% * (rapport_loyers - 75%)
-              sinon 0,0
-            )
-        )
+  égal à
+    si rapport_loyers < 45% alors 0%
+    sinon
+      (
+        si rapport_loyers >= 45% et rapport_loyers < 75% alors
+          0,45% * (rapport_loyers - 45%)
+        sinon
+          (
+            si rapport_loyers >= 75% alors
+              0,45% * 30% + 0,68% * (rapport_loyers - 75%)
+            sinon 0,0
+          )
+      )
   définition taux_loyer_éligible
     état taux_arrondi
-    égal à
-      # La troisième décimale en pourcentage est en fait la cinquième décimale
-      (arrondi de (taux_loyer_éligible * 100000,0)) / 100000,0
+  égal à
+    # La troisième décimale en pourcentage est en fait la cinquième décimale
+    (arrondi de (taux_loyer_éligible * 100000,0)) / 100000,0
 ```
 
 Le loyer de référence LR est défini selon le tableau suivant (en euros) :
@@ -3915,11 +3915,11 @@ champ d'application CalculAidePersonnaliséeLogementAccessionPropriété
   et date_courante >= |2020-10-01|:
   définition plafond_mensualité_d832_10_3
     état copropriétaires
-    égal à
-      si copropriété alors
-        plafond_mensualité_d832_10_3 * 75%
-      sinon
-        plafond_mensualité_d832_10_3
+  égal à
+    si copropriété alors
+      plafond_mensualité_d832_10_3 * 75%
+    sinon
+      plafond_mensualité_d832_10_3
 ```
 
 2° Le montant forfaitaire au titre des charges est fixé comme suit (en euros) :
@@ -4072,14 +4072,14 @@ champ d'application CalculAllocationLogementAccessionPropriété
   exception
   définition calcul_plafond_mensualité_d842_6
     de date_calcul, nombre_personnes_à_charge état avec_copropriété
-    sous condition
-      copropriété
-    conséquence égal à
-      (
-        calcul_plafond_mensualité_d842_6 de
-          date_calcul, nombre_personnes_à_charge
-      )
-      * 75%
+  sous condition
+    copropriété
+  conséquence égal à
+    (
+      calcul_plafond_mensualité_d842_6 de
+        date_calcul, nombre_personnes_à_charge
+    )
+    * 75%
 ```
 
 2° Le montant forfaitaire au titre des charges est fixé comme suit (en euros) :
@@ -4376,18 +4376,18 @@ champ d'application CalculAllocationLogementAccessionPropriété
   exception
   définition calcul_plafond_mensualité_d842_6
     de date_calcul, nombre_personnes_à_charge état avec_limitation_dom_tom
-    sous condition
-      nombre_personnes_à_charge >= 6
-      et selon résidence sous forme
-      -- Guadeloupe : vrai
-      -- Martinique : vrai
-      -- LaRéunion : vrai
-      -- Mayotte : vrai
-      -- SaintBarthélemy : vrai
-      -- SaintMartin : vrai
-      -- n'importe quel : faux
-    conséquence égal à
-      calcul_plafond_mensualité_d842_6 de date_calcul, 6
+  sous condition
+    nombre_personnes_à_charge >= 6
+    et selon résidence sous forme
+    -- Guadeloupe : vrai
+    -- Martinique : vrai
+    -- LaRéunion : vrai
+    -- Mayotte : vrai
+    -- SaintBarthélemy : vrai
+    -- SaintMartin : vrai
+    -- n'importe quel : faux
+  conséquence égal à
+    calcul_plafond_mensualité_d842_6 de date_calcul, 6
 ```
 
 2° La valeur fixée à l'article 15 du forfait " R0 ", visé au 5° de l'article D. 823-17 du même
@@ -4969,18 +4969,18 @@ champ d'application CalculAllocationLogementAccessionPropriété
   exception
   définition calcul_plafond_mensualité_d842_6
     de date_calcul, nombre_personnes_à_charge état avec_limitation_dom_tom
-    sous condition
-      nombre_personnes_à_charge >= 6
-      et selon résidence sous forme
-      -- Guadeloupe : vrai
-      -- Martinique : vrai
-      -- LaRéunion : vrai
-      -- Mayotte : vrai
-      -- SaintBarthélemy : vrai
-      -- SaintMartin : vrai
-      -- n'importe quel : faux
-    conséquence égal à
-      calcul_plafond_mensualité_d842_6 de date_calcul, 6
+  sous condition
+    nombre_personnes_à_charge >= 6
+    et selon résidence sous forme
+    -- Guadeloupe : vrai
+    -- Martinique : vrai
+    -- LaRéunion : vrai
+    -- Mayotte : vrai
+    -- SaintBarthélemy : vrai
+    -- SaintMartin : vrai
+    -- n'importe quel : faux
+  conséquence égal à
+    calcul_plafond_mensualité_d842_6 de date_calcul, 6
 ```
 
 2° La valeur fixée à l'article 15 du forfait " R0 ", visé au 5° de l'article D. 823-17 du
