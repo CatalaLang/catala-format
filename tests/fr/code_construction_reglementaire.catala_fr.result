@@ -3547,7 +3547,9 @@ champ d'application CalculAidePersonnaliséeLogementAccessionPropriété:
 
   # Mettre la condition à "faux" permet d'activer le premier alinéa de D832-26
   définition calcul_équivalence_loyer_minimale.condition_2_du_832_25 égal à faux
-  définition calcul_équivalence_loyer_minimale.ressources_ménage_arrondies égal à ressources_ménage_arrondies
+  définition
+    calcul_équivalence_loyer_minimale.ressources_ménage_arrondies
+  égal à ressources_ménage_arrondies
   définition calcul_équivalence_loyer_minimale.n_nombre_parts_d832_25 égal à
     n_nombre_parts_d832_11
 ```
@@ -3611,7 +3613,9 @@ différence constatée.
 
 ```catala
 champ d'application CalculAidePersonnaliséeLogementAccessionPropriété:
-  définition abattement_dépense_nette_minimale_d832_10 de allocation_mensuelle égal à
+  définition
+    abattement_dépense_nette_minimale_d832_10
+    de allocation_mensuelle égal à
     soit dépense_nette_minimale égal à
       dépense_nette_minimale_d832_10 de allocation_mensuelle
     dans
@@ -3842,7 +3846,9 @@ champ d'application CalculAidePersonnaliséeLogementFoyer:
     calcul_équivalence_loyer_minimale.montant
   définition calcul_équivalence_loyer_minimale.condition_2_du_832_25 égal à
     condition_2_du_832_25
-  définition calcul_équivalence_loyer_minimale.ressources_ménage_arrondies égal à ressources_ménage_arrondies
+  définition
+    calcul_équivalence_loyer_minimale.ressources_ménage_arrondies
+  égal à ressources_ménage_arrondies
   définition calcul_équivalence_loyer_minimale.n_nombre_parts_d832_25 égal à
     n_nombre_parts_d832_25
 ```
@@ -4271,10 +4277,14 @@ l'aide est égal à la différence constatée.
 
 ```catala
 champ d'application CalculAidePersonnaliséeLogementFoyer:
-  définition dépense_nette_minimale_d832_27 de allocation_mensuelle égal à
+  définition
+    dépense_nette_minimale_d832_27
+    de allocation_mensuelle égal à
     équivalence_loyer_éligible - allocation_mensuelle
 
-  définition abattement_dépense_nette_minimale_d832_27 de allocation_mensuelle égal à
+  définition
+    abattement_dépense_nette_minimale_d832_27
+    de allocation_mensuelle égal à
     soit dépense_nette_minimale égal à
       dépense_nette_minimale_d832_27 de allocation_mensuelle
     dans
@@ -4331,7 +4341,9 @@ champ d'application CalculAllocationLogementLocatif:
     loyer_principal
   définition calcul_apl_locatif.ressources_ménage_arrondies égal à
     ressources_ménage_arrondies
-  définition calcul_apl_locatif.bénéficiaire_aide_adulte_ou_enfant_handicapés égal à
+  définition
+    calcul_apl_locatif.bénéficiaire_aide_adulte_ou_enfant_handicapés
+  égal à
     bénéficiaire_aide_adulte_ou_enfant_handicapés
   définition calcul_apl_locatif.date_courante égal à
     date_courante
@@ -4343,8 +4355,10 @@ champ d'application CalculAllocationLogementLocatif:
     zone
   définition calcul_apl_locatif.logement_est_chambre égal à
     logement_est_chambre
-  définition calcul_apl_locatif.
-    âgées_ou_handicap_adultes_hébergées_onéreux_particuliers égal à
+  définition
+    calcul_apl_locatif.
+      âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
+  égal à
     âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
   définition calcul_apl_locatif.type_aide égal à
     type_aide
@@ -4603,7 +4617,9 @@ champ d'application CalculAllocationLogementAccessionPropriété:
 
   # Mettre la condition à "faux" permet d'activer le deuxième alinéa de D832-26
   définition calcul_équivalence_loyer_minimale.condition_2_du_832_25 égal à vrai
-  définition calcul_équivalence_loyer_minimale.ressources_ménage_arrondies égal à ressources_ménage_arrondies
+  définition
+    calcul_équivalence_loyer_minimale.ressources_ménage_arrondies
+  égal à ressources_ménage_arrondies
   définition calcul_équivalence_loyer_minimale.n_nombre_parts_d832_25 égal à
     calcul_nombre_parts.n_nombre_parts_d832_11
   définition calcul_nombre_parts.nombre_personnes_à_charge égal à
@@ -4802,7 +4818,9 @@ des charges, le montant mensuel de l'allocation calculé selon les dispositions 
 
 ```catala
 champ d'application CalculAllocationLogementAccessionPropriété:
-  définition dépense_nette_minimale de allocation_mensuelle égal à
+  définition
+    dépense_nette_minimale
+    de allocation_mensuelle égal à
     charges_mensuelles_prêt + montant_forfaitaire_charges
     - allocation_mensuelle
 ```
@@ -4813,7 +4831,9 @@ constatée.
 
 ```catala
 champ d'application CalculAllocationLogementAccessionPropriété:
-  définition abattement_dépense_nette_minimale de allocation_mensuelle égal à
+  définition
+    abattement_dépense_nette_minimale
+    de allocation_mensuelle égal à
     soit dépense_nette_minimale égal à
       dépense_nette_minimale de allocation_mensuelle
     dans
@@ -5009,7 +5029,9 @@ champ d'application CalculAllocationLogementFoyer:
   # logiquement aux disposition du deuxième alinéa de D832-26 (voir le jeu
   # des renvois).
   définition calcul_équivalence_loyer_minimale.condition_2_du_832_25 égal à vrai
-  définition calcul_équivalence_loyer_minimale.ressources_ménage_arrondies égal à ressources_ménage_arrondies
+  définition
+    calcul_équivalence_loyer_minimale.ressources_ménage_arrondies
+  égal à ressources_ménage_arrondies
 
   définition calcul_nombre_parts.nombre_personnes_à_charge égal à
     nombre_personnes_à_charge
@@ -5154,7 +5176,9 @@ le montant mensuel de l'aide est égal à la différence constatée.
 
 ```catala
 champ d'application CalculAllocationLogementFoyer:
-  définition abattement_dépense_nette_minimale de allocation_mensuelle égal à
+  définition
+    abattement_dépense_nette_minimale
+    de allocation_mensuelle égal à
     si dépense_nette_minimale de allocation_mensuelle
       < montant_minimal_dépense_nette_d842_17 alors
       montant_minimal_dépense_nette_d842_17

@@ -11,7 +11,9 @@ declaration scope Test1:
   my_gaming scope GamingAuthorized
 
 scope Test1:
-  definition my_gaming.charityHousie equals
+  definition
+    my_gaming.charityHousie
+  equals
     CharityHousie {
       -- typeOrg: Charitable
       -- grossProceeds: $200
@@ -37,7 +39,9 @@ declaration scope Test2:
   my_gaming scope GamingAuthorized
 
 scope Test2:
-  definition my_gaming.charityHousie equals
+  definition
+    my_gaming.charityHousie
+  equals
     CharityHousie {
       -- typeOrg: Charitable
       -- grossProceeds: $200
@@ -62,7 +66,9 @@ declaration scope Test3:
   my_gaming scope GamingAuthorized
 
 scope Test3:
-  definition my_gaming.charityHousie equals
+  definition
+    my_gaming.charityHousie
+  equals
     CharityHousie {
       -- typeOrg: Charitable
       -- grossProceeds: $400
@@ -87,7 +93,9 @@ declaration scope Test4:
   my_gaming scope GamingAuthorized
 
 scope Test4:
-  definition my_gaming.charityHousie equals
+  definition
+    my_gaming.charityHousie
+  equals
     CharityHousie {
       -- typeOrg: Charitable
       -- grossProceeds: $200

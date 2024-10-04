@@ -422,8 +422,9 @@ declaration scope Test1:
 #     catala Interpret --scope=Test1 tutorial_en.catala_en
 
 scope Test1:
-  definition tax_computation.individual
-  # We define the argument to the subscope
+  definition
+    tax_computation.individual
+    # We define the argument to the subscope
   equals
     # The four lines below define a whole structure by giving a value to
     # each of its fields

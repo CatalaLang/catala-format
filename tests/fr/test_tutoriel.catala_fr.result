@@ -7,7 +7,9 @@ déclaration champ d'application TestUnitaire1:
   calcul_impôt champ d'application NouveauCalculImpôtRevenu
 
 champ d'application TestUnitaire1:
-  définition calcul_impôt.personne égal à
+  définition
+    calcul_impôt.personne
+  égal à
     Personne {
       -- revenu: 230 000€
       -- nombre_enfants: 0

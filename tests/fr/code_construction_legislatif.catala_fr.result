@@ -1094,7 +1094,9 @@ champ d'application CalculetteAidesAuLogement:
   # ce scénario, le ménage ne bénéficie pas encore de l'aide personnalisée
   # au logement et nous pouvons évaluer l'éligibilité à l'allocation logement
   # indépendamment de ce fait.
-  définition éligibilité_allocation_logement.bénéficie_aide_personnalisée_logement égal à faux
+  définition
+    éligibilité_allocation_logement.bénéficie_aide_personnalisée_logement
+  égal à faux
 
   # Nous mettons ici la logique de notre interprétation de l'article L841-2
   # qui prend le maximum des deux types d'aide.

@@ -187,7 +187,9 @@ alternée, le montant servi au titre de cette majoration est réduit de moitié.
 
 ```catala
 champ d'application AllocationsFamiliales:
-  définition montant_avec_garde_alternée_majoration de enfant égal à
+  définition
+    montant_avec_garde_alternée_majoration
+    de enfant égal à
     montant_initial_majoration de enfant
     * (
       selon (prise_en_compte de enfant) sous forme

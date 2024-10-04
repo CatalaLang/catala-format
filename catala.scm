@@ -321,9 +321,17 @@
  (#scope_id! "state_var_def")
 )
 
-;; unconditional scope def
+;; multiline scope var definition
 
-;; n/a
+(scope
+ (definition
+   (DEFINITION) @prepend_begin_scope @append_indent_start @append_spaced_scoped_softline
+   (scope_var) @append_spaced_scoped_softline
+   [(UNDER_CONDITION) (STATE)]? @do_nothing
+   (DEFINED_AS) @append_end_scope @append_spaced_scoped_softline @prepend_indent_end
+ )
+ (#scope_id! "scope_var_def")
+)
 
 ;; conditional scope def
 (scope
