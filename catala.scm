@@ -147,6 +147,7 @@
  (MODULE_DEF)
  (MODULE_USE)
  (MODULE_ALIAS)
+ (MODULE_EXTERNAL)
 
  ; Identifiers
  (variable)
@@ -660,12 +661,12 @@
 
 ;; Directives
 
-(directive                                ;;
- (BEGIN_DIRECTIVE)                        ;;
- (LAW_INCLUDE)                            ;;
- (COLON) @prepend_antispace @append_space ;;
- (DIRECTIVE_ARG)                          ;;
-)                                         ;;
+(directive
+ (BEGIN_DIRECTIVE)
+ (LAW_INCLUDE)
+ (COLON) @prepend_antispace @append_space
+ (DIRECTIVE_ARG)
+)
 
 ;; FIXME: I don't understand why the antispace is necessary...
 (directive
@@ -674,6 +675,13 @@
  (module_name) @append_antispace
  ((MODULE_ALIAS)
   (module_name))?
+)
+
+(directive
+ (BEGIN_DIRECTIVE)
+ (MODULE_DEF)
+ (module_name) @append_antispace
+ (MODULE_EXTERNAL)
 )
 
 ;; Fun-calls
