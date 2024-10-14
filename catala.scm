@@ -490,6 +490,8 @@
  (#multi_line_only!)
 )
 
+((module_name) (DOT) @prepend_antispace . (variable))
+
 (e_fieldaccess
  (e_variable) @append_indent_start
  (DOT) @append_input_softline
