@@ -6,7 +6,7 @@
 
 ```catala
 déclaration champ d'application Exemple1:
-  éligibilité champ d'application AL .ÉligibilitéAidePersonnaliséeLogement
+  éligibilité champ d'application AL.ÉligibilitéAidePersonnaliséeLogement
   résultat éligible contenu booléen
 
 champ d'application Exemple1:
@@ -100,7 +100,7 @@ champ d'application Exemple1:
     }
 
 déclaration champ d'application Exemple2:
-  éligibilité champ d'application AL .ÉligibilitéAllocationLogement
+  éligibilité champ d'application AL.ÉligibilitéAllocationLogement
   résultat éligible contenu AL.TypeÉligibilitéAllocationLogement
 
 champ d'application Exemple2:
@@ -182,7 +182,7 @@ champ d'application Exemple2:
   définition éligibilité.bénéficie_aide_personnalisée_logement égal à faux
 
 déclaration champ d'application Exemple3:
-  éligibilité champ d'application AL .ÉligibilitéAllocationLogement
+  éligibilité champ d'application AL.ÉligibilitéAllocationLogement
   résultat éligible contenu AL.TypeÉligibilitéAllocationLogement
 
 champ d'application Exemple3:

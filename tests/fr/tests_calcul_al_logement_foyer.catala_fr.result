@@ -6,7 +6,7 @@
 ```catala
 # Transmis par DGALN/DHUP/FE4 le 14/07/2022
 déclaration champ d'application CasTest1:
-  calcul champ d'application AL .CalculAllocationLogementFoyer
+  calcul champ d'application AL.CalculAllocationLogementFoyer
   résultat montant contenu argent
 
 champ d'application CasTest1:

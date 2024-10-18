@@ -5,7 +5,7 @@
 
 ```catala
 déclaration champ d'application CasTest1:
-  calcul champ d'application AL .CalculAidePersonnaliséeLogementFoyer
+  calcul champ d'application AL.CalculAidePersonnaliséeLogementFoyer
   résultat montant contenu argent
 
 champ d'application CasTest1:
@@ -29,7 +29,7 @@ champ d'application CasTest1:
   assertion montant = 12,06 €
 
 déclaration champ d'application CasTest2:
-  calcul champ d'application AL .CalculAllocationLogementFoyer
+  calcul champ d'application AL.CalculAllocationLogementFoyer
   résultat montant contenu argent
 
 champ d'application CasTest2:
@@ -59,7 +59,7 @@ champ d'application CasTest2:
 # Tiré de la page 34 de
 # https://www.ecologie.gouv.fr/sites/default/files/les_aides_personnelles_au_logement_element_de_calcul_septembre_2021.pdf#page=34
 déclaration champ d'application CasTest3:
-  calcul champ d'application AL .CalculAidePersonnaliséeLogementFoyer
+  calcul champ d'application AL.CalculAidePersonnaliséeLogementFoyer
   résultat montant contenu argent
 
 champ d'application CasTest3:
@@ -84,7 +84,7 @@ champ d'application CasTest3:
 ```catala
 # Transmis par DGALN/DHUP/FE4 le 14/07/2022
 déclaration champ d'application CasTest4:
-  calcul champ d'application AL .CalculAidePersonnaliséeLogementFoyer
+  calcul champ d'application AL.CalculAidePersonnaliséeLogementFoyer
   résultat montant contenu argent
 
 champ d'application CasTest4:
@@ -111,7 +111,7 @@ champ d'application CasTest4:
 ```catala
 # Transmis par DGALN/DHUP/FE4 le 14/07/2022
 déclaration champ d'application CasTest5:
-  calcul champ d'application AL .CalculAidePersonnaliséeLogementFoyer
+  calcul champ d'application AL.CalculAidePersonnaliséeLogementFoyer
   résultat montant contenu argent
 
 champ d'application CasTest5:

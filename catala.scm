@@ -491,6 +491,7 @@
 )
 
 ((module_name) (DOT) @prepend_antispace . (variable))
+((module_name) (DOT) @prepend_antispace . (scope_name))
 
 (e_fieldaccess
  (e_variable) @append_indent_start

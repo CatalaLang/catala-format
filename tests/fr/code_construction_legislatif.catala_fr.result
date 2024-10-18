@@ -237,7 +237,7 @@ champ d'application ÉligibilitéAidesPersonnelleLogement:
     -- LouéOuSousLouéÀDesTiers.Non : vrai
     -- LouéOuSousLouéÀDesTiers.Oui de personne :
         (
-          résultat de France .VérificationÂgeSupérieurÀ avec {
+          résultat de France.VérificationÂgeSupérieurÀ avec {
             -- date_naissance: personne.date_naissance_personne_sous_location
             -- date_courante: date_courante
             -- années: 30 an

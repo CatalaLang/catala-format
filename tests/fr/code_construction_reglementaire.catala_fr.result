@@ -1197,7 +1197,7 @@ champ d'application ÉligibilitéAidesPersonnelleLogement:
             ou (
               parent.titulaire_allocation_personne_âgée
               et (
-                résultat de France .VérificationÂgeInférieurOuÉgalÀ avec {
+                résultat de France.VérificationÂgeInférieurOuÉgalÀ avec {
                   -- date_naissance: parent.date_naissance
                   -- date_courante: date_courante
                   -- années: 65 an

@@ -28,7 +28,7 @@ déclaration champ d'application ÉligibilitéPrestationsFamiliales:
   résultat conditions_hors_âge condition dépend de enfant contenu EnfantPrestationsFamiliales
   résultat régime_outre_mer_l751_1 condition
 
-  smic champ d'application Smic .Smic
+  smic champ d'application Smic.Smic
 
 champ d'application ÉligibilitéPrestationsFamiliales:
   définition smic.résidence égal à résidence
