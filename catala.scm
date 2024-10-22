@@ -148,6 +148,8 @@
  (MODULE_USE)
  (MODULE_ALIAS)
  (MODULE_EXTERNAL)
+ (COMBINE)
+ (INITIALLY)
 
  ; Identifiers
  (variable)
@@ -660,6 +662,21 @@
  (AMONG) @prepend_spaced_scoped_softline
  coll: (_) @append_end_scope
  (#scope_id! "among")
+)
+
+;; Fold
+
+(e_coll_fold
+ (COMBINE) @append_indent_start
+ (binder)
+ (INITIALLY) @prepend_input_softline
+ acc: (_) @append_spaced_softline
+ (WITH)
+ mapf: (_) @append_spaced_softline
+ (FOR)
+ (binder)
+ (AMONG)
+ coll: (_) @append_indent_end
 )
 
 ;; Directives
