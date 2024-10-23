@@ -404,6 +404,14 @@
  (#single_line_only!)
 )
 
+(binder
+ .
+ (LPAREN) @append_antispace
+ (RPAREN) @prepend_antispace
+ .
+ (#single_line_only!)
+)
+
 (e_tuple
  .
  (LPAREN) @append_spaced_softline @append_indent_start
