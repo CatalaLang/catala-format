@@ -8,15 +8,11 @@ bug-reports: "https://github.com/CatalaLang/catala-format"
 dev-repo: "git+https://github.com/CatalaLang/catala-format.git"
 
 license: "Apache-2.0"
-depends: ["conf-rust-2021"]
+depends: [
+  "topiary" {>= "0.3.0"}
+]
 
 build:[
-  [ "tar" "xfJ" "vendor.tar.xz" ]
-  [ "cargo" "build"
-      "--release"
-      "--package" "topiary-cli"
-      "--offline"
-  ]
   [ "sh" "make-wrapper.sh"
          "--query-file" "%{share}%/topiary/queries/catala.scm"
          "--config-file" "%{share}%/topiary/configs/catala.ncl"
@@ -25,8 +21,6 @@ build:[
 ]
 
 install: [
-  [ "mkdir" "-p" "%{bin}%/.topiary-wrapped" ]
-  [ "cp" "target/release/topiary" "%{bin}%/.topiary-wrapped/topiary" ]
   [ "cp" "catala-format" "%{bin}%/catala-format" ]
   [ "mkdir" "-p" "%{share}%/topiary/queries" ]
   [ "cp" "catala.scm" "%{share}%/topiary/queries" ]
