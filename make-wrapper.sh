@@ -70,6 +70,12 @@ done
 [ "${topiary_wrapped% *}" != "$topiary_wrapped" ] && die 'Error: --topiary-wrapped cannot contain spaces.\n'
 
 export topiary_wrapped config_file query_file
-cat script.template.sh | envsubst '$topiary_wrapped $config_file $query_file' > $output_file
+cat script.template.sh > $output_file
+
+# Concat the fully resolved command
+echo "$topiary_wrapped --configuration $config_file format" \
+      '--language $CATALA_LANG' \
+      "--query $query_file" \
+      '< "${INPUT_FILE:-/dev/stdin}"' >> $output_file
 
 chmod +x "$output_file"

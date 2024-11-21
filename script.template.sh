@@ -72,4 +72,4 @@ else
     esac
 fi
 
-$topiary_wrapped --configuration $config_file format --language $CATALA_LANG --query $query_file <  "${INPUT_FILE:-/dev/stdin}"
+# Evaluated invokation is generated here
