@@ -1,0 +1,9 @@
+(executable
+ (name main)
+ (public_name catala-format)
+ (libraries cmdliner unix)
+ (modules Main)
+)
+(alias
+ (name catala-format)
+ (deps main.ml main.exe))

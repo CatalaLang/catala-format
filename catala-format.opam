@@ -9,23 +9,22 @@ dev-repo: "git+https://github.com/CatalaLang/catala-format.git"
 
 license: "Apache-2.0"
 depends: [
-  "topiary" {>= "0.5.1"}
+  "topiary" {= "0.5.1"}
 ]
 
 build:[
-  [ "sh" "make-wrapper.sh"
-         "--query-file" "%{share}%/topiary/queries/catala.scm"
-         "--config-file" "%{share}%/topiary/configs/catala.ncl"
-         "--topiary-wrapped" "%{bin}%/.topiary-wrapped/topiary"
-         "--output-file" "catala-format" ]
+  "dune" "build"
+  "-p" name
+  "-j" jobs
+  "@catala-format"
 ]
 
 install: [
-  [ "cp" "catala-format" "%{bin}%/catala-format" ]
-  [ "mkdir" "-p" "%{share}%/topiary/queries" ]
-  [ "cp" "catala.scm" "%{share}%/topiary/queries" ]
-  [ "mkdir" "-p" "%{share}%/topiary/configs" ]
-  [ "cp" "catala.ncl" "%{share}%/topiary/configs" ]
+  [ "cp" "_build/default/src/main.exe" "%{bin}%/catala-format" ]
+  [ "mkdir" "-p" "%{topiary:share}%/queries" ]
+  [ "cp" "catala.scm" "%{topiary:share}%/queries/" ]
+  [ "mkdir" "-p" "%{topiary:share}%/configs" ]
+  [ "cp" "catala.ncl" "%{topiary:share}%/configs/" ]
 ]
 
 synopsis: "A formatter for Catala based on the Topiary universal formatting engine"
