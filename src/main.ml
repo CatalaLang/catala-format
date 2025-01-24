@@ -131,6 +131,71 @@ let error s =
   Format.eprintf "%s@." s ;
   Stdlib.exit 2
 
+let buf_len = 4096
+
+let glob_buf = Bytes.create (buf_len * 2)
+
+let remove_carriage_returns (buf, buf_len) =
+  let buf'_len = ref 0 in
+  for i = 0 to buf_len - 1 do
+    match Bytes.get buf i with
+    | '\r' -> ()
+    | c ->
+        Bytes.set glob_buf !buf'_len c ;
+        incr buf'_len
+  done ;
+  (glob_buf, !buf'_len)
+
+let map_in_file ~f (fd_in : Unix.file_descr) =
+  let buff = Bytes.create buf_len in
+  let (fd_out, fd_in') = Unix.pipe ~cloexec:true () in
+  let rec loop () =
+    match Unix.read fd_in buff 0 buf_len with
+    | 0 -> Unix.close fd_in'
+    | n ->
+        let (buff', n') = f (buff, n) in
+        ignore @@ Unix.write fd_in' buff' 0 n' ;
+        if n = buf_len then loop () else Unix.close fd_in'
+  in
+  try
+    loop () ;
+    fd_out
+  with _ -> fd_out
+
+let add_carriage_returns (buf, buf_len) =
+  let buf'_len = ref 0 in
+  for i = 0 to buf_len - 1 do
+    (match Bytes.get buf i with
+    | '\n' as c ->
+        Bytes.set glob_buf !buf'_len '\r' ;
+        incr buf'_len ;
+        c
+    | c -> c)
+    |> fun c ->
+    Bytes.set glob_buf !buf'_len c ;
+    incr buf'_len
+  done ;
+  (glob_buf, !buf'_len)
+
+let may_add_carriage_returns = function
+  | None -> ()
+  | Some fd ->
+      let buf = Bytes.create buf_len in
+      let rec loop () =
+        match Unix.read fd buf 0 buf_len with
+        | 0 -> Unix.close fd
+        | n ->
+            let (buf', buf'_len) = add_carriage_returns (buf, n) in
+            let _ = Unix.write Unix.stdout buf' 0 buf'_len in
+            if n = buf_len then loop () else Unix.close fd
+      in
+      loop ()
+
+let contains_carriage_returns fd =
+  let l = Stdlib.input_line (Unix.in_channel_of_descr fd) in
+  ignore @@ Unix.lseek fd 0 SEEK_SET ;
+  l.[String.length l - 1] = '\r'
+
 let format_cmd =
   let open Cmdliner in
   let language =
@@ -193,23 +258,33 @@ let format_cmd =
         query_file;
       |]
     in
-    let pid =
-      Unix.create_process
-        topiary_path
-        args
-        (match file with
-        | `Stdin -> Unix.stdin
-        | `File f ->
-            let fd = Unix.openfile f [ O_RDONLY ] 0o444 in
-            at_exit (fun () -> Unix.close fd) ;
-            fd)
-        Unix.stdout
-        Unix.stderr
+    let fd =
+      match file with
+      | `Stdin -> Unix.stdin
+      | `File f ->
+          let fd = Unix.openfile f [ O_RDONLY; O_CLOEXEC ] 0o444 in
+          at_exit (fun () -> Unix.close fd) ;
+          fd
     in
+    let has_cr = contains_carriage_returns fd in
+    let in_fd =
+      if has_cr then map_in_file ~f:remove_carriage_returns fd else fd
+    in
+    let tmp_fd = ref None in
+    let out_fd =
+      if has_cr then (
+        let (fd_out, fd_in) = Unix.pipe ~cloexec:true () in
+        tmp_fd := Some fd_out ;
+        fd_in)
+      else Unix.stdout
+    in
+    let pid = Unix.create_process topiary_path args in_fd out_fd Unix.stderr in
     if pid <> 0 then
       let (_p, status) = Unix.waitpid [] pid in
       match status with
-      | Unix.WEXITED n | Unix.WSIGNALED n | Unix.WSTOPPED n -> Stdlib.exit n
+      | Unix.WEXITED n | Unix.WSIGNALED n | Unix.WSTOPPED n ->
+          may_add_carriage_returns !tmp_fd ;
+          Stdlib.exit n
   in
   Cmd.v
     (Cmd.info
