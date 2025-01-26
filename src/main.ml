@@ -128,7 +128,7 @@ let files_lookup () =
 let supported_languages = [ "catala_en"; "catala_fr"; "catala_pl" ]
 
 let error s =
-  Format.eprintf "%s@." s ;
+  Format.pp_print_string Format.err_formatter s ;
   Stdlib.exit 2
 
 let buf_len = 4096
@@ -177,19 +177,19 @@ let add_carriage_returns (buf, buf_len) =
   done ;
   (glob_buf, !buf'_len)
 
-let may_add_carriage_returns = function
-  | None -> ()
-  | Some fd ->
-      let buf = Bytes.create buf_len in
-      let rec loop () =
-        match Unix.read fd buf 0 buf_len with
-        | 0 -> Unix.close fd
-        | n ->
-            let (buf', buf'_len) = add_carriage_returns (buf, n) in
-            let _ = Unix.write Unix.stdout buf' 0 buf'_len in
-            if n = buf_len then loop () else Unix.close fd
-      in
-      loop ()
+let write_result ~has_cr ~fd_out ~fd_in =
+  let buf = Bytes.create buf_len in
+  let rec loop () =
+    match Unix.read fd_in buf 0 buf_len with
+    | 0 -> Unix.close fd_in
+    | n ->
+        let (buf', buf'_len) =
+          if has_cr then add_carriage_returns (buf, n) else (buf, n)
+        in
+        let _ = Unix.write fd_out buf' 0 buf'_len in
+        if n = buf_len then loop () else Unix.close fd_in
+  in
+  loop ()
 
 let contains_carriage_returns fd =
   let l = Stdlib.input_line (Unix.in_channel_of_descr fd) in
@@ -208,7 +208,16 @@ let format_cmd =
         ~doc:
           "Locale variant of the input language to use when it cannot be \
            inferred from the file extension (e.g., when the standard input is \
-           read). "
+           read)."
+  in
+  let in_place =
+    let open Arg in
+    value & flag
+    & info
+        [ "i"; "in-place" ]
+        ~doc:
+          "When specified, the given input file will be overwritten with the \
+           formatted content."
   in
   let file =
     let open Arg in
@@ -231,7 +240,7 @@ let format_cmd =
         ~doc:"Catala file to be formatted ($(b,-) for stdin)."
   in
   let { config_file; query_file; topiary_path } = files_lookup () in
-  let f lang file =
+  let f lang in_place file =
     let language =
       match (lang, file) with
       | (None, `Stdin) ->
@@ -270,21 +279,31 @@ let format_cmd =
     let in_fd =
       if has_cr then map_in_file ~f:remove_carriage_returns fd else fd
     in
-    let tmp_fd = ref None in
-    let out_fd =
-      if has_cr then (
-        let (fd_out, fd_in) = Unix.pipe ~cloexec:true () in
-        tmp_fd := Some fd_out ;
-        fd_in)
-      else Unix.stdout
+    let (fd_in, fd_out) =
+      let (fd_out, fd_in) = Unix.pipe ~cloexec:true () in
+      (fd_in, fd_out)
     in
-    let pid = Unix.create_process topiary_path args in_fd out_fd Unix.stderr in
+    let pid = Unix.create_process topiary_path args in_fd fd_in Unix.stderr in
     if pid <> 0 then
       let (_p, status) = Unix.waitpid [] pid in
       match status with
-      | Unix.WEXITED n | Unix.WSIGNALED n | Unix.WSTOPPED n ->
-          may_add_carriage_returns !tmp_fd ;
-          Stdlib.exit n
+      | Unix.WEXITED 0 ->
+          let out_file =
+            match (file, in_place) with
+            | (`Stdin, _) | (_, false) -> Unix.stdout
+            | (`File f, true) ->
+                let fd =
+                  Unix.openfile
+                    f
+                    [ O_WRONLY; O_TRUNC; O_CLOEXEC ]
+                    (Unix.stat f).st_perm
+                in
+                at_exit (fun () -> Unix.close fd) ;
+                fd
+          in
+          write_result ~has_cr ~fd_out:out_file ~fd_in:fd_out ;
+          Stdlib.exit 0
+      | WEXITED n | WSIGNALED n | WSTOPPED n -> Stdlib.exit n
   in
   Cmd.v
     (Cmd.info
@@ -293,7 +312,7 @@ let format_cmd =
          "Format the given $(b,FILE) and output the result.\n\
           When no $(b,FILE) is provided, the standard input will be read\n\
           however the $(b,--language) argument becomes mandatory. ")
-    Term.(const f $ language $ file)
+    Term.(const f $ language $ in_place $ file)
 
 let () =
   let open Cmdliner in
