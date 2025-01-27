@@ -68,7 +68,11 @@ let lookup_windows () =
     let query_file = catala_install_dir / "catala.scm" in
     let config_file = catala_install_dir / "catala.ncl" in
     let topiary_path = catala_install_dir / "topiary" in
-    check_and_build ~query_file ~config_file ~topiary_path
+    match check_and_build ~query_file ~config_file ~topiary_path with
+    | None -> None
+    | Some config ->
+        Unix.putenv "TOPIARY_CACHE" catala_install_dir ;
+        Some config
   with _ -> None
 
 let exec_dir =
