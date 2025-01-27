@@ -285,7 +285,7 @@ let format_cmd =
     in
     let pid = Unix.create_process topiary_path args in_fd fd_in Unix.stderr in
     if pid <> 0 then
-      let (_p, status) = Unix.waitpid [] pid in
+      let (_p, status) = Unix.waitpid [ WNOHANG ] pid in
       match status with
       | Unix.WEXITED 0 ->
           let out_file =
