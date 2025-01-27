@@ -15,7 +15,7 @@
    the License. *)
 
 type files = {
-  config_file : string;
+  config_file : string option;
   query_file : string;
   topiary_path : string;
 }
@@ -49,11 +49,14 @@ let process_out cmd args =
 
 let ( / ) = Filename.concat
 
-let check_and_build ~query_file ~config_file ~topiary_path =
+let check_and_build ?config_file ~query_file ~topiary_path () =
   let topiary_path =
     if Sys.file_exists topiary_path then topiary_path else topiary_path ^ ".exe"
   in
-  List.for_all Sys.file_exists [ query_file; config_file; topiary_path ]
+  List.for_all
+    Sys.file_exists
+    ([ query_file; topiary_path ]
+    @ match config_file with None -> [] | Some x -> [ x ])
   |> function
   | true -> Some { query_file; config_file; topiary_path }
   | false -> None
@@ -66,9 +69,13 @@ let lookup_windows () =
     let appdata_dir = Sys.getenv "LOCALAPPDATA" in
     let catala_install_dir = appdata_dir / "Catala" in
     let query_file = catala_install_dir / "catala.scm" in
-    let config_file = catala_install_dir / "catala.ncl" in
+    let config_file =
+      None
+      (* ignore config file on windows installation, we use the
+         built-in value set in the topiary's fork *)
+    in
     let topiary_path = catala_install_dir / "topiary" in
-    match check_and_build ~query_file ~config_file ~topiary_path with
+    match check_and_build ~query_file ?config_file ~topiary_path () with
     | None -> None
     | Some config ->
         Unix.putenv "TOPIARY_CACHE" catala_install_dir ;
@@ -96,7 +103,7 @@ let lookup_opam_optimist () =
     let query_file = topiary_share_dir / "queries" / "catala.scm" in
     let config_file = topiary_share_dir / "configs" / "catala.ncl" in
     let topiary_path = exec_dir / ".topiary-wrapped" / "topiary" in
-    check_and_build ~query_file ~config_file ~topiary_path
+    check_and_build ~query_file ~config_file ~topiary_path ()
   with _ -> None
 
 let lookup_opam_slow () =
@@ -108,7 +115,7 @@ let lookup_opam_slow () =
     let query_file = topiary_share_dir / "queries" / "catala.scm" in
     let config_file = topiary_share_dir / "configs" / "catala.ncl" in
     let topiary_path = topiary_bin_dir / ".topiary-wrapped" / "topiary" in
-    check_and_build ~query_file ~config_file ~topiary_path
+    check_and_build ~query_file ~config_file ~topiary_path ()
   with _ -> None
 
 let lookup_exec_dir () =
@@ -117,7 +124,7 @@ let lookup_exec_dir () =
     let query_file = exec_dir / "catala.scm" in
     let config_file = exec_dir / "catala.ncl" in
     let topiary_path = exec_dir / "topiary" in
-    check_and_build ~query_file ~config_file ~topiary_path
+    check_and_build ~query_file ~config_file ~topiary_path ()
   with _ -> None
 
 let files_lookup () =
@@ -260,16 +267,14 @@ let format_cmd =
       | (Some l, _) -> l
     in
     let args =
-      [|
-        "topiary";
-        "--configuration";
-        config_file;
-        "format";
-        "--language";
-        language;
-        "--query";
-        query_file;
-      |]
+      Array.concat
+        [
+          [| "topiary" |];
+          (match config_file with
+          | None -> [||]
+          | Some config_file -> [| "--configuration"; config_file |]);
+          [| "format"; "--language"; language; "--query"; query_file |];
+        ]
     in
     let fd =
       match file with
