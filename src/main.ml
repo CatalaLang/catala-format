@@ -157,9 +157,8 @@ let remove_carriage_returns (buf, buf_len) =
   done ;
   (glob_buf, !buf'_len)
 
-let map_in_file ~f (fd_in : Unix.file_descr) =
+let map_in_file ~f fd_in fd_in' =
   let buff = Bytes.create buf_len in
-  let (fd_out, fd_in') = Unix.pipe ~cloexec:true () in
   let rec loop () =
     match Unix.read fd_in buff 0 buf_len with
     | 0 -> Unix.close fd_in'
@@ -168,10 +167,7 @@ let map_in_file ~f (fd_in : Unix.file_descr) =
         ignore @@ Unix.write fd_in' buff' 0 n' ;
         if n = buf_len then loop () else Unix.close fd_in'
   in
-  try
-    loop () ;
-    fd_out
-  with _ -> fd_out
+  try loop () with _ -> ()
 
 let add_carriage_returns (buf, buf_len) =
   let buf'_len = ref 0 in
@@ -285,8 +281,11 @@ let format_cmd =
           fd
     in
     let has_cr = contains_carriage_returns fd in
-    let in_fd =
-      if has_cr then map_in_file ~f:remove_carriage_returns fd else fd
+    let (in_fd, pipe_in_opt) =
+      if has_cr then
+        let (fd_out, fd_in') = Unix.pipe ~cloexec:true () in
+        (fd_out, Some fd_in')
+      else (fd, None)
     in
     let (fd_in, fd_out) =
       let (fd_out, fd_in) = Unix.pipe ~cloexec:true () in
@@ -294,6 +293,12 @@ let format_cmd =
     in
     let pid = Unix.create_process topiary_path args in_fd fd_in Unix.stderr in
     if pid <> 0 then
+      let () =
+        (* Only start writing to the pipe when the process is ready to
+           read as outputting to the pipe might hang if the output is
+           not consumed. *)
+        Option.iter (map_in_file ~f:remove_carriage_returns fd) pipe_in_opt
+      in
       let (_p, status) = Unix.waitpid [ WNOHANG ] pid in
       match status with
       | Unix.WEXITED 0 ->
