@@ -199,9 +199,16 @@ let write_result ~has_cr ~fd_out ~fd_in =
   loop ()
 
 let contains_carriage_returns fd =
-  let l = Stdlib.input_line (Unix.in_channel_of_descr fd) in
+  let b = Bytes.make 1 '\000' in
+  let rec loop () =
+    match Unix.read fd b 0 1 with
+    | 1 -> (
+        match Bytes.get b 0 with '\r' -> true | '\n' -> false | _ -> loop ())
+    | _ | (exception _) -> false
+  in
+  let contains_cr = loop () in
   ignore @@ Unix.lseek fd 0 SEEK_SET ;
-  l.[String.length l - 1] = '\r'
+  contains_cr
 
 let format_cmd =
   let open Cmdliner in
