@@ -199,6 +199,7 @@ let write_result ~has_cr ~fd_out ~fd_in =
   loop ()
 
 let contains_carriage_returns fd =
+  let fd = Unix.dup fd in
   let b = Bytes.make 1 '\000' in
   let rec loop () =
     match Unix.read fd b 0 1 with
@@ -207,7 +208,7 @@ let contains_carriage_returns fd =
     | _ | (exception _) -> false
   in
   let contains_cr = loop () in
-  ignore @@ Unix.lseek fd 0 SEEK_SET ;
+  Unix.close fd ;
   contains_cr
 
 let format_cmd =
