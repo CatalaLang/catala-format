@@ -294,26 +294,25 @@ let format_cmd =
       (fd_in, fd_out)
     in
     let pid = Unix.create_process topiary_path args in_fd fd_in Unix.stderr in
-    if pid <> 0 then
-      let has_cr =
-        (* Only start writing to the pipe when the process is ready to
-           read as outputting to the pipe might hang if the output is
-           not consumed. *)
-        map_in_file ~f:remove_carriage_returns fd pipe_in
-      in
-      let status =
-        let (p, _s) = Unix.waitpid [ WNOHANG ] pid in
-        if p <> 0 then snd @@ Unix.waitpid [] pid
-        else
-          (* The process should still be running as we are expecting
-             an output, if it has already exited it must means that it
-             has errored out. On Windows, we cannot retrieve
-             terminated processes status hence, here, we force an ad
-             hoc error status. *)
-          Unix.WEXITED 5
-      in
-      match status with
-      | Unix.WEXITED 0 ->
+    let has_cr =
+      (* Only start writing to the pipe when the process is ready to
+         read as outputting to the pipe might hang if the output is
+         not consumed. *)
+      map_in_file ~f:remove_carriage_returns fd pipe_in
+    in
+    let rec active_poll () =
+      let (p, s) = Unix.waitpid [ WNOHANG ] pid in
+      if p <> 0 then (* Child erroneously ended *)
+        Some s
+      else
+        let (r, _, _) = Unix.select [ fd_out ] [] [] 0.05 in
+        match r with
+        | [] -> (* Not ready yet *) active_poll ()
+        | [ _ ] -> (* Ready to output *) None
+        | _ -> assert false
+    in
+    let process_result = function
+      | Some (Unix.WEXITED 0) | None ->
           let out_file =
             match (file, in_place) with
             | (`Stdin, _) | (_, false) -> Unix.stdout
@@ -329,7 +328,10 @@ let format_cmd =
           in
           write_result ~has_cr ~fd_out:out_file ~fd_in:fd_out ;
           Stdlib.exit 0
-      | WEXITED n | WSIGNALED n | WSTOPPED n -> Stdlib.exit n
+      | Some (WEXITED n) | Some (WSIGNALED n) | Some (WSTOPPED n) ->
+          Stdlib.exit n
+    in
+    active_poll () |> process_result
   in
   Cmd.v
     (Cmd.info
