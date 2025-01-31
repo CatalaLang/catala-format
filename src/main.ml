@@ -307,7 +307,17 @@ let format_cmd =
            not consumed. *)
         Option.iter (map_in_file ~f:remove_carriage_returns fd) pipe_in_opt
       in
-      let (_p, status) = Unix.waitpid [ WNOHANG ] pid in
+      let status =
+        let (p, _s) = Unix.waitpid [ WNOHANG ] pid in
+        if p <> 0 then snd @@ Unix.waitpid [] pid
+        else
+          (* The process should still be running as we are expecting
+             an output, if it has already exited it must means that it
+             has errored out. On Windows, we cannot retrieve
+             terminated processes status hence, here, we force an ad
+             hoc error status. *)
+          Unix.WEXITED 5
+      in
       match status with
       | Unix.WEXITED 0 ->
           let out_file =
