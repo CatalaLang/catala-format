@@ -148,26 +148,36 @@ let glob_buf = Bytes.create (buf_len * 2)
 
 let remove_carriage_returns (buf, buf_len) =
   let buf'_len = ref 0 in
+  let has_cr = ref false in
   for i = 0 to buf_len - 1 do
     match Bytes.get buf i with
-    | '\r' -> ()
+    | '\r' ->
+        if succ i < buf_len && Bytes.get buf (succ i) = '\n' then has_cr := true
+        else (
+          Bytes.set glob_buf !buf'_len '\r' ;
+          incr buf'_len)
     | c ->
         Bytes.set glob_buf !buf'_len c ;
         incr buf'_len
   done ;
-  (glob_buf, !buf'_len)
+  (glob_buf, !buf'_len, !has_cr)
 
 let map_in_file ~f fd_in fd_in' =
   let buff = Bytes.create buf_len in
+  let has_cr = ref false in
   let rec loop () =
     match Unix.read fd_in buff 0 buf_len with
     | 0 -> Unix.close fd_in'
     | n ->
-        let (buff', n') = f (buff, n) in
+        let (buff', n', has_cr') = f (buff, n) in
+        has_cr := !has_cr || has_cr' ;
         ignore @@ Unix.write fd_in' buff' 0 n' ;
         if n = buf_len then loop () else Unix.close fd_in'
   in
-  try loop () with _ -> ()
+  try
+    loop () ;
+    !has_cr
+  with _ -> !has_cr
 
 let add_carriage_returns (buf, buf_len) =
   let buf'_len = ref 0 in
@@ -197,19 +207,6 @@ let write_result ~has_cr ~fd_out ~fd_in =
         if n = buf_len then loop () else Unix.close fd_in
   in
   loop ()
-
-let contains_carriage_returns fd =
-  let fd = Unix.dup fd in
-  let b = Bytes.make 1 '\000' in
-  let rec loop () =
-    match Unix.read fd b 0 1 with
-    | 1 -> (
-        match Bytes.get b 0 with '\r' -> true | '\n' -> false | _ -> loop ())
-    | _ | (exception _) -> false
-  in
-  let contains_cr = loop () in
-  Unix.close fd ;
-  contains_cr
 
 let format_cmd =
   let open Cmdliner in
@@ -288,12 +285,9 @@ let format_cmd =
           at_exit (fun () -> Unix.close fd) ;
           fd
     in
-    let has_cr = contains_carriage_returns fd in
-    let (in_fd, pipe_in_opt) =
-      if has_cr then
-        let (fd_out, fd_in') = Unix.pipe ~cloexec:true () in
-        (fd_out, Some fd_in')
-      else (fd, None)
+    let (in_fd, pipe_in) =
+      let (fd_out, fd_in') = Unix.pipe ~cloexec:true () in
+      (fd_out, fd_in')
     in
     let (fd_in, fd_out) =
       let (fd_out, fd_in) = Unix.pipe ~cloexec:true () in
@@ -301,11 +295,11 @@ let format_cmd =
     in
     let pid = Unix.create_process topiary_path args in_fd fd_in Unix.stderr in
     if pid <> 0 then
-      let () =
+      let has_cr =
         (* Only start writing to the pipe when the process is ready to
            read as outputting to the pipe might hang if the output is
            not consumed. *)
-        Option.iter (map_in_file ~f:remove_carriage_returns fd) pipe_in_opt
+        map_in_file ~f:remove_carriage_returns fd pipe_in
       in
       let status =
         let (p, _s) = Unix.waitpid [ WNOHANG ] pid in
