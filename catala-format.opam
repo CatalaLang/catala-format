@@ -9,6 +9,10 @@ dev-repo: "git+https://github.com/CatalaLang/catala-format.git"
 
 license: "Apache-2.0"
 depends: [
+  "ocaml"
+  "dune"
+  "cmdliner"
+  "lwt" {with-test}
   "topiary" {= "0.5.1"}
 ]
 
