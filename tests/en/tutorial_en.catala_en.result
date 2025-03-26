@@ -1081,7 +1081,7 @@ commas, and delimited by parentheses as so:
 
 ```catala
 declaration scope UseOfTuple:
-  internal money_and_date content (money, date )
+  internal money_and_date content (money, date)
   output when content date
 
 scope UseOfTuple:
