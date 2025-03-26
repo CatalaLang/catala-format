@@ -22,7 +22,8 @@ champ d'application Exemple1:
   définition calcul.résidence égal à Métropole
   définition
     calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
-  égal à faux
+  égal à
+    faux
   définition calcul.type_aide égal à
     AL.TypeAidesPersonnelleLogement.AllocationLogementFamiliale
   définition calcul.colocation égal à faux
@@ -54,7 +55,8 @@ champ d'application Exemple2:
   définition calcul.logement_est_chambre égal à faux
   définition
     calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
-  égal à faux
+  égal à
+    faux
   définition calcul.type_aide égal à
     AL.TypeAidesPersonnelleLogement.AllocationLogementFamiliale
   définition calcul.colocation égal à faux
@@ -82,7 +84,8 @@ champ d'application Exemple3:
   définition calcul.logement_est_chambre égal à faux
   définition
     calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
-  égal à faux
+  égal à
+    faux
   définition calcul.type_aide égal à
     AL.TypeAidesPersonnelleLogement.AllocationLogementFamiliale
   définition calcul.colocation égal à faux
@@ -112,7 +115,8 @@ champ d'application Exemple4:
   définition calcul.logement_est_chambre égal à faux
   définition
     calcul.âgées_ou_handicap_adultes_hébergées_onéreux_particuliers
-  égal à faux
+  égal à
+    faux
   définition calcul.type_aide égal à
     AL.TypeAidesPersonnelleLogement.AllocationLogementFamiliale
   définition calcul.colocation égal à faux
