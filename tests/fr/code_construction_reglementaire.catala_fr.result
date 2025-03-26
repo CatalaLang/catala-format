@@ -3549,7 +3549,8 @@ champ d'application CalculAidePersonnaliséeLogementAccessionPropriété:
   définition calcul_équivalence_loyer_minimale.condition_2_du_832_25 égal à faux
   définition
     calcul_équivalence_loyer_minimale.ressources_ménage_arrondies
-  égal à ressources_ménage_arrondies
+  égal à
+    ressources_ménage_arrondies
   définition calcul_équivalence_loyer_minimale.n_nombre_parts_d832_25 égal à
     n_nombre_parts_d832_11
 ```
@@ -3848,7 +3849,8 @@ champ d'application CalculAidePersonnaliséeLogementFoyer:
     condition_2_du_832_25
   définition
     calcul_équivalence_loyer_minimale.ressources_ménage_arrondies
-  égal à ressources_ménage_arrondies
+  égal à
+    ressources_ménage_arrondies
   définition calcul_équivalence_loyer_minimale.n_nombre_parts_d832_25 égal à
     n_nombre_parts_d832_25
 ```
@@ -4619,7 +4621,8 @@ champ d'application CalculAllocationLogementAccessionPropriété:
   définition calcul_équivalence_loyer_minimale.condition_2_du_832_25 égal à vrai
   définition
     calcul_équivalence_loyer_minimale.ressources_ménage_arrondies
-  égal à ressources_ménage_arrondies
+  égal à
+    ressources_ménage_arrondies
   définition calcul_équivalence_loyer_minimale.n_nombre_parts_d832_25 égal à
     calcul_nombre_parts.n_nombre_parts_d832_11
   définition calcul_nombre_parts.nombre_personnes_à_charge égal à
@@ -5031,7 +5034,8 @@ champ d'application CalculAllocationLogementFoyer:
   définition calcul_équivalence_loyer_minimale.condition_2_du_832_25 égal à vrai
   définition
     calcul_équivalence_loyer_minimale.ressources_ménage_arrondies
-  égal à ressources_ménage_arrondies
+  égal à
+    ressources_ménage_arrondies
 
   définition calcul_nombre_parts.nombre_personnes_à_charge égal à
     nombre_personnes_à_charge

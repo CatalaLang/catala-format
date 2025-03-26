@@ -163,16 +163,26 @@
  (scope_var)
 ] @append_space
 
-;; Parenthesis and comma should not have any space
+;; No space before a COMMA -- except when preceded by a numeric literal
+;; FIXME: it only matters in catala_fr (e.g., 1+2,3 => would yield a parse error)
+(typ_list
+ (COMMA) @prepend_antispace)
+(var_list
+ (COMMA) @prepend_antispace)
 
-;; [                              ;;
-;;  (LPAREN (#single_line_only!)) ;;
-;; ] @append_antispace            ;;
-;; [                              ;;
-;;  (RPAREN (#single_line_only!)) ;;
-;; ] @prepend_antispace           ;;
+(tuple_contents
+ (_
+  (literal
+   [ (DECIMAL_LITERAL) (INT_LITERAL) ])? @do_nothing
+   .)
+ . (COMMA) @prepend_antispace)
 
-(COMMA) @prepend_antispace
+(fun_arguments
+ (COMMA) @prepend_antispace)
+(rule_parameters
+ (COMMA) @prepend_antispace)
+(params_decl
+ (COMMA) @prepend_antispace)
 
 ;; No space between integer and percent for decimals declarations
 
