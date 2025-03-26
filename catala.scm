@@ -446,7 +446,7 @@
 
 ;; Pattern-matching cases
 
-((ALT) (match_case ((COLON) @prepend_space @append_spaced_softline @append_indent_start) (_) @append_indent_end .)) @prepend_spaced_softline
+((ALT) . (match_case ((COLON) @prepend_space @append_spaced_softline @append_indent_start) (_) @append_indent_end .)) @prepend_spaced_softline
 
 ;; Let-bindings
 (e_letin

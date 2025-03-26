@@ -157,28 +157,28 @@ champ d'application CalculMontantForfaitaireGlobal:
                   nombre_jumeaux_même_date
             )
           -- Rôle.Conjoint :
+            (
+                  rôles_avec_rang
+                  ++ [ RôleAvecRang.Conjoint ],
+                  date_de_naissance_enfant_précédent,
+                  rang_enfant,
+                  nombre_jumeaux_même_date
+            )
+          -- Rôle.Enfant :
+            si personne.date_naissance = date_de_naissance_enfant_précédent alors
               (
                     rôles_avec_rang
-                    ++ [ RôleAvecRang.Conjoint ],
-                    date_de_naissance_enfant_précédent,
-                    rang_enfant,
-                    nombre_jumeaux_même_date
+                    ++ [ RôleAvecRang.Enfant contenu (rang_enfant - nombre_jumeaux_même_date) ],
+                    date_de_naissance_enfant_précédent, rang_enfant + 1 ,
+                    nombre_jumeaux_même_date + 1
               )
-          -- Rôle.Enfant :
-                si personne.date_naissance = date_de_naissance_enfant_précédent alors
-                  (
-                        rôles_avec_rang
-                        ++ [ RôleAvecRang.Enfant contenu (rang_enfant - nombre_jumeaux_même_date) ],
-                        date_de_naissance_enfant_précédent, rang_enfant + 1 ,
-                        nombre_jumeaux_même_date + 1
-                  )
-                sinon
-                  (
-                        rôles_avec_rang
-                        ++ [ RôleAvecRang.Enfant contenu (rang_enfant) ],
-                        personne.date_naissance, (rang_enfant + 1),
-                        1
-                  )
+            sinon
+              (
+                    rôles_avec_rang
+                    ++ [ RôleAvecRang.Enfant contenu (rang_enfant) ],
+                    personne.date_naissance, (rang_enfant + 1),
+                    1
+              )
         )
         pour personne parmi personnes
     dans

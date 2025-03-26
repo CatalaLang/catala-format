@@ -69,37 +69,37 @@ champ d'application ÉligibilitéAidesPersonnelleLogement:
     et selon personne_à_charge sous forme
     -- EnfantÀCharge de enfant : faux
     -- AutrePersonneÀCharge de parent :
-        parent.parenté = Ascendant
-        et parent.ressources
-        <= plafond_individuel_l815_9_sécu * 1,25
-        et (
-          # VERIF: parent.date_naissance + âge_l351_8_1_sécu est ambiguë,
-          # à détecter
-          (
-            parent.date_naissance
-            + âge_l351_8_1_sécu
-            <= date_courante
-            ou (
-              parent.titulaire_allocation_personne_âgée
-              et (
-                résultat de France.VérificationÂgeInférieurOuÉgalÀ avec {
-                  -- date_naissance: parent.date_naissance
-                  -- date_courante: date_courante
-                  -- années: 65 an
-                }
-              ).est_inférieur_ou_égal
-            )
-          )
-          ou
-          # VERIF: parent.date_naissance + âge_l161_17_2_sécu est ambiguë,
-          # à détecter
-          (
-            parent.date_naissance
-            + âge_l161_17_2_sécu
-            <= date_courante
-            et parent.bénéficiaire_l161_19_l351_8_l643_3_sécu
+      parent.parenté = Ascendant
+      et parent.ressources
+      <= plafond_individuel_l815_9_sécu * 1,25
+      et (
+        # VERIF: parent.date_naissance + âge_l351_8_1_sécu est ambiguë,
+        # à détecter
+        (
+          parent.date_naissance
+          + âge_l351_8_1_sécu
+          <= date_courante
+          ou (
+            parent.titulaire_allocation_personne_âgée
+            et (
+              résultat de France.VérificationÂgeInférieurOuÉgalÀ avec {
+                -- date_naissance: parent.date_naissance
+                -- date_courante: date_courante
+                -- années: 65 an
+              }
+            ).est_inférieur_ou_égal
           )
         )
+        ou
+        # VERIF: parent.date_naissance + âge_l161_17_2_sécu est ambiguë,
+        # à détecter
+        (
+          parent.date_naissance
+          + âge_l161_17_2_sécu
+          <= date_courante
+          et parent.bénéficiaire_l161_19_l351_8_l643_3_sécu
+        )
+      )
   conséquence rempli
 
   étiquette r823_4_2
@@ -133,14 +133,14 @@ champ d'application ÉligibilitéAidesPersonnelleLogement
     selon personne_à_charge sous forme
     -- EnfantÀCharge de enfant : faux
     -- AutrePersonneÀCharge de parent :
-        (
-          parent.parenté sous forme Ascendant
-          ou parent.parenté sous forme Descendant
-          ou parent.parenté sous forme CollatéralDeuxièmeTroisièmeDegré
-        )
-        et parent.incapacité_80_pourcent_ou_restriction_emploi
-        et parent.ressources
-        <= plafond_individuel_l815_9_sécu * 1,25
+      (
+        parent.parenté sous forme Ascendant
+        ou parent.parenté sous forme Descendant
+        ou parent.parenté sous forme CollatéralDeuxièmeTroisièmeDegré
+      )
+      et parent.incapacité_80_pourcent_ou_restriction_emploi
+      et parent.ressources
+      <= plafond_individuel_l815_9_sécu * 1,25
   conséquence rempli
 ```
 
@@ -485,9 +485,9 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
     -- Zone1 :
       420,52€ + 61,01€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone2 :
-        370,32€ + 53,90€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      370,32€ + 53,90€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone3 :
-          342,52€ + 49,09€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      342,52€ + 49,09€ * multiplicateur_majoration_plafond_loyer_d823_16_2
 ```
 
 ### Article 8 | LEGIARTI000046206214 [archive]
@@ -878,9 +878,9 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
     -- Zone1 :
       315,39€ + 45,76€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone2 :
-        277,74€ + 40,43€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      277,74€ + 40,43€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone3 :
-          256,89€ + 36,82€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      256,89€ + 36,82€ * multiplicateur_majoration_plafond_loyer_d823_16_2
 ```
 
 2° Le montant forfaitaire au titre des charges est fixé comme suit (en euros) :
@@ -1043,63 +1043,63 @@ champ d'application CalculAidePersonnaliséeLogementFoyer
             )
         )
       -- Zone2 :
-          (
-            si nombre_personnes_à_charge = 0 alors
-              (
-                selon situation_familiale_calcul_apl sous forme
-                -- PersonneSeule : 422,42 €
-                -- Couple : 492,99€
-              )
-            sinon
-              (
-                si nombre_personnes_à_charge = 1 alors
-                  525,65 €
-                sinon
-                  (
-                    si nombre_personnes_à_charge = 2 alors
-                      562,68 €
-                    sinon
-                      (
-                        si nombre_personnes_à_charge = 3 alors
-                          599,57 €
-                        sinon
-                          (
-                            638,87 €
-                            + 66,59€ * (décimal de (nombre_personnes_à_charge - 4))
-                          )
-                      )
-                  )
-              )
-          )
-      -- Zone3 :
+        (
+          si nombre_personnes_à_charge = 0 alors
             (
-              si nombre_personnes_à_charge = 0 alors
-                (
-                  selon situation_familiale_calcul_apl sous forme
-                  -- PersonneSeule : 400,96 €
-                  -- Couple : 466,34€
-                )
+              selon situation_familiale_calcul_apl sous forme
+              -- PersonneSeule : 422,42 €
+              -- Couple : 492,99€
+            )
+          sinon
+            (
+              si nombre_personnes_à_charge = 1 alors
+                525,65 €
               sinon
                 (
-                  si nombre_personnes_à_charge = 1 alors
-                    494,75 €
+                  si nombre_personnes_à_charge = 2 alors
+                    562,68 €
                   sinon
                     (
-                      si nombre_personnes_à_charge = 2 alors
-                        527,40 €
+                      si nombre_personnes_à_charge = 3 alors
+                        599,57 €
                       sinon
                         (
-                          si nombre_personnes_à_charge = 3 alors
-                            560,04 €
-                          sinon
-                            (
-                              596,75 €
-                              + 61,80€ * (décimal de (nombre_personnes_à_charge - 4))
-                            )
+                          638,87 €
+                          + 66,59€ * (décimal de (nombre_personnes_à_charge - 4))
                         )
                     )
                 )
             )
+        )
+      -- Zone3 :
+        (
+          si nombre_personnes_à_charge = 0 alors
+            (
+              selon situation_familiale_calcul_apl sous forme
+              -- PersonneSeule : 400,96 €
+              -- Couple : 466,34€
+            )
+          sinon
+            (
+              si nombre_personnes_à_charge = 1 alors
+                494,75 €
+              sinon
+                (
+                  si nombre_personnes_à_charge = 2 alors
+                    527,40 €
+                  sinon
+                    (
+                      si nombre_personnes_à_charge = 3 alors
+                        560,04 €
+                      sinon
+                        (
+                          596,75 €
+                          + 61,80€ * (décimal de (nombre_personnes_à_charge - 4))
+                        )
+                    )
+                )
+            )
+        )
     )
 ```
 
@@ -2335,9 +2335,9 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
     -- Zone1 :
       406,30€ + 58,95€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone2 :
-        357,80€ + 52,08€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      357,80€ + 52,08€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone3 :
-          330,94€ + 47,43€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      330,94€ + 47,43€ * multiplicateur_majoration_plafond_loyer_d823_16_2
 ```
 
 ### Article 8 | LEGIARTI000044137429 [archive]
@@ -2671,9 +2671,9 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
     -- Zone1 :
       304,73€ + 44,21€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone2 :
-        268,35€ + 39,06€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      268,35€ + 39,06€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone3 :
-          248,21€ + 35,57€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      248,21€ + 35,57€ * multiplicateur_majoration_plafond_loyer_d823_16_2
 ```
 
 2° Le montant forfaitaire au titre des charges est fixé comme suit (en euros) :
@@ -2819,39 +2819,39 @@ champ d'application CalculAidePersonnaliséeLogementFoyer
           686,37 € + 71,19€ * (décimal de (nombre_personnes_à_charge - 4))
       )
     -- Zone2 :
-        (
-          si nombre_personnes_à_charge = 0 alors
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 408,14 €
-              -- Couple : 476,32€
-            )
-          sinon si nombre_personnes_à_charge = 1 alors
-            507,87 €
-          sinon si nombre_personnes_à_charge = 2 alors
-            543,65 €
-          sinon si nombre_personnes_à_charge = 3 alors
-            579,29 €
-          sinon
-            617,27 € + 64,34€ * (décimal de (nombre_personnes_à_charge - 4))
-        )
-    -- Zone3 :
+      (
+        si nombre_personnes_à_charge = 0 alors
           (
-            si nombre_personnes_à_charge = 0 alors
-              (
-                selon situation_familiale_calcul_apl sous forme
-                -- PersonneSeule : 387,40 €
-                -- Couple : 450,57€
-              )
-            sinon si nombre_personnes_à_charge = 1 alors
-              478,02 €
-            sinon si nombre_personnes_à_charge = 2 alors
-              509,57 €
-            sinon si nombre_personnes_à_charge = 3 alors
-              541,10 €
-            sinon
-              576,57 € + 59,71€ * (décimal de (nombre_personnes_à_charge - 4))
+            selon situation_familiale_calcul_apl sous forme
+            -- PersonneSeule : 408,14 €
+            -- Couple : 476,32€
           )
+        sinon si nombre_personnes_à_charge = 1 alors
+          507,87 €
+        sinon si nombre_personnes_à_charge = 2 alors
+          543,65 €
+        sinon si nombre_personnes_à_charge = 3 alors
+          579,29 €
+        sinon
+          617,27 € + 64,34€ * (décimal de (nombre_personnes_à_charge - 4))
+      )
+    -- Zone3 :
+      (
+        si nombre_personnes_à_charge = 0 alors
+          (
+            selon situation_familiale_calcul_apl sous forme
+            -- PersonneSeule : 387,40 €
+            -- Couple : 450,57€
+          )
+        sinon si nombre_personnes_à_charge = 1 alors
+          478,02 €
+        sinon si nombre_personnes_à_charge = 2 alors
+          509,57 €
+        sinon si nombre_personnes_à_charge = 3 alors
+          541,10 €
+        sinon
+          576,57 € + 59,71€ * (décimal de (nombre_personnes_à_charge - 4))
+      )
 ```
 
 ### Article 34 | LEGIARTI000044137403 [archive]
@@ -3513,9 +3513,9 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
     -- Zone1 :
       404,60€ + 58,70€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone2 :
-        356,30€ + 51,86€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      356,30€ + 51,86€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone3 :
-          329,56€ + 47,23€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      329,56€ + 47,23€ * multiplicateur_majoration_plafond_loyer_d823_16_2
 ```
 
 ### Article 8 | LEGIARTI000042378446 [archive]
@@ -3844,9 +3844,9 @@ champ d'application CalculAidePersonnaliséeLogementLocatif
     -- Zone1 :
       303,45€ + 44,03€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone2 :
-        267,23€ + 38,90€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      267,23€ + 38,90€ * multiplicateur_majoration_plafond_loyer_d823_16_2
     -- Zone3 :
-          247,17€ + 35,42€ * multiplicateur_majoration_plafond_loyer_d823_16_2
+      247,17€ + 35,42€ * multiplicateur_majoration_plafond_loyer_d823_16_2
 ```
 
 2° Le montant forfaitaire au titre des charges est fixé comme suit (en euros) :
@@ -3993,39 +3993,39 @@ champ d'application CalculAidePersonnaliséeLogementFoyer
           683,5 € + 70,89€ * (décimal de (nombre_personnes_à_charge - 4))
       )
     -- Zone2 :
-        (
-          si nombre_personnes_à_charge = 0 alors
-            (
-              selon situation_familiale_calcul_apl sous forme
-              -- PersonneSeule : 406,43 €
-              -- Couple : 474,33€
-            )
-          sinon si nombre_personnes_à_charge = 1 alors
-            505,75 €
-          sinon si nombre_personnes_à_charge = 2 alors
-            541,38 €
-          sinon si nombre_personnes_à_charge = 3 alors
-            576,87 €
-          sinon
-            614,69 € + 64,07€ * (décimal de (nombre_personnes_à_charge - 4))
-        )
-    -- Zone3 :
+      (
+        si nombre_personnes_à_charge = 0 alors
           (
-            si nombre_personnes_à_charge = 0 alors
-              (
-                selon situation_familiale_calcul_apl sous forme
-                -- PersonneSeule : 385,78 €
-                -- Couple : 448,69€
-              )
-            sinon si nombre_personnes_à_charge = 1 alors
-              476,02 €
-            sinon si nombre_personnes_à_charge = 2 alors
-              507,44 €
-            sinon si nombre_personnes_à_charge = 3 alors
-              538,84 €
-            sinon
-              574,16 € + 59,46€ * (décimal de (nombre_personnes_à_charge - 4))
+            selon situation_familiale_calcul_apl sous forme
+            -- PersonneSeule : 406,43 €
+            -- Couple : 474,33€
           )
+        sinon si nombre_personnes_à_charge = 1 alors
+          505,75 €
+        sinon si nombre_personnes_à_charge = 2 alors
+          541,38 €
+        sinon si nombre_personnes_à_charge = 3 alors
+          576,87 €
+        sinon
+          614,69 € + 64,07€ * (décimal de (nombre_personnes_à_charge - 4))
+      )
+    -- Zone3 :
+      (
+        si nombre_personnes_à_charge = 0 alors
+          (
+            selon situation_familiale_calcul_apl sous forme
+            -- PersonneSeule : 385,78 €
+            -- Couple : 448,69€
+          )
+        sinon si nombre_personnes_à_charge = 1 alors
+          476,02 €
+        sinon si nombre_personnes_à_charge = 2 alors
+          507,44 €
+        sinon si nombre_personnes_à_charge = 3 alors
+          538,84 €
+        sinon
+          574,16 € + 59,46€ * (décimal de (nombre_personnes_à_charge - 4))
+      )
 ```
 
 ### Article 34 | LEGIARTI000042378426 [archive]
