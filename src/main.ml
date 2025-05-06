@@ -251,8 +251,15 @@ let format_cmd =
         ~docs:Manpage.s_arguments
         ~doc:"Catala file to be formatted ($(b,-) for stdin)."
   in
+  let skip_idempotence =
+    let open Arg in
+    value & flag
+    & info
+        [ "s"; "skip-idempotence" ]
+        ~doc:"When specified, the formatting idempotence check will be skipped."
+  in
   let { config_file; query_file; topiary_path } = files_lookup () in
-  let f lang in_place file =
+  let f lang in_place skip_idempotence file =
     let language =
       match (lang, file) with
       | (None, `Stdin) ->
@@ -275,6 +282,7 @@ let format_cmd =
           | None -> [||]
           | Some config_file -> [| "--configuration"; config_file |]);
           [| "format"; "--language"; language; "--query"; query_file |];
+          (if skip_idempotence then [| "--skip-idempotence" |] else [||]);
         ]
     in
     let fd =
@@ -340,7 +348,7 @@ let format_cmd =
          "Format the given $(b,FILE) and output the result.\n\
           When no $(b,FILE) is provided, the standard input will be read\n\
           however the $(b,--language) argument becomes mandatory. ")
-    Term.(const f $ language $ in_place $ file)
+    Term.(const f $ language $ in_place $ skip_idempotence $ file)
 
 let () =
   let open Cmdliner in
