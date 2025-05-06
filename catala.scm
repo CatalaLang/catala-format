@@ -151,6 +151,8 @@
  (MODULE_ALIAS)
  (MODULE_EXTERNAL)
  (COMBINE)
+ (MAP_EACH)
+ (TO)
  (INITIALLY)
 
  ; Identifiers
@@ -606,11 +608,12 @@
 ;; List Mapping
 
 (e_coll_map
- mapf: (_) @append_indent_start @append_spaced_softline
- (FOR)
+ (MAP_EACH)
  (binder)
  (AMONG)
- coll: (_) @append_indent_end
+ coll: (_)
+ (TO) @append_indent_start @append_spaced_softline
+ mapf: (_) @append_indent_end
 )
 
 ;; List Filter
@@ -629,16 +632,16 @@
 ;; List Filter + Map
 
 (e_coll_filter_map
- mapf: (_) @prepend_begin_scope @append_indent_start @append_spaced_scoped_softline
- (FOR)
+ (MAP_EACH)
  (binder)
  (AMONG)
- coll: (_) @append_spaced_softline @append_end_scope
+ coll: (_) @append_indent_start @append_spaced_softline
  (SUCH)
  (THAT)
- cond: (_) @append_indent_end
- (#scope_id! "filter_map")
- )
+ cond: (_) @append_indent_end @append_spaced_softline
+ (TO) @append_indent_start @append_spaced_softline
+ mapf: (_) @append_indent_end
+)
 
 ;; List aggregation
 
@@ -696,15 +699,17 @@
 
 (e_coll_fold
  (COMBINE) @append_indent_start
- (binder)
- (INITIALLY) @prepend_input_softline
- acc: (_) @append_spaced_softline
- (WITH)
- mapf: (_) @append_spaced_softline
- (FOR)
+ (ALL)
  (binder)
  (AMONG)
- coll: (_) @append_indent_end
+ coll: (_) @append_spaced_softline
+ (IN)
+ (binder)
+ (INITIALLY) @prepend_input_softline
+ acc: (_) @append_spaced_softline @append_begin_scope
+ (WITH) @append_indent_start @append_input_softline
+ mapf: (_) @append_indent_end @append_indent_end @append_end_scope
+ (#scope_id! "fold")
 )
 
 ;; Directives
