@@ -3,6 +3,7 @@
  (law_block)
  (verb_block)
  (COMMENT)
+ (ATTRIBUTE)
 ] @leaf
 
 ;; Allow blank line before
@@ -13,6 +14,7 @@
  (enum_decl)
  (toplevel_def)
  (COMMENT)
+ (ATTRIBUTE)
  (definition)
  (rounding_mode)
  (rule)
@@ -20,20 +22,20 @@
  (scope_decl_item)
 ] @append_hardline @allow_blank_line_before
 
-(COMMENT) @prepend_input_softline @append_hardline
+[(COMMENT) (ATTRIBUTE)] @prepend_input_softline @append_hardline
 
 (
  [ (BEGIN_CODE)
    (BEGIN_METADATA)
    (END_CODE)
- ] @append_hardline
+ ] @prepend_hardline @append_hardline @allow_blank_line_before
 )
 
 [ (directive)
    (law_block)
    (code_block)
    (verb_block)
-] @append_hardline @allow_blank_line_before
+] @prepend_hardline @append_hardline @allow_blank_line_before
 
 ;; Append a space after everything
 [
