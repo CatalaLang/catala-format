@@ -28,23 +28,24 @@
  [ (BEGIN_CODE)
    (BEGIN_METADATA)
    (END_CODE)
- ] @prepend_hardline @append_hardline @allow_blank_line_before
+ ] @append_hardline @allow_blank_line_before
 )
 
 [ (directive)
-   (law_block)
-   (code_block)
-   (verb_block)
-] @prepend_hardline @append_hardline @allow_blank_line_before
+  (law_block)
+  (code_block)
+  (verb_block)
+] @append_hardline @prepend_hardline @allow_blank_line_before
 
 ;; Append a space after everything
 [
  ;; Generic tokens except: (COLON) (DOT) (END_CODE)
- ;;                        (BEGIN_DIRECTIVE) (LPAREN) (LAW_INCLUDE)
+ ;;                        (LPAREN) (LAW_INCLUDE)
  (ALT)
  (AT_PAGE)
  (BEGIN_CODE)
  (BEGIN_METADATA)
+ (BEGIN_DIRECTIVE)
  (DIRECTIVE_ARG)
  (DIV)
  (COMMA)
