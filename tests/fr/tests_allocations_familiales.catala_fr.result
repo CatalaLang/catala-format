@@ -58,6 +58,7 @@ champ d'application Données:
       -- d_bénéficie_titre_personnel_aide_personnelle_logement: faux
     }
 
+#[test]
 déclaration champ d'application Test1:
   f champ d'application AF.InterfaceAllocationsFamiliales
   données champ d'application Données
@@ -71,6 +72,7 @@ champ d'application Test1:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 351,54€
 
+#[test]
 déclaration champ d'application Test2:
   f champ d'application AF.InterfaceAllocationsFamiliales
   données champ d'application Données
@@ -84,6 +86,7 @@ champ d'application Test2:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 216,46€
 
+#[test]
 déclaration champ d'application Test3:
   f champ d'application AF.InterfaceAllocationsFamiliales
   données champ d'application Données
@@ -96,6 +99,7 @@ champ d'application Test3:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 24,37 €
 
+#[test]
 déclaration champ d'application Test4:
   f champ d'application AF.InterfaceAllocationsFamiliales
   données champ d'application Données
@@ -108,6 +112,7 @@ champ d'application Test4:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 99,46€
 
+#[test]
 déclaration champ d'application Test5:
   f champ d'application AF.InterfaceAllocationsFamiliales
   données champ d'application Données
@@ -120,6 +125,7 @@ champ d'application Test5:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 0,00€
 
+#[test]
 déclaration champ d'application Test6:
   f champ d'application AF.InterfaceAllocationsFamiliales
 
@@ -146,6 +152,7 @@ champ d'application Test6:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 66,30€
 
+#[test]
 déclaration champ d'application Test7:
   f champ d'application AF.InterfaceAllocationsFamiliales
   données champ d'application Données
@@ -159,6 +166,7 @@ champ d'application Test7:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 417,84€
 
+#[test]
 déclaration champ d'application Test8:
   f champ d'application AF.InterfaceAllocationsFamiliales
 
@@ -185,6 +193,7 @@ champ d'application Test8:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 197,90 €
 
+#[test]
 déclaration champ d'application Test9:
   f champ d'application AF.InterfaceAllocationsFamiliales
 
@@ -211,6 +220,7 @@ champ d'application Test9:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 0€
 
+#[test]
 déclaration champ d'application Test10:
   f champ d'application AF.InterfaceAllocationsFamiliales
 
@@ -237,6 +247,7 @@ champ d'application Test10:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 99,46€
 
+#[test]
 déclaration champ d'application Test11:
   f champ d'application AF.InterfaceAllocationsFamiliales
 
@@ -271,6 +282,7 @@ champ d'application Test11:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 435,55€
 
+#[test]
 déclaration champ d'application Test12:
   f champ d'application AF.InterfaceAllocationsFamiliales
 
@@ -314,6 +326,7 @@ champ d'application Test12:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 315,84€
 
+#[test]
 déclaration champ d'application Test13:
   f champ d'application AF.InterfaceAllocationsFamiliales
 
@@ -333,6 +346,7 @@ champ d'application Test13:
   règle f.i_personne_charge_effective_permanente_est_parent rempli
   assertion f.i_montant_versé = 34,99€
 
+#[test]
 déclaration champ d'application Test14:
   f champ d'application AF.InterfaceAllocationsFamiliales
 

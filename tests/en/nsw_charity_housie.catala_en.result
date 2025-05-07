@@ -1,5 +1,6 @@
 ###
 ```catala-metadata
+
 declaration enumeration OrganisationType:
   -- Charitable
   -- NonCharitable

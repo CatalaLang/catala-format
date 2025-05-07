@@ -1,5 +1,6 @@
 ###
 ```catala-metadata
+
 declaration structure ClubBingo:
   data registeredClub content boolean
   data totalValuePrizePerGame content money
@@ -22,7 +23,7 @@ declaration scope GamingAuthorized:
 scope GamingAuthorized:
   definition conductor equals clubBingo.registeredClub
 ```
-(b)  except as provided by paragraph (c), the total value of all of the available prizes for 1 game of the gaming activity does not exceed $70,
+    (b)  except as provided by paragraph (c), the total value of all of the available prizes for 1 game of the gaming activity does not exceed $70,
 
 ```catala
 scope GamingAuthorized:

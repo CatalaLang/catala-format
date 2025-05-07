@@ -19,7 +19,6 @@
 
 > Inclusion: epilogue.catala_fr
 
-
 ```catala-test-inline
 $ catala Typecheck --check-invariants
 ┌─[RESULT]─

@@ -890,8 +890,9 @@ déclaration champ d'application ValeursDeListe:
 
 champ d'application ValeursDeListe:
   définition valeur1 égal à [ 45 ; -6 ; 3 ; 4 ; 0 ; 2155 ]
-  définition valeur2 égal à somme entier de (i * i) pour i parmi valeur1
-# somme de carré
+  définition valeur2 égal à
+    # somme de carré
+    somme entier de transforme chaque i parmi valeur1 en (i * i)
 ```
 
 ## Conclusion

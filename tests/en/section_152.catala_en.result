@@ -52,6 +52,7 @@ For purposes of this section—
 ### (1) In general
 
 ```catala-metadata
+
 declaration scope BaseChildTaxpayerQualification:
   input child content Child
   input taxpayer content Taxpayer

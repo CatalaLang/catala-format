@@ -140,7 +140,7 @@ du nombre d'enfants à charge dans les conditions suivantes :
 champ d'application AllocationsFamiliales:
   définition nombre_moyen_enfants égal à
     somme décimal de (
-      (
+      transforme chaque enfant parmi enfants_à_charge_droit_ouvert_prestation_familiale en
         selon (prise_en_compte de enfant) sous forme
         -- Complète : 1,0
         -- Partagée : 0,5
@@ -148,8 +148,6 @@ champ d'application AllocationsFamiliales:
         # cas où l'enfant est pris en charge par les services sociaux et
         # la part de l'allocation va également au service social
         -- Zéro : 0,0
-      )
-        pour enfant parmi enfants_à_charge_droit_ouvert_prestation_familiale
     )
 ```
 
