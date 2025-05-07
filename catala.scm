@@ -446,6 +446,26 @@
  .
 )
 
+(binder
+ .
+ (LPAREN) @append_spaced_softline @append_indent_start
+ (var_list
+  (COMMA)? @append_input_softline
+ )
+ (RPAREN) @prepend_spaced_softline @prepend_indent_end
+ .
+)
+
+(typ
+ .
+ (LPAREN) @append_spaced_softline @append_indent_start
+ (typ_list
+  (COMMA)? @append_input_softline
+ )
+ (RPAREN) @prepend_spaced_softline @prepend_indent_end
+ .
+)
+
 ;; Pattern-matching
 
 (e_match . ((WITH_PATT) @append_spaced_softline) (_))
