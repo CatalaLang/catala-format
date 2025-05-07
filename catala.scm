@@ -27,6 +27,7 @@
 (
  [ (BEGIN_CODE)
    (BEGIN_METADATA)
+   (BEGIN_VERB_BLOCK)
    (END_CODE)
  ] @append_hardline @allow_blank_line_before
 )
