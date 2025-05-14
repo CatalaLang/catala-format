@@ -24,11 +24,9 @@ build:[
 ]
 
 install: [
-  [ "cp" "_build/default/src/main.exe" "%{bin}%/catala-format" ]
-  [ "mkdir" "-p" "%{topiary:share}%/queries" ]
-  [ "cp" "catala.scm" "%{topiary:share}%/queries/" ]
-  [ "mkdir" "-p" "%{topiary:share}%/configs" ]
-  [ "cp" "catala.ncl" "%{topiary:share}%/configs/" ]
+  [ "install" "_build/default/src/main.exe" "%{bin}%/catala-format" ]
+  [ "install" "-D" "catala.scm" "%{topiary:share}%/queries/catala.scm" ]
+  [ "install" "-D" "catala.ncl" "%{topiary:share}%/configs/catala.ncl" ]
 ]
 
 synopsis: "A formatter for Catala based on the Topiary universal formatting engine"
