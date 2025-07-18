@@ -106,6 +106,7 @@
  (ELSE)
  (CONDITION)
  (CONTENT)
+ (TYPE)
  (STRUCT)
  (ASSERTION)
  (VARIES)
@@ -159,6 +160,7 @@
 
  ; Identifiers
  (variable)
+ (type_variable)
  (label)
  (state_label)
  (module_name)
@@ -257,10 +259,11 @@
  .
  (DECLARATION)
  (variable)
- (CONTENT)
+ (CONTENT) @prepend_spaced_softline @prepend_indent_start
  (typ) @append_spaced_softline
  ((DEPENDS) . (params_decl))*
-) @allow_blank_line_before
+ (DEFINED_AS)? @prepend_spaced_softline
+) @append_indent_end @allow_blank_line_before
 
 (params_decl) @prepend_indent_start @append_indent_end
 (params_decl
