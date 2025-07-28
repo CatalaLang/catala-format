@@ -81,6 +81,7 @@
  (INCREASING)
  (OF)
  (LIST)
+ (OPTION)
  (CONTAINS)
  (ENUM)
  (INTEGER)
@@ -157,6 +158,7 @@
  (MAP_EACH)
  (TO)
  (INITIALLY)
+ (IMPOSSIBLE)
 
  ; Identifiers
  (variable)
