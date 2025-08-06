@@ -14,6 +14,7 @@ depends: [
   "cmdliner"
   "lwt" {with-test}
   "topiary" {= "0.5.1"}
+  "conf-c++"
 ]
 
 build:[
