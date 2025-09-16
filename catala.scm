@@ -518,10 +518,9 @@
 ;; But-replace
 
 (e_but_replace
- . (e_variable)
- . (BUT_REPLACE) @append_indent_start @append_spaced_softline
- (_)+
-) @append_indent_end
+ (BUT_REPLACE) @append_indent_start
+ . (LBRACE) . (struct_content_fields) . (RBRACE) @append_indent_end @append_hardline
+)
 
 ;; Fields accesses
 
@@ -565,9 +564,11 @@
 ;; Struct expression
 
 (
-  (LBRACE) @append_spaced_softline @append_begin_scope @append_indent_start
-  (struct_content_fields)
-  (RBRACE) @prepend_spaced_softline @append_end_scope @prepend_indent_end
+ (LBRACE) @append_spaced_scoped_softline @append_begin_scope @append_indent_start
+ .
+ (struct_content_fields)
+ .
+ (RBRACE) @prepend_spaced_scoped_softline @append_end_scope @prepend_indent_end
  (#scope_id! "e_struct")
 )
 
