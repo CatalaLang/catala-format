@@ -22,7 +22,9 @@
  (scope_decl_item)
 ] @append_hardline @allow_blank_line_before
 
-[(COMMENT) (ATTRIBUTE)] @prepend_input_softline @append_hardline
+(COMMENT) @prepend_input_softline @append_hardline
+
+(ATTRIBUTE) @prepend_hardline @append_hardline
 
 (
  [ (BEGIN_CODE)
