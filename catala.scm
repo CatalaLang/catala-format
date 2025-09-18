@@ -310,6 +310,16 @@
    (_) @append_indent_end
    )
 )
+
+;; state variables for conditions
+(scope_decl_item
+ (CONDITION) @append_hardline
+ ((STATE) @prepend_indent_start
+  .
+  (state_label) @append_indent_end @append_hardline
+ )
+)
+
 ;; state variables
 (scope_decl_item
  (typ) @append_hardline
