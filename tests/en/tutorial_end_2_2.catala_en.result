@@ -1,0 +1,120 @@
+```catala
+declaration structure Individual:
+  data income content money
+  data number_of_children content integer
+
+declaration scope IncomeTaxComputation:
+  input current_date content date
+  input individual content Individual
+  input overseas_territories content boolean
+  internal tax_rate content decimal
+  output income_tax content money
+```
+
+## Article 1
+
+ The income tax for an individual is defined as a fixed percentage of the
+ individual's income over a year.
+
+```catala
+scope IncomeTaxComputation:
+  definition income_tax equals
+    individual.income * tax_rate
+```
+
+## Article 2 (old version before 2000)
+
+The fixed percentage mentioned at article 1 is equal to 20 %.
+
+```catala
+scope IncomeTaxComputation:
+  label article_2
+  definition tax_rate under condition
+    current_date < |2000-01-01|
+  consequence equals 20%
+```
+
+## Article 2 (new version after 2000)
+
+The fixed percentage mentioned at article 1 is equal to 21 % %.
+
+```catala
+scope IncomeTaxComputation:
+  # Simply use the same label "article_2" as the previous definition to group
+  # them together
+  label article_2
+  definition tax_rate under condition
+    current_date >= |2000-01-01|
+  consequence equals 21%
+```
+
+## Article 3
+
+If the individual is in charge of 2 or more children, then the fixed
+percentage mentioned at article 1 is equal to 15 %.
+
+```catala
+scope IncomeTaxComputation:
+  label article_3 exception article_2
+  definition tax_rate under condition
+    individual.number_of_children >= 2
+  consequence equals 15%
+```
+
+## Article 4
+
+Individuals earning less than $10,000 are exempted of the income tax mentioned
+at article 1.
+
+```catala
+scope IncomeTaxComputation:
+  label article_4 exception article_3
+  definition tax_rate under condition
+    individual.income <= $10,000
+  consequence equals 0%
+```
+
+## Article 5
+
+Individuals earning more than $100,000 are subjects to a tax rate of
+30%, regardless of their number of children.
+
+```catala
+scope IncomeTaxComputation:
+  label article_5 exception article_3
+  definition tax_rate under condition
+    individual.income > $100,000
+  consequence equals 30%
+```
+
+## Article 6
+
+In the overseas territories, the tax rate for individuals earning
+more than $100,000 specified at article 5 is reduced to 25 %.
+
+```catala
+scope IncomeTaxComputation:
+  label article_6 exception article_5
+  definition tax_rate under condition
+    individual.income > $100,000 and overseas_territories
+  consequence equals 25%
+```
+
+## Test
+
+```catala
+declaration scope Test:
+  output computation content IncomeTaxComputation
+
+scope Test:
+  definition computation equals
+    output of IncomeTaxComputation with {
+      -- individual:
+        Individual {
+          -- income: $20,000
+          -- number_of_children: 0
+        }
+      -- overseas_territories: false
+      -- current_date: |1999-01-01|
+    }
+```

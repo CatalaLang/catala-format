@@ -873,25 +873,20 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
   # vont ensuite faire l'objet d'un pro-rata avec les revenus au quotient.
 
   définition
-    pro_rata_plancher_abattement_forfaitaire_total.montant_à_distribuer
+    pro_rata_plancher_abattement_forfaitaire_total
   égal à
-    plancher_abattement_forfaitaire_micro_total
-
-  définition
-    pro_rata_plancher_abattement_forfaitaire_total.base_prorata_1
-  égal à
-    abattement_forfaitaire_micro_total_marchandises état arrondissement
-
-  définition
-    pro_rata_plancher_abattement_forfaitaire_total.base_prorata_2
-  égal à
-    abattement_forfaitaire_micro_total_services état arrondissement
-
-  définition
-    pro_rata_plancher_abattement_forfaitaire_total.base_prorata_3
-  égal à
-    abattement_spécial_micro_total_location_meublées_rurales_spéciales
-      état arrondissement
+    Oracles.prorata_arrondi_euro_branchement de
+      (
+        plancher_abattement_forfaitaire_micro_total,
+        Présent contenu (abattement_forfaitaire_micro_total_marchandises état arrondissement),
+        Présent contenu (abattement_forfaitaire_micro_total_services état arrondissement),
+        Présent contenu (
+          abattement_spécial_micro_total_location_meublées_rurales_spéciales
+            état arrondissement
+        ),
+        Absent, Absent, Absent, Absent, Absent, Absent,
+        [], [], [], [], [], [], [], [], []
+      )
 
   définition abattement_forfaitaire_micro_total_marchandises
     état plancher
@@ -1362,23 +1357,23 @@ champ d'application TraitementsSalairesDéclarant:
   égal à
     [ PensionRetraiteRente {
         -- valeur_initiale: revenus.pensions_retraites_rentes
-        -- type: TypePensionRetraiteRente.PensionsRetraitesRentes
+        -- type_pension: TypePensionRetraiteRente.PensionsRetraitesRentes
       } ;
       PensionRetraiteRente {
         -- valeur_initiale: revenus.pensions_retraites_en_capital_7_5pct
-        -- type: PensionEnCapital_7_5pct
+        -- type_pension: PensionEnCapital_7_5pct
       } ;
       PensionRetraiteRente {
         -- valeur_initiale: revenus.pensions_en_capital_plans_épargne_retraite
-        -- type: PensionEnCapitalPlansÉpargneRetraite
+        -- type_pension: PensionEnCapitalPlansÉpargneRetraite
       } ;
       PensionRetraiteRente {
         -- valeur_initiale: revenus.pensions_invalidité
-        -- type: PensionInvalidité
+        -- type_pension: PensionInvalidité
       } ;
       PensionRetraiteRente {
         -- valeur_initiale: revenus.pensions_alimentaires_perçues
-        -- type: PensionAlimentairePercue
+        -- type_pension: PensionAlimentairePercue
       } ]
 # Ici on conserve une collection plutôt de calculer la somme, car les différents
 # types d'entrées vont nécessiter des calculs d'abattements différents par la
@@ -2513,7 +2508,7 @@ champ d'application TraitementsSalairesDéclarant:
     # et salaires d'un déclarant.
     selon revenus.frais_réels sous forme
     -- FraisRéels.Non : FraisRéels.Non
-    -- FraisRéels.Oui de montant_frais_réels :
+    -- FraisRéels.Oui contenu montant_frais_réels :
       # Ici, règle de gestion fiscale dans l'intérêt du contribuable :
       # si le montant des frais réels est inférieur à la déduction
       # forfaitaire, alors on applique quand même cette dernière même
@@ -2536,7 +2531,7 @@ champ d'application TraitementsSalairesDéclarant:
       # En l'absence de frais réels on prend juste la valeur plafonnée
       # calculée précédemment.
       déduction_frais_professionnels_totale
-    -- FraisRéels.Oui de montant_frais_réels :
+    -- FraisRéels.Oui contenu montant_frais_réels :
       montant_frais_réels
 
   # Donc pour l'instant nous avons calculé la déduction pour frais
@@ -2555,7 +2550,7 @@ champ d'application TraitementsSalairesDéclarant:
   conséquence égal à
     selon application_frais_réels sous forme
     -- FraisRéels.Non : 0 € # Ne peut pas arriver
-    -- FraisRéels.Oui de montant_frais_réels :
+    -- FraisRéels.Oui contenu montant_frais_réels :
       # Nous allons imputer à un revenu quotienté donné un pro-rata de la
       # déduction aux frais réels qui s'applique à la fois aux traitements
       # salaires normaux, mais aussi aux revenus quotientés.
@@ -4157,7 +4152,7 @@ champ d'application TraitementsSalairesDéclarant:
   égal à
     somme argent de (
       transforme chaque p parmi pensions_retraites_rentes_79 en
-        si abattement_selon_158_5_a de p.type alors
+        si abattement_selon_158_5_a de p.type_pension alors
           calcul_abattement_pensions_retraites_rentes de p.valeur_initiale
         sinon 0 €
     )
@@ -4194,7 +4189,7 @@ champ d'application TraitementsSalairesDéclarant:
     selon selecteur_plafond_abattement_pensions_retraites_rentes sous forme
     -- Déplafonné :
       abattement_pensions_retraites_rentes_total_non_plafonné
-    -- PlafondStandardOuProratisé de plafond_standard_ou_proratisé :
+    -- PlafondStandardOuProratisé contenu plafond_standard_ou_proratisé :
       plafond de
         abattement_pensions_retraites_rentes_total_non_plafonné,
         plafond_standard_ou_proratisé
@@ -4226,11 +4221,8 @@ champ d'application TraitementsSalairesFoyerFiscal:
       transforme chaque déclaration_revenus parmi déclarations_revenus en
         soit résultats_liquidation égal à
           résultat de TraitementsSalairesDéclarant avec {
-            # La première liquidation se fait en déplafonnant l'abattement!
-            -- selecteur_plafond_abattement_pensions_retraites_rentes: Déplafonné
-            -- revenus: déclaration_revenus
-            -- année_revenus: année_revenus
-          }
+          # La première liquidation se fait en déplafonnant l'abattement!
+          -- selecteur_plafond_abattement_pensions_retraites_rentes: Déplafonné -- revenus: déclaration_revenus -- année_revenus: année_revenus }
         dans
         RésultatsLiquidationPlafondPensionRetraitesRentes {
           -- abattement_pensions_retraites_rentes:
@@ -4595,7 +4587,7 @@ champ d'application CalculRevenuQuotienté:
       -- coefficient:
         selon revenu.échéance sous forme
         -- RevenuExceptionnel : 4
-        -- RevenuDifféréÉchéanceNormale de année_d_échéance_normale :
+        -- RevenuDifféréÉchéanceNormale contenu année_d_échéance_normale :
           (année_revenus - année_d_échéance_normale)
           + décalage_échéance_prise_en_compte
     }
@@ -4670,7 +4662,7 @@ champ d'application TraitementsSalairesFoyerFiscal:
         (
           soit déduction égal à
             selon revenu.catégorie sous forme
-            -- RenteViagèreOnéreux de catégorie_rente_viagère :
+            -- RenteViagèreOnéreux contenu catégorie_rente_viagère :
               calcul_déduction_rente_viagères_titre_onéreux de
                 RenteViagèreOnéreux {
                   -- valeur: revenu.valeur
@@ -4882,13 +4874,13 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
         ).revenu_quotienté
     )
     ++ (
-      transforme chaque ( revenu, déduction_micro, déduction_spéciale )
+      transforme chaque (revenu, déduction_micro, déduction_spéciale)
       parmi (
-          revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales,
-          pro_rata_abattement_forfaitaire_micro_marchandises.
-            valeurs_proratisées_liste_3,
-          pro_rata_abattement_spécial_micro_location_meublées_rurales_spéciales.
-            valeurs_proratisées_liste_1
+        revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales,
+        pro_rata_abattement_forfaitaire_micro_marchandises.
+          valeurs_proratisées_liste_3,
+        pro_rata_abattement_spécial_micro_location_meublées_rurales_spéciales.
+          valeurs_proratisées_liste_1
       ) en
         (
           résultat de CalculRevenuQuotienté avec {
@@ -5938,7 +5930,7 @@ champ d'application TraitementsSalairesDéclarant:
     pensions_retraites_rentes_79
     ++ [ PensionRetraiteRente {
         -- valeur_initiale: revenus.autre_pensions_imposables_source_étrangère
-        -- type: TypePensionRetraiteRente.PensionsRetraitesRentes
+        -- type_pension: TypePensionRetraiteRente.PensionsRetraitesRentes
       } ]
 ```
 

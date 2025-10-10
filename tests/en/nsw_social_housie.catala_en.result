@@ -12,8 +12,6 @@ declaration structure SocialHousie:
   data totalValuePrizePerSession content money
   data applicationOf2007Licence content boolean
   data jackpotPrizeValue content money
-  data totalValueExpenses content money
-  data totalInvestmentPerParticipant content money
   data investmentReturn content boolean
 
 declaration scope GamingAuthorized:

@@ -107,25 +107,31 @@ eux.
 Aux termes de l’article 194 un couple pacsé avec 2 enfants représente 3 parts.
 
 ```catala
+#[test]
 déclaration champ d'application NombreDeParts1:
   résultat sortie contenu IR.NombreDeParts
 
 champ d'application NombreDeParts1:
   définition sortie égal à
-    (résultat de IR.NombreDeParts avec {
-      -- foyer_fiscal: (résultat de Interface.DescriptionFoyerFiscal avec {
-        -- pacsées: vrai
-        -- nombre_enfants_à_charge_mineurs_et_non_mariés: 2
-      }).sortie
-      -- année_revenus : 2022
-    })
+    (
+      résultat de IR.NombreDeParts avec {
+        -- foyer_fiscal:
+          (
+            résultat de Interface.DescriptionFoyerFiscal avec {
+              -- pacsées: vrai
+              -- nombre_enfants_à_charge_mineurs_et_non_mariés: 2
+            }
+          ).sortie
+        -- année_revenus: 2022
+      }
+    )
 ```
 
 Le test ci-dessus doit donner le résultat suivant à l'exécution.
 
-```catala-test-inline
+```catala-test-cli
 $ catala test-scope NombreDeParts1 --disable-warnings
-┌─[RESULT]─
+┌─[RESULT]─ NombreDeParts1 ─
 │ sortie =
 │   Impot_revenu.NombreDeParts {
 │     -- nombre_de_parts: 3,0
@@ -144,19 +150,25 @@ invalidité pour accident du travail de 10%. Le couple a trois enfants
 mineurs.
 
 ```catala
+#[test]
 déclaration champ d'application NombreDeParts2:
   résultat sortie contenu IR.NombreDeParts
 
 champ d'application NombreDeParts2:
   définition sortie égal à
-    (résultat de IR.NombreDeParts avec {
-      -- foyer_fiscal: (résultat de Interface.DescriptionFoyerFiscal avec {
-        -- mariées: vrai
-        -- nombre_enfants_à_charge_mineurs_et_non_mariés: 3
-        -- titulaire_carte_invalidité_CMI_invalidité_40_pourcent: vrai
-      }).sortie
-      -- année_revenus : 2022
-    })
+    (
+      résultat de IR.NombreDeParts avec {
+        -- foyer_fiscal:
+          (
+            résultat de Interface.DescriptionFoyerFiscal avec {
+              -- mariées: vrai
+              -- nombre_enfants_à_charge_mineurs_et_non_mariés: 3
+              -- titulaire_carte_invalidité_CMI_invalidité_40_pourcent: vrai
+            }
+          ).sortie
+        -- année_revenus: 2022
+      }
+    )
 ```
 
 ### Analyse
@@ -277,9 +289,9 @@ Le nombre de parts du foyer est donc de 4,5 parts.
 
 Le test ci-dessus doit donner le résultat suivant à l'exécution.
 
-```catala-test-inline
+```catala-test-cli
 $ catala test-scope NombreDeParts2 --disable-warnings
-┌─[RESULT]─
+┌─[RESULT]─ NombreDeParts2 ─
 │ sortie =
 │   Impot_revenu.NombreDeParts {
 │     -- nombre_de_parts: 4,5
@@ -309,23 +321,28 @@ invalidité. En outre, feu monsieur R et Madame R ont eu cinq enfants :
 
 - Matthias, 3 ans, vient de rentrer en maternelle.
 
-
 ```catala
+#[test]
 déclaration champ d'application NombreDeParts3:
   résultat sortie contenu IR.NombreDeParts
 
 champ d'application NombreDeParts3:
   définition sortie égal à
-    (résultat de Interface.IR.NombreDeParts avec {
-      -- foyer_fiscal: (résultat de Interface.DescriptionFoyerFiscal avec {
-        -- veuve: vrai
-        -- pensionné_veuve_de_guerre: vrai
-        -- nombre_enfants_à_charge_mineurs_et_non_mariés: 1
-        -- nombre_enfants_majeurs_célibataires_sans_enfant: 2
-        -- nombre_enfants_majeurs_mariés_ou_chargés_famille: 1,5
-      }).sortie
-      -- année_revenus : 2022
-    })
+    (
+      résultat de Interface .IR.NombreDeParts avec {
+        -- foyer_fiscal:
+          (
+            résultat de Interface.DescriptionFoyerFiscal avec {
+              -- veuve: vrai
+              -- pensionné_veuve_de_guerre: vrai
+              -- nombre_enfants_à_charge_mineurs_et_non_mariés: 1
+              -- nombre_enfants_majeurs_célibataires_sans_enfant: 2
+              -- nombre_enfants_majeurs_mariés_ou_chargés_famille: 1,5
+            }
+          ).sortie
+        -- année_revenus: 2022
+      }
+    )
 ```
 
 ### Analyse
@@ -517,9 +534,9 @@ auquel il a droit doit être divisé de moitié.
 
 Le nombre de parts du foyer est donc de 4,5 parts.
 
-```catala-test-inline
+```catala-test-cli
 $ catala test-scope NombreDeParts3 --disable-warnings
-┌─[RESULT]─
+┌─[RESULT]─ NombreDeParts3 ─
 │ sortie =
 │   Impot_revenu.NombreDeParts {
 │     -- nombre_de_parts: 4,0
@@ -533,18 +550,24 @@ $ catala test-scope NombreDeParts3 --disable-warnings
 Un couple pacsé avec un enfant en résidence alternée (foyer fiscal P).
 
 ```catala
+#[test]
 déclaration champ d'application NombreDeParts4:
   résultat sortie contenu IR.NombreDeParts
 
 champ d'application NombreDeParts4:
   définition sortie égal à
-    (résultat de Interface.IR.NombreDeParts avec {
-      -- foyer_fiscal: (résultat de Interface.DescriptionFoyerFiscal avec {
-        -- pacsées: vrai
-        -- nombre_enfants_à_charge_résidence_alternée: 1
-      }).sortie
-      -- année_revenus : 2022
-    })
+    (
+      résultat de Interface .IR.NombreDeParts avec {
+        -- foyer_fiscal:
+          (
+            résultat de Interface.DescriptionFoyerFiscal avec {
+              -- pacsées: vrai
+              -- nombre_enfants_à_charge_résidence_alternée: 1
+            }
+          ).sortie
+        -- année_revenus: 2022
+      }
+    )
 ```
 
 ### A - Sur le couple pacsé.
@@ -663,9 +686,9 @@ Soit une majoration de 0.25 par pour l'enfant à charge.
 
 **Aussi, le quotient familial du foyer fiscal P sera de 2.25 parts.**
 
-```catala-test-inline
+```catala-test-cli
 $ catala test-scope NombreDeParts4 --disable-warnings
-┌─[RESULT]─
+┌─[RESULT]─ NombreDeParts4 ─
 │ sortie =
 │   Impot_revenu.NombreDeParts {
 │     -- nombre_de_parts: 2,25
@@ -680,24 +703,29 @@ Un couple marié avec trois enfants à charge dont l'un est handicapé et en
 résidence alternée.
 
 ```catala
+#[test]
 déclaration champ d'application NombreDeParts5:
   résultat sortie contenu IR.NombreDeParts
 
 champ d'application NombreDeParts5:
   définition sortie égal à
-    (résultat de IR.NombreDeParts avec {
-      -- foyer_fiscal: (résultat de Interface.DescriptionFoyerFiscal avec {
-        -- mariées: vrai
-        -- nombre_enfants_à_charge_mineurs_et_non_mariés: 2
-        # Attention ici il faut compter l'enfant 2 fois parce que la case
-        # CI dit "alternée DONT invalides"...
-        -- nombre_enfants_à_charge_résidence_alternée: 1
-        -- nombre_enfants_à_charge_résidence_alternée_invalides: 1
-      }).sortie
-      -- année_revenus : 2022
-    })
+    (
+      résultat de IR.NombreDeParts avec {
+        -- foyer_fiscal:
+          (
+            résultat de Interface.DescriptionFoyerFiscal avec {
+              -- mariées: vrai
+              -- nombre_enfants_à_charge_mineurs_et_non_mariés: 2
+              # Attention ici il faut compter l'enfant 2 fois parce que la case
+              # CI dit "alternée DONT invalides"...
+              -- nombre_enfants_à_charge_résidence_alternée: 1
+              -- nombre_enfants_à_charge_résidence_alternée_invalides: 1
+            }
+          ).sortie
+        -- année_revenus: 2022
+      }
+    )
 ```
-
 
 ## Calcul du nombre de parts du foyer fiscal
 
@@ -833,9 +861,9 @@ prévoit une majoration supplémentaire d'un quart de part.
 **Aussi, le nombre de parts du quotient familial est de 2 + (0.5x2)+0.5+0.25 =
 3.75 parts**
 
-```catala-test-inline
+```catala-test-cli
 $ catala test-scope NombreDeParts5 --disable-warnings
-┌─[RESULT]─
+┌─[RESULT]─ NombreDeParts5 ─
 │ sortie =
 │   Impot_revenu.NombreDeParts {
 │     -- nombre_de_parts: 3,75

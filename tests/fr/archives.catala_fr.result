@@ -30,7 +30,7 @@ champ d'application ÉligibilitéAidesPersonnelleLogement
   étiquette r823_4_enfants
   règle prise_en_compte_personne_à_charge de personne_à_charge sous condition
     selon personne_à_charge sous forme
-    -- EnfantÀCharge de enfant :
+    -- EnfantÀCharge contenu enfant :
       # Pour être considéré à charge pour les aides personnelles au logement,
       # l'enfant doit en plus d'avoir moins de 21 ans mais aussi selon le
       # 7e alinéa de L823-1 être éligible aux prestations familiales.
@@ -43,7 +43,7 @@ champ d'application ÉligibilitéAidesPersonnelleLogement
           -- a_déjà_ouvert_droit_aux_allocations_familiales:
             enfant.a_déjà_ouvert_droit_aux_allocations_familiales
         }
-    -- AutrePersonneÀCharge de parent : faux
+    -- AutrePersonneÀCharge contenu parent : faux
   conséquence rempli
 ```
 
@@ -67,8 +67,8 @@ champ d'application ÉligibilitéAidesPersonnelleLogement:
     date_courante >= |2019-09-01|
     et date_courante < |2023-09-01|
     et selon personne_à_charge sous forme
-    -- EnfantÀCharge de enfant : faux
-    -- AutrePersonneÀCharge de parent :
+    -- EnfantÀCharge contenu enfant : faux
+    -- AutrePersonneÀCharge contenu parent :
       parent.parenté = Ascendant
       et parent.ressources
       <= plafond_individuel_l815_9_sécu * 1,25
@@ -131,8 +131,8 @@ champ d'application ÉligibilitéAidesPersonnelleLogement
   exception r823_4_2
   règle prise_en_compte_personne_à_charge de personne_à_charge sous condition
     selon personne_à_charge sous forme
-    -- EnfantÀCharge de enfant : faux
-    -- AutrePersonneÀCharge de parent :
+    -- EnfantÀCharge contenu enfant : faux
+    -- AutrePersonneÀCharge contenu parent :
       (
         parent.parenté sous forme Ascendant
         ou parent.parenté sous forme Descendant
@@ -821,7 +821,8 @@ champ d'application CalculAllocationLogementAccessionPropriété
   conséquence égal à
     (
       calcul_plafond_mensualité_d842_6 de
-        date_calcul, nombre_personnes_à_charge
+        date_calcul,
+        nombre_personnes_à_charge
     )
     * 75%
 ```
@@ -2920,7 +2921,8 @@ champ d'application CalculAllocationLogementAccessionPropriété
   conséquence égal à
     (
       calcul_plafond_mensualité_d842_6 de
-        date_calcul, nombre_personnes_à_charge
+        date_calcul,
+        nombre_personnes_à_charge
     )
     * 75%
 ```
@@ -4797,7 +4799,8 @@ champ d'application CalculAllocationLogementAccessionPropriété
   conséquence égal à
     (
       calcul_plafond_mensualité_d842_6 de
-        date_calcul, nombre_personnes_à_charge
+        date_calcul,
+        nombre_personnes_à_charge
     )
     * 75%
 ```
@@ -5973,7 +5976,8 @@ champ d'application CalculAllocationLogementAccessionPropriété
   conséquence égal à
     (
       calcul_plafond_mensualité_d842_6 de
-        date_calcul, nombre_personnes_à_charge
+        date_calcul,
+        nombre_personnes_à_charge
     )
     * 75%
 ```
@@ -7340,7 +7344,7 @@ champ d'application OuvertureDroitsRetraite
 champ d'application OuvertureDroitsRetraite
   sous condition date_courante < |2023-09-01|:
   définition âge_ouverture_droit sous condition
-    accès_année de date_naissance_assuré = 1952
+    Date.accès_année de date_naissance_assuré = 1952
   conséquence égal à 60 an + 9 mois
 ```
 
@@ -7350,7 +7354,7 @@ champ d'application OuvertureDroitsRetraite
 champ d'application OuvertureDroitsRetraite
   sous condition date_courante < |2023-09-01|:
   définition âge_ouverture_droit sous condition
-    accès_année de date_naissance_assuré = 1953
+    Date.accès_année de date_naissance_assuré = 1953
   conséquence égal à 61 an + 2 mois
 ```
 
@@ -7360,7 +7364,7 @@ champ d'application OuvertureDroitsRetraite
 champ d'application OuvertureDroitsRetraite
   sous condition date_courante < |2023-09-01|:
   définition âge_ouverture_droit sous condition
-    accès_année de date_naissance_assuré = 1954
+    Date.accès_année de date_naissance_assuré = 1954
   conséquence égal à 61 an + 7 mois
 ```
 

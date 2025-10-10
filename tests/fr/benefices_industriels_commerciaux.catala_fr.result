@@ -33,6 +33,7 @@ En 2023, le foyer fiscal a déclaré des revenus comme suit :
 Calcul du revenu brut global.
 
 ```catala
+#[test]
 déclaration champ d'application BénéficesIndustrielsCommerciaux1:
   déclarant1 champ d'application Interface.BénéficesIndustrielsCommerciauxDéclarant
 
@@ -250,9 +251,9 @@ des différents membres du foyer fiscal soit :
 - Prélèvement forfaitaire de 10% : 50
 - Plus-Value : 176
 
-```catala-test-inline
+```catala-test-cli
 $ catala test-scope BénéficesIndustrielsCommerciaux1
-┌─[RESULT]─
+┌─[RESULT]─ BénéficesIndustrielsCommerciaux1 ─
 │ sortie =
 │   Impot_revenu.BénéficesIndustrielsCommerciauxFoyerFiscal {
 │     -- résultats_liquidation_bénéfices_industriels_commerciaux:
@@ -305,6 +306,7 @@ En 2022, contribuable a perçu :
 - 5NO micro BIC vente de marchandises : 30 000€
 
 ```catala
+#[test]
 déclaration champ d'application BénéficesIndustrielsCommerciaux2:
   déclarant1 champ d'application Interface.BénéficesIndustrielsCommerciauxDéclarant
 
@@ -499,9 +501,9 @@ seul revenu net global « ordinaire » imposable : DS1 + DS3\_”.
 **Aussi le revenu brut global du foyer fiscal sera**:
  12 500 + 280 + 8700 = 21480
 
-```catala-test-inline
+```catala-test-cli
 $ catala test-scope BénéficesIndustrielsCommerciaux2
-┌─[RESULT]─
+┌─[RESULT]─ BénéficesIndustrielsCommerciaux2 ─
 │ sortie =
 │   Impot_revenu.BénéficesIndustrielsCommerciauxFoyerFiscal {
 │     -- résultats_liquidation_bénéfices_industriels_commerciaux:
@@ -529,7 +531,6 @@ $ catala test-scope BénéficesIndustrielsCommerciaux2
 │                 -- coefficient: 4
 │                 -- catégorie:
 │                   MicroBénéficesIndustrielsCommerciauxLocationsMeubléesRuralesSpéciales
-│                     ()
 │               }
 │             ]
 │           -- solde_net_professionnel: 0,00 €
@@ -551,7 +552,6 @@ $ catala test-scope BénéficesIndustrielsCommerciaux2
 │             -- coefficient: 4
 │             -- catégorie:
 │               MicroBénéficesIndustrielsCommerciauxLocationsMeubléesRuralesSpéciales
-│                 ()
 │           }
 │         ]
 │       ]
@@ -599,6 +599,7 @@ comme suit :
 --> 0XX (prestations de services, revenus exceptionnels) : 57 843€
 
 ```catala
+#[test]
 déclaration champ d'application BénéficesIndustrielsCommerciaux3:
   déclarant1 champ d'application Interface.BénéficesIndustrielsCommerciauxDéclarant
 
@@ -847,9 +848,9 @@ seul revenu net global « ordinaire » imposable : DS1 + DS3\_”.
 **Aussi le revenu brut global du foyer fiscal sera : 32 629+ 428 + 12
 699 + 4 944 = 50 700**
 
-```catala-test-inline
+```catala-test-cli
 $ catala test-scope BénéficesIndustrielsCommerciaux3
-┌─[RESULT]─
+┌─[RESULT]─ BénéficesIndustrielsCommerciaux3 ─
 │ sortie =
 │   Impot_revenu.BénéficesIndustrielsCommerciauxFoyerFiscal {
 │     -- résultats_liquidation_bénéfices_industriels_commerciaux:
@@ -876,8 +877,7 @@ $ catala test-scope BénéficesIndustrielsCommerciaux3
 │                 -- valeur_nette: 28 922,00 €
 │                 -- déduction: 28 921,00 €
 │                 -- coefficient: 4
-│                 -- catégorie:
-│                   MicroBénéficesIndustrielsCommerciauxServices ()
+│                 -- catégorie: MicroBénéficesIndustrielsCommerciauxServices
 │               }
 │             ]
 │           -- solde_net_professionnel: 32 629,00 €
@@ -896,7 +896,7 @@ $ catala test-scope BénéficesIndustrielsCommerciaux3
 │             -- valeur_nette: 28 922,00 €
 │             -- déduction: 28 921,00 €
 │             -- coefficient: 4
-│             -- catégorie: MicroBénéficesIndustrielsCommerciauxServices ()
+│             -- catégorie: MicroBénéficesIndustrielsCommerciauxServices
 │           }
 │         ]; []
 │       ]

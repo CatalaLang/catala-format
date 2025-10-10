@@ -954,7 +954,7 @@ champ d'application CalculAidePersonnaliséeLogementAccessionPropriété
     # changements introduits par l’arrêté du 26 décembre 2022.
     (
       selon ancienneté_logement sous forme
-      -- Ancien de amélioré_par_occupant :
+      -- Ancien contenu amélioré_par_occupant :
         amélioré_par_occupant sous forme AmélioréParOccupant.Oui
       -- Neuf : faux
     )
@@ -3409,7 +3409,7 @@ champ d'application CalculAidePersonnaliséeLogementAccessionPropriété
     selon ancienneté_logement sous forme
     -- Neuf :
       (si date_signature_prêt <= |1998-10-01| alors 0,0226 sinon 0,0234)
-    -- Ancien de amélioré_par_occupant :
+    -- Ancien contenu amélioré_par_occupant :
       (
         selon amélioré_par_occupant sous forme
         -- AmélioréParOccupant.Oui : 0,0172
@@ -5380,7 +5380,8 @@ champ d'application CalculAllocationLogementAccessionPropriété
   conséquence égal à
     (
       calcul_plafond_mensualité_d842_6 de
-        date_calcul, nombre_personnes_à_charge
+        date_calcul,
+        nombre_personnes_à_charge
     )
     * 75%
 ```

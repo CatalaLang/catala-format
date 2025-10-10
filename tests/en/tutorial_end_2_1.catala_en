@@ -1,0 +1,48 @@
+```catala
+declaration structure Individual:
+  data income content money
+  data number_of_children content integer
+
+declaration scope IncomeTaxComputation:
+  input individual content Individual
+  internal tax_rate content decimal
+  output income_tax content money
+```
+
+## Article 1
+
+ The income tax for an individual is defined as a fixed percentage of the
+ individual's income over a year.
+
+```catala
+scope IncomeTaxComputation:
+  definition income_tax equals
+    individual.income * tax_rate
+```
+
+## Article 2
+
+The fixed percentage mentioned at article 1 is equal to 20 %.
+
+```catala
+scope IncomeTaxComputation:
+  label article_2
+  definition tax_rate equals 20%
+```
+
+## Test
+
+```catala
+declaration scope Test:
+  output computation content IncomeTaxComputation
+
+scope Test:
+  definition computation equals
+    output of IncomeTaxComputation with {
+      -- individual:
+        Individual {
+          -- income: $20,000
+          -- number_of_children: 0
+        }
+    }
+```

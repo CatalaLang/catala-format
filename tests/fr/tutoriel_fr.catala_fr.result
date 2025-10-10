@@ -626,9 +626,7 @@ champ d'application Test5:
   définition impôt_revenu égal à
     si est_applicable_au_calcul_normal_impôt_revenu alors
       (
-        résultat de NouveauCalculImpôtRevenuCorrect avec {
-          -- personne: personne
-        }
+        résultat de NouveauCalculImpôtRevenuCorrect avec { -- personne: personne }
       ).impôt_revenu
     sinon 0€
 # Insérez d’autres modes de calcul ici
@@ -1028,9 +1026,11 @@ champ d'application Allocation:
 b. L’allocation finale est arrondie au multiple supérieur de 100€
 
 ```catala
-déclaration arrondi_supérieur_à_100 contenu argent
-dépend de montant contenu argent égal à
-  arrondi de (montant / 100,0 + 0,49€) * 100,0
+déclaration arrondi_supérieur_à_100
+  contenu argent
+  dépend de montant contenu argent
+  égal à
+    arrondi de (montant / 100,0 + 0,49€) * 100,0
 # L’explication est encore nécessaire, bien que
 # ça n’encombre pas le champ d'application actuel.
 # Cette définition pourrait même être mise dans le prologue.
@@ -1066,11 +1066,13 @@ champ d'application InclureDansRevenuBrut:
 ### B. Avec une fonction à deux paramètres
 
 ```catala
-déclaration excédent contenu argent
-dépend de x contenu argent,
-  y contenu argent égal à
-  si x > y alors x - y
-  sinon 0€
+déclaration excédent
+  contenu argent
+  dépend de x contenu argent,
+    y contenu argent
+  égal à
+    si x > y alors x - y
+    sinon 0€
 
 champ d'application InclureDansRevenuBrut:
   définition montant_à_inclure égal à

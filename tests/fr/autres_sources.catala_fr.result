@@ -377,20 +377,22 @@ code précité, le cas échéant adaptées selon les dispositions de l'article 2
 peuvent être modifiées par décret.
 
 ```catala
-déclaration montée_en_charge_saint_pierre_miquelon contenu argent
-dépend de aide_finale contenu argent,
-  résidence contenu France.Collectivité,
-  date_courante contenu date égal à
-  si résidence sous forme SaintPierreEtMiquelon
-    et date_courante >= |2022-01-01|
-    et date_courante <= |2025-12-31| alors
-    aide_finale
-    * (
-      1,0
-      - (décimal de (2026 - accès_année de date_courante) / 8,0)
-    )
-  sinon
-    aide_finale
+déclaration montée_en_charge_saint_pierre_miquelon
+  contenu argent
+  dépend de aide_finale contenu argent,
+    résidence contenu France.Collectivité,
+    date_courante contenu date
+  égal à
+    si résidence sous forme SaintPierreEtMiquelon
+      et date_courante >= |2022-01-01|
+      et date_courante <= |2025-12-31| alors
+      aide_finale
+      * (
+        1,0
+        - (décimal de (2026 - Date.accès_année de date_courante) / 8,0)
+      )
+    sinon
+      aide_finale
 
 # D'après L860-3 CCH, les habitants de Saint-Pierre et Miquelon n'ont
 # droit qu'à l'allocation logement et pas à l'aide au logement. Donc on
@@ -404,7 +406,9 @@ champ d'application CalculAidePersonnaliséeLogementLocatif:
   égal à
     soit aide_finale égal à traitement_aide_finale de aide_finale dans
     montée_en_charge_saint_pierre_miquelon de
-      aide_finale, résidence, date_courante
+      aide_finale,
+      résidence,
+      date_courante
 
 champ d'application CalculAllocationLogementFoyer:
   définition traitement_aide_finale
@@ -412,7 +416,9 @@ champ d'application CalculAllocationLogementFoyer:
   égal à
     soit aide_finale égal à traitement_aide_finale de aide_finale dans
     montée_en_charge_saint_pierre_miquelon de
-      aide_finale, résidence, date_courante
+      aide_finale,
+      résidence,
+      date_courante
 
 champ d'application CalculAllocationLogementAccessionPropriété:
   définition traitement_aide_finale
@@ -420,7 +426,9 @@ champ d'application CalculAllocationLogementAccessionPropriété:
   égal à
     soit aide_finale égal à traitement_aide_finale de aide_finale dans
     montée_en_charge_saint_pierre_miquelon de
-      aide_finale, résidence, date_courante
+      aide_finale,
+      résidence,
+      date_courante
 ```
 
 # Code général des collectivités territoriales
