@@ -450,32 +450,46 @@
 
 (e_tuple
  .
- (LPAREN) @append_spaced_softline @append_indent_start
- (tuple_contents
-  (COMMA)? @append_input_softline
- )
- (RPAREN) @prepend_spaced_softline @prepend_indent_end
+ (LPAREN) @append_spaced_softline @append_indent_start @append_begin_scope
+ (RPAREN) @prepend_spaced_softline @prepend_indent_end @prepend_end_scope
  .
+ (#scope_id! "e_tuple")
+)
+
+(e_tuple
+ (tuple_contents
+  (COMMA)? @append_input_softline)
+ (#scope_id! "e_tuple")
 )
 
 (binder
  .
- (LPAREN) @append_spaced_softline @append_indent_start
+ (LPAREN) @append_spaced_softline @append_indent_start @append_begin_scope
+ (RPAREN) @prepend_spaced_softline @prepend_indent_end @prepend_end_scope
+ .
+ (#scope_id! "binder")
+)
+
+(binder
  (var_list
   (COMMA)? @append_input_softline
  )
- (RPAREN) @prepend_spaced_softline @prepend_indent_end
- .
+ (#scope_id! "binder")
 )
 
 (typ
  .
- (LPAREN) @append_spaced_softline @append_indent_start
+ (LPAREN) @append_spaced_softline @append_indent_start @append_begin_scope
+ (RPAREN) @prepend_spaced_softline @prepend_indent_end @prepend_end_scope
+ .
+ (#scope_id! "typ")
+)
+
+(typ
  (typ_list
   (COMMA)? @append_input_softline
- )
- (RPAREN) @prepend_spaced_softline @prepend_indent_end
- .
+  )
+ (#scope_id! "typ")
 )
 
 ;; Pattern-matching
@@ -776,10 +790,10 @@
 
 (e_apply
  fun: (_)
- (OF) @append_spaced_softline @append_indent_start
- args: (fun_arguments) @prepend_begin_scope @append_end_scope @append_indent_end
+ (OF) @append_spaced_softline @append_indent_start @append_begin_scope
+ args: (fun_arguments)
  (#scope_id! "fun-call")
-)
+) @append_indent_end @append_end_scope
 
 (fun_arguments
  (fun_argument)
