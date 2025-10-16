@@ -5,7 +5,7 @@
       extensions = ["catala_en"],
       grammar = {
         git = "https://github.com/CatalaLang/tree-sitter-catala.git",
-        rev = "dfcf0975b8becaaa751a71f247f1bfc8d8f7e867",
+        rev = "d988caadc962a6adef17857f7de744904889caff",
         subdir = "en",
       }
     },
@@ -14,7 +14,7 @@
       extensions = ["catala_fr"],
       grammar = {
         git = "https://github.com/CatalaLang/tree-sitter-catala.git",
-        rev = "dfcf0975b8becaaa751a71f247f1bfc8d8f7e867",
+        rev = "d988caadc962a6adef17857f7de744904889caff",
         subdir = "fr",
       }
     },
@@ -23,7 +23,7 @@
       extensions = ["catala_pl"],
       grammar = {
         git = "https://github.com/CatalaLang/tree-sitter-catala.git",
-        rev = "dfcf0975b8becaaa751a71f247f1bfc8d8f7e867",
+        rev = "d988caadc962a6adef17857f7de744904889caff",
         subdir = "pl",
       }
     }
