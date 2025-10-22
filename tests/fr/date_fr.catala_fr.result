@@ -6,12 +6,13 @@
 déclaration depuis_année_mois_jour
   contenu date
   dépend de
-  #[implicit_position_argument]
+    #[implicit_position_argument]
     pos contenu position_source,
     dyear contenu entier,
     dmonth contenu entier,
     dday contenu entier
-  égal à D.of_ymd de pos, dyear, dmonth, dday
+  égal à
+    D.of_ymd de pos, dyear, dmonth, dday
 
 déclaration vers_année_mois_jour
   contenu (entier, entier, entier)
@@ -22,22 +23,26 @@ déclaration vers_année_mois_jour
 déclaration dernier_jour_du_mois
   contenu date
   dépend de d contenu date
-  égal à D.last_day_of_month de d
+  égal à
+    D.last_day_of_month de d
 
 déclaration accès_année
   contenu entier
   dépend de d contenu date
-  égal à (vers_année_mois_jour de d).1
+  égal à
+    (vers_année_mois_jour de d).1
 
 déclaration accès_mois
   contenu entier
   dépend de d contenu date
-  égal à (vers_année_mois_jour de d).2
+  égal à
+    (vers_année_mois_jour de d).2
 
 déclaration accès_jour
   contenu entier
   dépend de d contenu date
-  égal à (vers_année_mois_jour de d).3
+  égal à
+    (vers_année_mois_jour de d).3
 
 déclaration premier_jour_du_mois
   contenu date

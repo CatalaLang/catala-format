@@ -240,9 +240,10 @@ Catala permet de redéfinir précisément une variable sous une condition :
 
 ```catala
 champ d'application CalculImpôtRevenu:
-  définition pourcentage_fixe sous condition
-    personne.nombre_enfants >= 2
-  conséquence égal à 15%
+  définition pourcentage_fixe
+  sous condition personne.nombre_enfants >= 2
+  conséquence égal à
+    15%
 # Ecrire 15% est juste une abbréviation pour « 0.15 »
 ```
 
@@ -293,7 +294,9 @@ déclaration champ d'application Enfant:
 # qui représente le contenu de la variable.
 
 champ d'application Enfant:
-  règle éligible_à_article_3 sous condition âge < 18 conséquence rempli
+  règle éligible_à_article_3
+  sous condition âge < 18
+  conséquence rempli
 # Au moment de définir la valeur d’une condition à vraie, nous utilisons
 # la syntaxe spéciale « règle » au lieu de « définition ». Les règles fixent
 # les conditions à « rempli » ou à « non rempli » par des tests conditionnels.
@@ -419,9 +422,10 @@ sur le revenu prévu à l’article 1.
 champ d'application NouveauCalculImpôtRevenu:
   # Ici, nous définissons simplement une nouvelle définition conditionnelle
   # pour « l’impôt sur le revenu », qui manipule le cas particulier.
-  définition impôt_revenu sous condition
-    personne.revenu <= 10 000€
-  conséquence égal à 0€
+  définition impôt_revenu
+  sous condition personne.revenu <= 10 000€
+  conséquence égal à
+    0€
 # Quoi ? Pensez-vous que quelque chose peut-être faux avec ceci ?
 # Hmmm… Nous verrons cela plus tard !
 ```
@@ -541,9 +545,10 @@ champ d'application NouveauCalculImpôtRevenuCorrect:
 
   # Puis, vous pouvez déclarez l’exception qui se réfère à l’étiquette
   exception article_5
-  définition impôt_revenu sous condition
-    personne.revenu <= 10 000€
-  conséquence égal à 0€
+  définition impôt_revenu
+  sous condition personne.revenu <= 10 000€
+  conséquence égal à
+    0€
 ```
 
 Et le test devrait désormais fonctionner :
@@ -585,9 +590,10 @@ mentionné à l’article 1.
 ```catala
 champ d'application NouveauCalculImpôtRevenuCorrect:
   exception article_5
-  définition impôt_revenu sous condition
-    personne.nombre_enfants >= 7
-  conséquence égal à 0€
+  définition impôt_revenu
+  sous condition personne.nombre_enfants >= 7
+  conséquence égal à
+    0€
 ```
 
 Le même problème devrait être déclenché ci-dessus, pour des familles avec un
@@ -703,9 +709,10 @@ champ d'application DétermineBaseAmende:
   # Pour en revenir à notre petit problème, la solution est ici de fournir,
   # depuis l’extérieur, une définition exceptionnelle de l’impôt sur le revenu
   # pour les personnes gagnant moins de 10 000€.
-  définition calcul_impôt.impôt_revenu sous condition
-    personne.revenu <= 10 000€
-  conséquence égal à 500€
+  définition calcul_impôt.impôt_revenu
+  sous condition personne.revenu <= 10 000€
+  conséquence égal à
+    500€
 ```
 
 ## Une variable, plusieurs états
@@ -774,7 +781,9 @@ déclaration champ d'application ValeursBooléennes:
   interne valeur2 contenu booléen
 
 champ d'application ValeursBooléennes:
-  règle valeur1 sous condition faux et vrai conséquence rempli
+  règle valeur1
+  sous condition faux et vrai
+  conséquence rempli
   # Mets le booléen de la condition « valeur1 » à « vrai »,
   # si la condition « faux et vrai » est respectée.
   définition valeur2 égal à valeur1 ou bien (valeur1 et vrai) = faux
@@ -794,7 +803,10 @@ déclaration champ d'application ValeursEntières:
   interne valeur2 contenu entier
 
 champ d'application ValeursEntières:
-  définition valeur1 sous condition 12 - (5 * 3) < 65 conséquence égal à 45 * 9
+  définition valeur1
+  sous condition 12 - (5 * 3) < 65
+  conséquence égal à
+    45 * 9
   # L’opérateur « / » correspond à une division entière qui tronque vers 0.
   définition valeur2 égal à valeur1 * valeur1 * 65 * 100
 ```
@@ -812,9 +824,10 @@ déclaration champ d'application ValeursDécimales:
   interne valeur2 contenu décimal
 
 champ d'application ValeursDécimales:
-  définition valeur1 sous condition
-    12,655465446655426 - 0,45265426541654 < 12,3554654652
-  conséquence égal à 45 / 9
+  définition valeur1
+  sous condition 12,655465446655426 - 0,45265426541654 < 12,3554654652
+  conséquence égal à
+    45 / 9
   # L’opérateur « / » correspond à une division éxacte.
   # La division d’entiers produit une décimale.
   définition valeur2 égal à valeur1 * valeur1 * 65%
@@ -840,9 +853,10 @@ déclaration champ d'application ValeursMonétaires:
   interne valeur2 contenu argent
 
 champ d'application ValeursMonétaires:
-  définition valeur1 sous condition
-    12,655465446655426 - 0,45265426541654 < 12,3554654652
-  conséquence égal à (décimal de 45) / (décimal de 9)
+  définition valeur1
+  sous condition 12,655465446655426 - 0,45265426541654 < 12,3554654652
+  conséquence égal à
+    (décimal de 45) / (décimal de 9)
   définition valeur2 égal à
     1,00€ * (((6 520,23€ - 320,45€) * valeur1) / 45€)
 ```
@@ -887,7 +901,7 @@ déclaration champ d'application ValeursDeListe:
   interne valeur2 contenu entier
 
 champ d'application ValeursDeListe:
-  définition valeur1 égal à [ 45 ; -6 ; 3 ; 4 ; 0 ; 2155 ]
+  définition valeur1 égal à [ 45; -6; 3; 4; 0; 2155 ]
   définition valeur2 égal à
     # somme de carré
     somme entier de transforme chaque i parmi valeur1 en (i * i)
@@ -1068,7 +1082,8 @@ champ d'application InclureDansRevenuBrut:
 ```catala
 déclaration excédent
   contenu argent
-  dépend de x contenu argent,
+  dépend de
+    x contenu argent,
     y contenu argent
   égal à
     si x > y alors x - y

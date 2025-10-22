@@ -24,7 +24,7 @@
 
 (COMMENT) @prepend_input_softline @append_hardline
 
-(ATTRIBUTE) @prepend_hardline @append_hardline
+(ATTRIBUTE) @prepend_hardline @append_spaced_softline @multi_line_indent_all
 
 (
  [ (BEGIN_CODE)
@@ -170,26 +170,8 @@
  (scope_var)
 ] @append_space
 
-;; No space before a COMMA -- except when preceded by a numeric literal
-;; FIXME: it only matters in catala_fr (e.g., 1+2,3 => would yield a parse error)
-(typ_list
- (COMMA) @prepend_antispace)
-(var_list
- (COMMA) @prepend_antispace)
-
-(tuple_contents
- (_
-  (literal
-   [ (DECIMAL_LITERAL) (INT_LITERAL) ])? @do_nothing
-   .)
- . (COMMA) @prepend_antispace)
-
-(fun_arguments
- (COMMA) @prepend_antispace)
-(rule_parameters
- (COMMA) @prepend_antispace)
-(params_decl
- (COMMA) @prepend_antispace)
+;; No space before a COMMA
+(COMMA) @prepend_antispace
 
 ;; No space between integer and percent for decimals declarations
 
@@ -217,13 +199,6 @@
          @append_indent_start
  [ (rule) (definition) ]* @append_hardline
 ) @allow_blank_line_before @append_indent_end
-
-(scope
- (SCOPE) @append_begin_scope
- (UNDER_CONDITION) @prepend_spaced_scoped_softline @prepend_indent_start
- condition: (expression) @append_indent_end @append_end_scope
- (#scope_id! "scope_def_cond")
-)
 
 ;; struct declaration
 (struct_decl
@@ -254,22 +229,30 @@
  ) @allow_blank_line_before @append_indent_end
 
 ;; global definitions
+
 (toplevel_def
- .
- (DECLARATION)
- (variable)
- (CONTENT) @prepend_spaced_softline @prepend_indent_start
- (typ) @append_spaced_softline
- ((DEPENDS) . (params_decl))*
+ (DECLARATION) @append_indent_start
+ (CONTENT) @prepend_input_softline
  (DEFINED_AS)? @prepend_spaced_softline
 ) @append_indent_end @allow_blank_line_before
 
-(params_decl) @prepend_indent_start @append_indent_end
-(params_decl
- (param_decl)
- (COMMA) @append_spaced_softline
- (param_decl)
+(
+ (toplevel_def
+  (DECLARATION) @prepend_begin_scope
+  (DEFINED_AS) @append_spaced_scoped_softline
+ ) @append_end_scope
+ (#scope_id! "topdef_value")
 )
+
+(toplevel_def
+ (CONTENT) @prepend_hardline
+ (DEPENDS) @prepend_hardline
+)
+
+((DEPENDS) @append_indent_start
+ (params_decl) @append_indent_end)
+
+(param_decl) @prepend_spaced_softline
 
 ;; declaration items
 
@@ -343,48 +326,61 @@
  (state_label) @append_indent_end
 )
 
+;; generic expression field
+
+(expression ((_ . (LPAREN)? @do_nothing) (#multi_line_only!)) @prepend_spaced_softline)
+
+(expression (_ . (LPAREN)? @do_nothing)) @prepend_indent_start @append_indent_end
+
+(
+ (COMMENT)* @prepend_indent_start @append_indent_end
+ (expression)
+)
+
 ;; generic variable definition
 ((LET)? @do_nothing
  (DEFINED_AS) @prepend_begin_scope
-              @append_indent_start
-              @append_spaced_scoped_softline
- body: (_) @append_indent_end @append_end_scope
+ body: (_) @append_end_scope
  (#scope_id! "state_var_def")
 )
 
 ;; multiline scope var definition
 
 (scope
- (definition
-   (DEFINITION) @prepend_begin_scope @append_indent_start @append_spaced_scoped_softline
-   (scope_var) @append_spaced_scoped_softline
-   [(UNDER_CONDITION) (STATE)]? @do_nothing
-   (DEFINED_AS) @append_end_scope @append_spaced_scoped_softline @prepend_indent_end
+ (_
+   [(DEFINITION) (RULE)] @prepend_begin_scope
+   (scope_var) @prepend_indent_start @prepend_input_softline @append_indent_end
+   [(CONSEQUENCE) (DEFINED_AS)] @append_end_scope
  )
  (#scope_id! "scope_var_def")
 )
 
-;; conditional scope def
+(UNDER_CONDITION) @prepend_hardline
+
 (scope
- (definition
-   (DEFINITION)
-   name: (scope_var)
-   (UNDER_CONDITION) @append_spaced_softline @append_indent_start
-   condition: (expression) @append_indent_end @append_spaced_softline
+ (_ (CONSEQUENCE) @prepend_hardline)
+)
+(scope
+ (_ (CONSEQUENCE)? @do_nothing (DEFINED_AS) @prepend_spaced_scoped_softline)
+ (#scope_id! "scope_var_def")
+)
+
+(scope
+ (_
+  [(DEFINITION) (RULE)] @prepend_begin_scope
+  (DEFINED_AS) @append_spaced_scoped_softline
+ ) @append_end_scope
+ (#scope_id! "scope_var_value")
+)
+
+(scope
+ (_
    (CONSEQUENCE)
+   .
+   (DEFINED_AS) @append_hardline
  )
 )
 
-;; rules
-(scope
- (rule
-   (RULE)
-   name: (scope_var)
-   (UNDER_CONDITION) @append_spaced_softline @append_indent_start
-   condition: (expression) @append_indent_end @append_spaced_softline
-   (CONSEQUENCE) (NOT)? (FILLED) .
- )
-)
 
 ;; labels and exceptions
 (scope
@@ -408,15 +404,14 @@
 ;; Lists
 
 ((LBRACKET) . (RBRACKET) @prepend_antispace)
+(SEMICOLON) @prepend_antispace
 
 ;; list literal
 (
- (LBRACKET) @append_indent_start
- .
+ (LBRACKET) @append_indent_start @append_spaced_softline
  (collection_elements
-  ((_) (SEMICOLON) @append_input_softline)*
- )
- .
+  ((_) (SEMICOLON) @append_spaced_softline)*
+ ) @append_spaced_softline
  (RBRACKET) @prepend_indent_end
  (#multi_line_only!)
  .
@@ -424,28 +419,15 @@
 
 ;; tuples literal
 
-(e_tuple
- .
- (LPAREN) @append_antispace
- (RPAREN) @prepend_antispace
- .
- (#single_line_only!)
-)
+(LPAREN) @append_antispace
+(RPAREN) @prepend_antispace
 
-(binder
+(e_paren
  .
- (LPAREN) @append_antispace
- (RPAREN) @prepend_antispace
+ (LPAREN) @append_empty_softline @append_indent_start @append_begin_scope
+ (RPAREN) @prepend_empty_softline @prepend_indent_end @prepend_end_scope
  .
- (#single_line_only!)
-)
-
-(typ
- .
- (LPAREN) @append_antispace
- (RPAREN) @prepend_antispace
- .
- (#single_line_only!)
+ (#scope_id! "e_paren")
 )
 
 (e_tuple
@@ -535,11 +517,20 @@
 ;; Binops
 
 (e_binop
+ op: [(PLUS) (MINUS) (MULT) (DIV)]
+ rhs: (_ (LPAREN)? @do_nothing (LBRACKET)? @do_nothing ) @prepend_indent_start @append_indent_end
+)
+
+(e_binop
  [((e_test_match) @do_nothing) (_)] ;; <= weird case here, we begin scope after the lhs
- op: (_) @prepend_spaced_scoped_softline
- rhs: (_)
- (#scope_id! "binop")
-) @prepend_begin_scope @append_end_scope
+ op: [(AND) (OR)]
+ ([(e_binop op: [ (AND)? @do_nothing (OR)? @do_nothing ]) (_ (LPAREN)? @do_nothing (LBRACKET)? @do_nothing)]) @prepend_indent_start @append_indent_end
+)
+
+(e_binop
+ lhs: (_ (_) (#multi_line_only!))
+ op: (_) @prepend_spaced_softline
+)
 
 ;; But-replace
 
@@ -615,6 +606,12 @@
          @append_indent_end
          @append_end_scope
  (#scope_id! "if-then")
+)
+
+(e_ifthenelse
+ (IF) @prepend_begin_scope @append_spaced_scoped_softline
+ (THEN) @append_end_scope @prepend_spaced_scoped_softline
+ (#scope_id! "if-then-condition")
 )
 
 ((e_ifthenelse
@@ -696,7 +693,7 @@
 
 ((SUM) @prepend_begin_scope @append_indent_start
  (_)
- (OF) @prepend_spaced_scoped_softline @append_indent_end
+ (OF) @append_spaced_scoped_softline @append_indent_end
  (e_coll_map . (_) @append_end_scope)
  (#scope_id! "aggregate")
 )
