@@ -329,7 +329,7 @@ déclaration champ d'application NombreDeParts3:
 champ d'application NombreDeParts3:
   définition sortie égal à
   (
-    résultat de Interface .IR.NombreDeParts avec {
+    résultat de Interface.IR.NombreDeParts avec {
       -- foyer_fiscal:
         (
           résultat de Interface.DescriptionFoyerFiscal avec {
@@ -557,7 +557,7 @@ déclaration champ d'application NombreDeParts4:
 champ d'application NombreDeParts4:
   définition sortie égal à
   (
-    résultat de Interface .IR.NombreDeParts avec {
+    résultat de Interface.IR.NombreDeParts avec {
       -- foyer_fiscal:
         (
           résultat de Interface.DescriptionFoyerFiscal avec {

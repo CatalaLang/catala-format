@@ -560,6 +560,7 @@
  (#multi_line_only!)
 )
 
+((module_name) (DOT) @prepend_antispace . (module_name))
 ((module_name) (DOT) @prepend_antispace . (variable))
 ((module_name) (DOT) @prepend_antispace . (scope_name))
 
