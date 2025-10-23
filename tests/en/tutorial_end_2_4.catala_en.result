@@ -159,8 +159,8 @@ scope HouseholdTaxComputation:
     state base
   equals
     sum money of
-    map each share_of_household_tax among shares_of_household_tax to
-      share_of_household_tax.household_tax
+      map each share_of_household_tax among shares_of_household_tax to
+        share_of_household_tax.household_tax
 ```
 
 ## Article 8
@@ -187,8 +187,8 @@ scope HouseholdTaxComputation:
     state base
   equals
     sum money of
-    map each share_of_household_tax among shares_of_household_tax to
-      share_of_household_tax.deduction
+      map each share_of_household_tax among shares_of_household_tax to
+        share_of_household_tax.deduction
 
   definition household_tax
     state deduction

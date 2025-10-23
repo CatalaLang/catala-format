@@ -141,8 +141,8 @@ scope HouseholdTaxComputation:
     let number_of_individuals equals number of individuals in
     let number_of_children equals
       sum integer of
-      map each individual among individuals to
-        individual.number_of_children
+        map each individual among individuals to
+          individual.number_of_children
     in
     $10,000
     * (

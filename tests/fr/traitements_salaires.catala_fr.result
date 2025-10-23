@@ -518,8 +518,8 @@ champ d'application TraitementsSalaires4:
   assertion
     (
       somme argent de transforme chaque résultats
-      parmi sortie.déclarations_avec_résultats_traitements_salaires en
-        résultats.abattement_pensions_retraites_rentes
+        parmi sortie.déclarations_avec_résultats_traitements_salaires en
+          résultats.abattement_pensions_retraites_rentes
     )
     = 4123 €
 ```

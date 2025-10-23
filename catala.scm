@@ -440,7 +440,7 @@
 
 (e_tuple
  (tuple_contents
-  (COMMA)? @append_input_softline)
+  (COMMA)? @append_spaced_scoped_softline)
  (#scope_id! "e_tuple")
 )
 
@@ -454,7 +454,7 @@
 
 (binder
  (var_list
-  (COMMA)? @append_input_softline
+  (COMMA)? @append_spaced_scoped_softline
  )
  (#scope_id! "binder")
 )
@@ -694,8 +694,8 @@
 
 ((SUM) @prepend_begin_scope @append_indent_start
  (_)
- (OF) @append_spaced_scoped_softline @append_indent_end
- (e_coll_map . (_) @append_end_scope)
+ (OF) @append_spaced_scoped_softline
+ (e_coll_map . (_) @append_end_scope) @append_indent_end
  (#scope_id! "aggregate")
 )
 
