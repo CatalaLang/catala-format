@@ -3,3 +3,9 @@ tests/*/*.changed
 target/
 
 **/_build
+
+**/#*
+**/.#*
+*.~*~
+.envrc
+.direnv

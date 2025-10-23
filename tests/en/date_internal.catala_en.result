@@ -3,7 +3,8 @@
 ```catala-metadata
 declaration of_ymd
   content date
-  depends on pos content code_location,
+  depends on
+    pos content code_location,
     dyear content integer,
     dmonth content integer,
     dday content integer

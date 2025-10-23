@@ -1,0 +1,23 @@
+```catala
+champ d'application ÉligibilitéAidesPersonnelleLogement:
+  étiquette cas_base_l822_4
+  règle condition_logement_location_tiers
+  sous condition ménage.logement.loué_ou_sous_loué_à_des_tiers sous forme LouéOuSousLouéÀDesTiers.Non
+  conséquence non rempli
+
+  exception cas_base_l822_4
+  règle condition_logement_location_tiers
+  sous condition
+    selon ménage.logement.loué_ou_sous_loué_à_des_tiers sous forme
+    -- LouéOuSousLouéÀDesTiers.Non : vrai
+    -- LouéOuSousLouéÀDesTiers.Oui contenu personne :
+      (
+        résultat de France.VérificationÂgeSupérieurÀ avec {
+          -- date_naissance: personne.date_naissance_personne_sous_location
+          -- date_courante: date_courante
+          -- années: 30 an
+        }
+      ).est_supérieur
+      ou personne.conforme_article_l442_1
+  conséquence rempli
+```

@@ -6,7 +6,8 @@
 ## Returns the earlier of two dates
 declaration min
   content date
-  depends on x content date,
+  depends on
+    x content date,
     y content date
   equals
     if x <= y then x else y
@@ -14,7 +15,8 @@ declaration min
 ## Returns the latter of two dates
 declaration max
   content date
-  depends on x content date,
+  depends on
+    x content date,
     y content date
   equals
     if x >= y then x else y
@@ -22,12 +24,13 @@ declaration max
 declaration of_year_month_day
   content date
   depends on
-  #[implicit_position_argument]
+    #[implicit_position_argument]
     pos content code_location,
     dyear content integer,
     dmonth content integer,
     dday content integer
-  equals D.of_ymd of pos, dyear, dmonth, dday
+  equals
+    D.of_ymd of pos, dyear, dmonth, dday
 
 declaration to_year_month_day
   content (integer, integer, integer)
@@ -38,22 +41,26 @@ declaration to_year_month_day
 declaration last_day_of_month
   content date
   depends on d content date
-  equals D.last_day_of_month of d
+  equals
+    D.last_day_of_month of d
 
 declaration get_year
   content integer
   depends on d content date
-  equals (to_year_month_day of d).1
+  equals
+    (to_year_month_day of d).1
 
 declaration get_month
   content integer
   depends on d content date
-  equals (to_year_month_day of d).2
+  equals
+    (to_year_month_day of d).2
 
 declaration get_day
   content integer
   depends on d content date
-  equals (to_year_month_day of d).3
+  equals
+    (to_year_month_day of d).3
 
 declaration first_day_of_month
   content date
