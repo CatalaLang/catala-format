@@ -478,6 +478,13 @@
 
 (e_match . ((WITH_PATT) @append_spaced_softline) (_))
 
+;; x with pattern Foo content y and ...
+(e_binop
+ lhs: (e_test_match (WITH_PATT) @prepend_spaced_scoped_softline (CONTENT)) @prepend_begin_scope
+ op: (AND) @prepend_spaced_scoped_softline @append_end_scope
+ (#scope_id! "with_patt_and")
+)
+
 ;; Pattern-matching cases
 
 ((ALT) . (match_case ((COLON) @prepend_space @append_spaced_softline @append_indent_start) (_) @append_indent_end .)) @prepend_spaced_softline
