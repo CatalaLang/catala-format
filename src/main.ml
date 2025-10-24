@@ -208,6 +208,123 @@ let write_result ~has_cr ~fd_out ~fd_in =
   in
   loop ()
 
+let handle_errors file stderr_redir_fd =
+  let full_message =
+    let buf = Bytes.create buf_len in
+    let bbuf = Buffer.create 1024 in
+    let rec loop () =
+      match Unix.read stderr_redir_fd buf 0 buf_len with
+      | 0 -> Unix.close stderr_redir_fd
+      | n ->
+          Buffer.add_subbytes bbuf buf 0 n ;
+          if n = buf_len then loop () else Unix.close stderr_redir_fd
+    in
+    loop () ;
+    Buffer.contents bbuf
+  in
+  let re_error_topiary =
+    let open Re in
+    non_greedy
+    @@ seq
+         [
+           char '[';
+           rep any (* timestamp *);
+           str "ERROR topiary";
+           char ']';
+           group ~name:"message" (greedy (rep (compl [ char '[' ])));
+         ]
+    |> compile
+  in
+  let messages =
+    Re.all re_error_topiary full_message (*  |> fun l -> *)
+    |> List.filter_map (fun grp -> Re.Group.get_opt grp 1)
+  in
+  let print_internal_error () =
+    Format.eprintf
+      "@[<v 2>catala-format: Internal error@\nTopiary trace:@\n%s@]"
+      full_message
+  in
+  let pp_file fmt =
+    match file with
+    | `Stdin None -> Format.fprintf fmt "<stdin>"
+    | `Stdin (Some s) | `File s -> Format.pp_print_string fmt s
+  in
+  let parsing_error_re =
+    let open Re in
+    seq
+      [
+        rep any;
+        str "line";
+        space;
+        group (rep digit);
+        rep any;
+        str "column";
+        space;
+        group (rep digit);
+        rep any;
+        str "line";
+        space;
+        group (rep digit);
+        rep any;
+        str "column";
+        space;
+        group (rep digit);
+        rep any;
+      ]
+    |> compile
+  in
+  match messages with
+  | [] -> print_internal_error ()
+  | [ parsing_err ] -> (
+      let all_groups =
+        try
+          Re.exec parsing_error_re parsing_err |> Re.Group.all |> Array.to_list
+          |> function
+          | _h :: l -> List.map int_of_string l
+          | _ -> []
+        with _ -> []
+      in
+      match all_groups with
+      | [ bl; bc; el; ec ] ->
+          Format.eprintf
+            "catala-format: Parsing error between lines %d:%d and %d:%d@\n\
+             File %t, line %d, character %d@."
+            bl
+            bc
+            el
+            ec
+            pp_file
+            bl
+            bc
+      | _ -> print_internal_error ())
+  | [ _idempotence; err_loc ] ->
+      (let all_groups =
+         try
+           Re.exec parsing_error_re err_loc |> Re.Group.all |> Array.to_list
+           |> function
+           | _h :: l -> List.map int_of_string l
+           | _ -> []
+         with _ -> []
+       in
+       Format.eprintf
+         "catala-format: Fatal error - formatting is not idempotent@\n" ;
+       match all_groups with
+       | [ bl; bc; el; ec ] ->
+           Format.eprintf
+             "catala-format: Possible error between lines %d:%d and %d:%d@\n\
+              File %t, line %d, character %d@."
+             bl
+             bc
+             el
+             ec
+             pp_file
+             bl
+             bc
+       | _ -> print_internal_error ()) ;
+      Format.eprintf
+        "You may retry using the '--skip-idempotence' option (or '-s')@\n"
+  | _ -> print_internal_error ()
+
 let format_cmd =
   let open Cmdliner in
   let language =
@@ -251,6 +368,17 @@ let format_cmd =
         ~docs:Manpage.s_arguments
         ~doc:"Catala file to be formatted ($(b,-) for stdin)."
   in
+  let buffer_name =
+    let open Arg in
+    value
+    & opt (some string) None
+    & info
+        [ "b"; "buffer-name" ]
+        ~docv:"FILE"
+        ~doc:
+          "Name of the buffer that will be used for displaying errors when \
+           using stdin."
+  in
   let skip_idempotence =
     let open Arg in
     value & flag
@@ -259,10 +387,13 @@ let format_cmd =
         ~doc:"When specified, the formatting idempotence check will be skipped."
   in
   let { config_file; query_file; topiary_path } = files_lookup () in
-  let f lang in_place skip_idempotence file =
+  let f lang in_place skip_idempotence buffer_name file =
+    let file =
+      match file with `Stdin -> `Stdin buffer_name | `File _ as x -> x
+    in
     let language =
       match (lang, file) with
-      | (None, `Stdin) ->
+      | (None, `Stdin _) ->
           error
             "No file was provided and the Catala's input language was not \
              defined."
@@ -287,7 +418,7 @@ let format_cmd =
     in
     let fd =
       match file with
-      | `Stdin -> Unix.stdin
+      | `Stdin _ -> Unix.stdin
       | `File f ->
           let fd = Unix.openfile f [ O_RDONLY; O_CLOEXEC ] 0o444 in
           at_exit (fun () -> Unix.close fd) ;
@@ -301,7 +432,8 @@ let format_cmd =
       let (fd_out, fd_in) = Unix.pipe ~cloexec:true () in
       (fd_in, fd_out)
     in
-    let pid = Unix.create_process topiary_path args in_fd fd_in Unix.stderr in
+    let (fd_err_in, fd_err_out) = Unix.pipe ~cloexec:true () in
+    let pid = Unix.create_process topiary_path args in_fd fd_in fd_err_out in
     let has_cr =
       (* Only start writing to the pipe when the process is ready to
          read as outputting to the pipe might hang if the output is
@@ -323,7 +455,7 @@ let format_cmd =
       | Some (Unix.WEXITED 0) | None ->
           let out_file =
             match (file, in_place) with
-            | (`Stdin, _) | (_, false) -> Unix.stdout
+            | (`Stdin _, _) | (_, false) -> Unix.stdout
             | (`File f, true) ->
                 let fd =
                   Unix.openfile
@@ -337,6 +469,7 @@ let format_cmd =
           write_result ~has_cr ~fd_out:out_file ~fd_in:fd_out ;
           Stdlib.exit 0
       | Some (WEXITED n) | Some (WSIGNALED n) | Some (WSTOPPED n) ->
+          handle_errors file fd_err_in ;
           Stdlib.exit n
     in
     active_poll () |> process_result
@@ -348,7 +481,7 @@ let format_cmd =
          "Format the given $(b,FILE) and output the result.\n\
           When no $(b,FILE) is provided, the standard input will be read\n\
           however the $(b,--language) argument becomes mandatory. ")
-    Term.(const f $ language $ in_place $ skip_idempotence $ file)
+    Term.(const f $ language $ in_place $ skip_idempotence $ buffer_name $ file)
 
 let () =
   let open Cmdliner in
