@@ -21,11 +21,11 @@ build:[
   "dune" "build"
   "-p" name
   "-j" jobs
-  "@catala-format"
+  "@install"
 ]
 
 install: [
-  [ "install" "_build/default/src/main.exe" "%{bin}%/catala-format" ]
+  [ "dune" "install" ]
   [ "install" "-D" "catala.scm" "%{topiary:share}%/queries/catala.scm" ]
   [ "install" "-D" "catala.ncl" "%{topiary:share}%/configs/catala.ncl" ]
 ]
