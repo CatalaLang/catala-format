@@ -1,7 +1,7 @@
 opam-version: "2.0"
-version: "1.0.0~beta"
-maintainer: "vincent.botbol@inria.fr"
-authors: [ "Vincent Botbol" ]
+version: "1.0.0"
+maintainer: "contact@catala-lang.org"
+authors: [ "Vincent Botbol" "Louis Gesbert" ]
 
 homepage: "https://github.com/CatalaLang/catala-format"
 bug-reports: "https://github.com/CatalaLang/catala-format"
