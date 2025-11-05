@@ -15,7 +15,6 @@
  (enum_decl)
  (toplevel_def)
  (COMMENT)
- (ATTRIBUTE)
  (definition)
  (rounding_mode)
  (rule)
@@ -25,7 +24,7 @@
 
 (COMMENT) @prepend_input_softline @append_hardline
 
-(ATTRIBUTE) @prepend_hardline @append_spaced_softline @multi_line_indent_all
+(ATTRIBUTE) @allow_blank_line_before @prepend_spaced_softline @append_spaced_softline @multi_line_indent_all
 
 (
  [ (BEGIN_CODE)
