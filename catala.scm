@@ -228,6 +228,12 @@
 ;; global definitions
 
 (toplevel_def
+ (CONTENT) @prepend_hardline
+ (DEPENDS) @prepend_hardline
+ ((DEFINED_AS) @prepend_hardline . (_) @prepend_hardline)?
+)
+
+(toplevel_def
  (DECLARATION) @append_indent_start
  (CONTENT) @prepend_input_softline
  (DEFINED_AS)? @prepend_spaced_softline
@@ -239,11 +245,6 @@
   (DEFINED_AS) @append_spaced_scoped_softline
  ) @append_end_scope
  (#scope_id! "topdef_value")
-)
-
-(toplevel_def
- (CONTENT) @prepend_hardline
- (DEPENDS) @prepend_hardline
 )
 
 ((DEPENDS) @append_indent_start
