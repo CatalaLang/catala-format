@@ -130,7 +130,7 @@
  (MAXIMUM)
  (MINIMUM)
  (IS)
- (EMPTY)
+ (OR_EMPTY)
  (BUT_REPLACE)
  (CARDINAL)
  (YEAR)
@@ -709,10 +709,7 @@
  [(MAXIMUM) (MINIMUM)]
  (OF)
  coll: (_) @append_indent_start @append_spaced_softline
- (OR)
- (IF)
- (LIST)
- (EMPTY)
+ (OR_EMPTY)
  (THEN)
  dft: (_) @append_indent_end
 )
@@ -730,10 +727,7 @@
  mapf: (_)
  (IS)
  [(MAXIMUM) (MINIMUM)] @append_spaced_softline
- (OR)
- (IF)
- (LIST)
- (EMPTY)
+ (OR_EMPTY)
  (THEN)
  dft: (_) @append_indent_end
 )
