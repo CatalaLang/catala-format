@@ -107,10 +107,16 @@ Uses `replace-buffer-contents'."
   (replace-buffer-contents (find-file-noselect outputfile))
   (kill-buffer (get-file-buffer outputfile)))
 
+(defun catala-format--get-full-file-extension (file)
+  (let ((ext (file-name-extension file t)))
+    (if (string-equal ext ".md")
+        (concat (file-name-extension (file-name-sans-extension file) t) ext)
+      ext)))
+
 (defun catala-format ()
   "Format the current buffer according to the catala-format tool."
   (interactive)
-  (let* ((ext (file-name-extension buffer-file-name t))
+  (let* ((ext (catala-format--get-full-file-extension buffer-file-name))
          (bufferfile (file-truename (make-temp-file "catala-format" nil ext)))
          (outputfile (file-truename (make-temp-file "catala-format" nil ext)))
          (errbuf

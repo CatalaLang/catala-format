@@ -325,6 +325,8 @@ let handle_errors file stderr_redir_fd =
         "You may retry using the '--skip-idempotence' option (or '-s')@\n"
   | _ -> print_internal_error ()
 
+let ppf = open_out "/tmp/log" |> Format.formatter_of_out_channel
+
 let format_cmd =
   let open Cmdliner in
   let language =
@@ -398,11 +400,18 @@ let format_cmd =
             "No file was provided and the Catala's input language was not \
              defined."
       | (None, `File f) -> (
-          let ext = Filename.extension f in
-          let ext = String.sub ext 1 (String.length ext - 1) in
-          List.find_opt (( = ) ext) supported_languages |> function
-          | None -> error "Cannot infer Catala's input language"
-          | Some l -> l)
+          let ext =
+            let fext = Filename.extension f in
+            if fext = ".md" then
+              Filename.extension (Filename.remove_extension f)
+            else fext
+          in
+          try
+            let ext = String.sub ext 1 (String.length ext - 1) in
+            List.find_opt (( = ) ext) supported_languages |> function
+            | None -> error "Cannot infer Catala's input language"
+            | Some l -> l
+          with _ -> error "Cannot infer Catala's input language")
       | (Some l, _) -> l
     in
     let args =
