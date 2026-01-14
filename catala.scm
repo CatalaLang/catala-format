@@ -13,6 +13,7 @@
  (scope_decl)
  (struct_decl)
  (enum_decl)
+ (abstract_decl)
  (toplevel_def)
  (COMMENT)
  (definition)
@@ -223,6 +224,10 @@
  .
  ((ALT) (enum_decl_item))* @prepend_hardline
  ) @allow_blank_line_before @append_indent_end
+
+(abstract_decl
+ (COLON) @append_space
+ ) @allow_blank_line_before
 
 ;; global definitions
 
@@ -477,7 +482,7 @@
 
 ;; x with pattern Foo content y and ...
 (e_binop
- lhs: (e_test_match (WITH_PATT) @prepend_spaced_scoped_softline (CONTENT)) @prepend_begin_scope
+ lhs: (e_test_match (WITH_PATT) @prepend_begin_scope @prepend_spaced_softline (CONTENT))
  op: (AND) @prepend_spaced_scoped_softline @append_end_scope
  (#scope_id! "with_patt_and")
 )
