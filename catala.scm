@@ -635,6 +635,16 @@
  (#scope_id! "else-clause")
 )
 
+;; Local assertion
+
+(e_assert
+ (ASSERTION) @prepend_begin_scope @append_spaced_scoped_softline
+ cond: _ @prepend_indent_start @append_indent_end
+ (IN) @prepend_end_scope @prepend_spaced_scoped_softline
+ . _ @prepend_hardline
+ (#scope_id! "assert-cond")
+)
+
 ;; List-expressions
 
 ;; List existence test
