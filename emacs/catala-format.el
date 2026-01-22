@@ -1,7 +1,7 @@
 ;;; catala-format.el --- Utility functions to format Catala code -*- lexical-binding: t; -*-
 
 ;; Package-Requires: ((emacs "27.1"))
-;; Version: 1.0.0
+;; Version: 1.0.1
 ;; Keywords: languages, catala, formatter
 ;; URL: https://github.com/CatalaLang/catala-format
 
