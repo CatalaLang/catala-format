@@ -1,4 +1,6 @@
 (install
  (section share_root)
  (files
-  (emacs/catala-format.el as emacs/site-lisp/catala-format.el)))
+  (emacs/catala-format.el as emacs/site-lisp/catala-format.el)
+  (catala.scm as topiary/queries/catala.scm)
+  (catala.ncl as topiary/configs/catala.ncl)))
