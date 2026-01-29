@@ -183,11 +183,11 @@ let add_carriage_returns (buf, buf_len) =
   let buf'_len = ref 0 in
   for i = 0 to buf_len - 1 do
     (match Bytes.get buf i with
-    | '\n' as c ->
-        Bytes.set glob_buf !buf'_len '\r' ;
-        incr buf'_len ;
-        c
-    | c -> c)
+      | '\n' as c ->
+          Bytes.set glob_buf !buf'_len '\r' ;
+          incr buf'_len ;
+          c
+      | c -> c)
     |> fun c ->
     Bytes.set glob_buf !buf'_len c ;
     incr buf'_len
