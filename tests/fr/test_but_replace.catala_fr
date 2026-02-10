@@ -1,0 +1,18 @@
+```catala-metadata
+déclaration champ d'application T:
+  résultat d contenu S
+
+champ d'application T:
+  définition d égal à
+    résultat de C.R avec {
+      -- args:
+        b mais en remplaçant {
+            -- x: faux
+            -- y: 1
+            -- z: 0€
+            -- p:
+              [ b1 mais en remplaçant { -- b: vrai } ]
+            -- m: 4000,00€
+          }
+    }
+```

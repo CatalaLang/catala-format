@@ -544,8 +544,9 @@
 ;; But-replace
 
 (e_but_replace
- (BUT_REPLACE) @append_indent_start
- . (LBRACE) . (struct_content_fields) . (RBRACE) @append_indent_end @append_hardline
+ (_)
+ . (BUT_REPLACE) @append_indent_start
+ . (LBRACE) . (struct_content_fields) . (RBRACE) @append_indent_end @append_input_softline
 )
 
 ;; Fields accesses
