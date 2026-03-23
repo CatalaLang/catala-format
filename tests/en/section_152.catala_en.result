@@ -66,9 +66,9 @@ declaration scope BaseChildTaxpayerQualification:
 
   output is_qualifying condition
 
-declaration structure Child :
+declaration structure Child:
 
-declaration structure Taxpayer :
+declaration structure Taxpayer:
 ```
 
 The term “qualifying child” means, with respect to any

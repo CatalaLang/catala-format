@@ -177,53 +177,47 @@
 ;; Scopes, structs & enums
 
 ;; scope declaration
+(scope_decl (scope_name) (COLON) @prepend_antispace)
 (scope_decl
  (DECLARATION)
  (SCOPE)
  (scope_name)
- (COLON) @prepend_antispace
-         @append_hardline
-         @append_indent_start
- (_)
-) @allow_blank_line_before @append_indent_end
+ (COLON) @append_hardline @append_indent_start
+ (_) @append_hardline @append_indent_end
+ .
+) @allow_blank_line_before
 
 ;; scope definition
+(scope (scope_name) (COLON) @prepend_antispace)
 (scope
  (SCOPE)
  (scope_name)
- (COLON) @prepend_antispace
-         @append_hardline
-         @append_indent_start
- [ (rule) (definition) ]* @append_hardline
-) @allow_blank_line_before @append_indent_end
+ (COLON) @append_hardline @append_indent_start
+ (_) @append_hardline @append_indent_end
+ .
+) @allow_blank_line_before
 
 ;; struct declaration
+(struct_decl (enum_struct_name) (COLON) @prepend_antispace)
 (struct_decl
  (DECLARATION)
  (STRUCT)
  (enum_struct_name)
- (COLON) @prepend_antispace
-         @append_hardline
-         @append_indent_start
+ (COLON) @append_hardline @append_indent_start
  (_)  @append_hardline @append_indent_end
  .
 ) @allow_blank_line_before
 
 ;; enum declaration
+(enum_decl (enum_struct_name) (COLON) @prepend_antispace)
 (enum_decl
- .
  (DECLARATION)
- .
  (ENUM)
- .
  (enum_struct_name)
+ (COLON) @append_hardline @append_indent_start
+ (_) @append_hardline @append_indent_end
  .
- (COLON) @prepend_antispace
-         @append_hardline
-         @append_indent_start
- .
- ((ALT) (enum_decl_item))* @prepend_hardline
- ) @allow_blank_line_before @append_indent_end
+) @allow_blank_line_before
 
 (abstract_decl
  (COLON) @append_space
