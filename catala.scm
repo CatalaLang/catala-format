@@ -547,7 +547,7 @@
 
 ((variable) (DOT) @prepend_antispace . (variable))
 
-(e_fieldaccess (DOT) @prepend_antispace [(qfield) (TUPLE_INDEX)])
+(e_fieldaccess (DOT) @prepend_antispace [(qfield) (TUPLE_INDEX)] @append_space)
 
 (qenum_struct (DOT) @prepend_antispace)
 ((qenum_struct) (DOT) @prepend_antispace)
