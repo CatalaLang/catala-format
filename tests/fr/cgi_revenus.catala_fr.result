@@ -118,7 +118,8 @@ champ d'application TraitementsSalairesFoyerFiscal:
     (
       somme argent de
         transforme chaque résultats
-        parmi déclarations_avec_résultats_traitements_salaires en
+        parmi déclarations_avec_résultats_traitements_salaires
+        en
           résultats.revenu_brut_déclarant_hors_quotient
     )
     + rentes_viagères_titre_onéreux
@@ -183,13 +184,15 @@ champ d'application BénéficesNonCommerciauxFoyerFiscal:
   égal à
     somme argent de
       transforme chaque résultat_liquidation
-      parmi résultats_liquidation_bénéfices_non_commerciaux en
+      parmi résultats_liquidation_bénéfices_non_commerciaux
+      en
         résultat_liquidation.solde_net_non_professionnel
 
   définition solde_net_global_professionnel égal à
     somme argent de
       transforme chaque résultat_liquidation
-      parmi résultats_liquidation_bénéfices_non_commerciaux en
+      parmi résultats_liquidation_bénéfices_non_commerciaux
+      en
         résultat_liquidation.solde_net_professionnel
 
   définition revenu_brut_global égal à
@@ -216,13 +219,15 @@ champ d'application BénéficesIndustrielsCommerciauxFoyerFiscal:
   égal à
     somme argent de
       transforme chaque résultat_liquidation
-      parmi résultats_liquidation_bénéfices_industriels_commerciaux en
+      parmi résultats_liquidation_bénéfices_industriels_commerciaux
+      en
         résultat_liquidation.solde_net_non_professionnel_hors_locations_meublées
 
   définition solde_net_global_professionnel égal à
     somme argent de
       transforme chaque résultat_liquidation
-      parmi résultats_liquidation_bénéfices_industriels_commerciaux en
+      parmi résultats_liquidation_bénéfices_industriels_commerciaux
+      en
         résultat_liquidation.solde_net_professionnel
 
   définition solde_net_global_non_professionnel_locations_meublées
@@ -230,7 +235,8 @@ champ d'application BénéficesIndustrielsCommerciauxFoyerFiscal:
   égal à
     somme argent de
       transforme chaque résultat_liquidation
-      parmi résultats_liquidation_bénéfices_industriels_commerciaux en
+      parmi résultats_liquidation_bénéfices_industriels_commerciaux
+      en
         résultat_liquidation.solde_net_non_professionnel_locations_meublées
 
   définition revenu_brut_global égal à
@@ -962,19 +968,22 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
     + (
       somme argent de
         transforme chaque revenu_exceptionnel_ou_différé
-        parmi revenus_exceptionnels_professionnels_abattement_micro_marchandises en
+        parmi revenus_exceptionnels_professionnels_abattement_micro_marchandises
+        en
           revenu_exceptionnel_ou_différé.valeur
     )
     + revenus.non_professionnels.généraux.revenus_imposables_micro_marchandises
     + (
       somme argent de
         transforme chaque revenu_exceptionnel_ou_différé
-        parmi revenus_exceptionnels_non_professionnels_abattement_micro_marchandises en
+        parmi revenus_exceptionnels_non_professionnels_abattement_micro_marchandises
+        en
           revenu_exceptionnel_ou_différé.valeur
     )
     + (
       somme argent de transforme chaque revenu_exceptionnel_ou_différé
-        parmi revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales en
+        parmi revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales
+        en
           revenu_exceptionnel_ou_différé.valeur
     )
     + revenus.non_professionnels.locations_meublées_micro_hôtes_classées
@@ -1063,13 +1072,15 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
     + (
       somme argent de
         transforme chaque revenu_exceptionnel_ou_différé
-        parmi revenus_exceptionnels_professionnels_abattement_micro_services en
+        parmi revenus_exceptionnels_professionnels_abattement_micro_services
+        en
           revenu_exceptionnel_ou_différé.valeur
     )
     + revenus.non_professionnels.généraux.revenus_imposables_micro_services
     + (
       somme argent de transforme chaque revenu_exceptionnel_ou_différé
-        parmi revenus_exceptionnels_non_professionnels_abattement_micro_services en
+        parmi revenus_exceptionnels_non_professionnels_abattement_micro_services
+        en
           revenu_exceptionnel_ou_différé.valeur
     )
     + revenus.non_professionnels.locations_meublées_micro_général
@@ -1143,7 +1154,8 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
     revenus.non_professionnels.locations_meublées_micro_classées_rurales_spéciales
     + revenus.non_professionnels.locations_meublées_micro_cotisations_classées_rurales_spéciales
     + somme argent de transforme chaque revenu_exceptionnel_ou_différé
-        parmi revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales en
+        parmi revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales
+        en
           revenu_exceptionnel_ou_différé.valeur
 
   # L'assiette de cet abattement ne comprend pas les revenus de locations
@@ -2587,7 +2599,8 @@ champ d'application TraitementsSalairesDéclarant:
           traitements_salaires_avec_déduction_frais_professionnels
           + somme argent de
               transforme chaque autre_revenu_quotienté
-              parmi revenus.revenus_exceptionnels_ou_différés en
+              parmi revenus.revenus_exceptionnels_ou_différés
+              en
                 (
                   selon autre_revenu_quotienté.catégorie sous forme
                   -- CatégorieRevenuExceptionnelOuDifféré.TraitementsSalaires :
@@ -3004,7 +3017,8 @@ champ d'application BénéficesNonCommerciauxDéclarant:
     + (somme argent de transforme chaque revenu parmi revenus_exceptionnels_professionnels_abattement_micro en revenu.valeur)
     + revenus.non_professionnels.généraux.revenus_imposables_micro
     + somme argent de transforme chaque revenu
-        parmi revenus_exceptionnels_non_professionnels_abattement_micro en
+        parmi revenus_exceptionnels_non_professionnels_abattement_micro
+        en
           revenu.valeur
 
   définition abattement_forfaitaire_micro_total
@@ -3407,10 +3421,12 @@ champ d'application ImputationDéficitSurRevenusQuotientés:
   définition base_d_imputation_déficit_catégoriel égal à
     somme argent de
       transforme chaque revenus_quotientés_catégoriels_déclarant
-      parmi revenus_quotientés_catégoriels en
+      parmi revenus_quotientés_catégoriels
+      en
         (
           somme argent de transforme chaque revenu_quotienté_catégoriel
-            parmi revenus_quotientés_catégoriels_déclarant en
+            parmi revenus_quotientés_catégoriels_déclarant
+            en
               revenu_quotienté_catégoriel.valeur_nette
         )
 
@@ -3432,10 +3448,12 @@ champ d'application ImputationDéficitSurRevenusQuotientés:
         -- montant_à_distribuer: déficit_catégoriel_imputé
         -- bases_prorata:
           transforme chaque revenus_quotientés_catégoriels_déclarant
-          parmi revenus_quotientés_catégoriels en
+          parmi revenus_quotientés_catégoriels
+          en
             (
               transforme chaque revenu_quotienté_catégoriel
-              parmi revenus_quotientés_catégoriels_déclarant en
+              parmi revenus_quotientés_catégoriels_déclarant
+              en
                 revenu_quotienté_catégoriel.valeur_nette
             )
       }
@@ -3449,7 +3467,8 @@ champ d'application ImputationDéficitSurRevenusQuotientés:
     parmi (
       revenus_quotientés_catégoriels,
       déficits_à_imputer_aux_revenus_quotientés_catégoriels
-    ) en
+    )
+    en
       (
         transforme chaque (
           revenu_quotienté_catégoriel,
@@ -3458,7 +3477,8 @@ champ d'application ImputationDéficitSurRevenusQuotientés:
         parmi (
           revenus_quotientés_catégoriels_déclarant,
           déficits_à_imputer_aux_revenus_quotientés_catégoriels_déclarant
-        ) en
+        )
+        en
           RevenuQuotienté {
             -- déduction: revenu_quotienté_catégoriel.déduction
             -- coefficient: revenu_quotienté_catégoriel.coefficient
@@ -3580,7 +3600,8 @@ champ d'application BénéficesIndustrielsCommerciauxFoyerFiscal:
       revenus_quotientés_catégoriels
   égal à
     transforme chaque résultat_liquidation
-    parmi résultats_liquidation_bénéfices_industriels_commerciaux en
+    parmi résultats_liquidation_bénéfices_industriels_commerciaux
+    en
       (
         liste de revenu_quotienté parmi résultat_liquidation.revenus_quotientés_non_professionnels
           tel que selon revenu_quotienté.catégorie sous forme
@@ -3680,7 +3701,8 @@ champ d'application BénéficesIndustrielsCommerciauxFoyerFiscal:
       revenus_quotientés_catégoriels
   égal à
     transforme chaque résultat_liquidation
-    parmi résultats_liquidation_bénéfices_industriels_commerciaux en
+    parmi résultats_liquidation_bénéfices_industriels_commerciaux
+    en
       liste de revenu_quotienté parmi résultat_liquidation.revenus_quotientés_non_professionnels
         tel que selon revenu_quotienté.catégorie sous forme
         -- BénéficesIndustrielsCommerciauxLocationMeublées : vrai
@@ -4262,7 +4284,8 @@ champ d'application TraitementsSalairesFoyerFiscal:
   définition abbattement_total_déplafonné_pensions_retraites_rentes égal à
     somme argent de
       transforme chaque résultats
-      parmi résultats_liquidations_plafond_pensions_retraites_rentes en
+      parmi résultats_liquidations_plafond_pensions_retraites_rentes
+      en
         résultats.abattement_pensions_retraites_rentes
 
   définition déclarations_avec_plafond_pensions_retraites_rentes_correct égal à
@@ -4274,7 +4297,8 @@ champ d'application TraitementsSalairesFoyerFiscal:
       # pour chaque déclarant, on met le plafond global (qui ne sera pas
       # atteint de toute façon).
       transforme chaque résultats
-      parmi résultats_liquidations_plafond_pensions_retraites_rentes en
+      parmi résultats_liquidations_plafond_pensions_retraites_rentes
+      en
         DéclarationAvecPlafondPensionRetraitesRentesCorrect {
           -- revenus: résultats.revenus
           -- plafond_abattement_pensions_retraites_rentes:
@@ -4289,7 +4313,8 @@ champ d'application TraitementsSalairesFoyerFiscal:
             -- montant_à_distribuer: plafond_abattement_pensions_retraites_rentes
             -- bases_prorata:
               transforme chaque résultats
-              parmi résultats_liquidations_plafond_pensions_retraites_rentes en
+              parmi résultats_liquidations_plafond_pensions_retraites_rentes
+              en
                 résultats.abattement_pensions_retraites_rentes
           }
         ).valeurs_proratisées
@@ -4298,7 +4323,8 @@ champ d'application TraitementsSalairesFoyerFiscal:
       parmi (
         résultats_liquidations_plafond_pensions_retraites_rentes,
         plafonds_proratisés
-      ) en
+      )
+      en
         DéclarationAvecPlafondPensionRetraitesRentesCorrect {
           -- revenus: résultats.revenus
           -- plafond_abattement_pensions_retraites_rentes:
@@ -4310,7 +4336,8 @@ champ d'application TraitementsSalairesFoyerFiscal:
     déclarations_avec_résultats_traitements_salaires
   égal à
     transforme chaque déclaration_avec_plafond_correct
-    parmi déclarations_avec_plafond_pensions_retraites_rentes_correct en
+    parmi déclarations_avec_plafond_pensions_retraites_rentes_correct
+    en
       résultat de TraitementsSalairesDéclarant avec {
         -- revenus: déclaration_avec_plafond_correct.revenus
         -- selecteur_plafond_abattement_pensions_retraites_rentes:
@@ -4516,7 +4543,8 @@ champ d'application TraitementsSalairesFoyerFiscal:
           -- valeur: revenus.rentes_percues_70plus_ans
           -- catégorie: RenteViagèreOnéreuxPlus70Ans
         }
-      ] en
+      ]
+      en
         rente_viagère.valeur
         - calcul_déduction_rente_viagères_titre_onéreux de rente_viagère
 ```
@@ -4721,14 +4749,16 @@ champ d'application BénéficesNonCommerciauxDéclarant:
     pro_rata_abattement_forfaitaire_micro.bases_prorata_liste_1
   égal à
     transforme chaque revenu
-    parmi revenus_exceptionnels_professionnels_abattement_micro en
+    parmi revenus_exceptionnels_professionnels_abattement_micro
+    en
       revenu.valeur
 
   définition
     pro_rata_abattement_forfaitaire_micro.bases_prorata_liste_2
   égal à
     transforme chaque revenu
-    parmi revenus_exceptionnels_non_professionnels_abattement_micro en
+    parmi revenus_exceptionnels_non_professionnels_abattement_micro
+    en
       revenu.valeur
 
   définition revenus_quotientés_professionnels égal à
@@ -4738,7 +4768,8 @@ champ d'application BénéficesNonCommerciauxDéclarant:
         revenus_exceptionnels_professionnels_abattement_micro,
         pro_rata_abattement_forfaitaire_micro.
           valeurs_proratisées_liste_1
-      ) en
+      )
+      en
         (
           résultat de CalculRevenuQuotienté avec {
             -- revenu: revenu
@@ -4749,7 +4780,8 @@ champ d'application BénéficesNonCommerciauxDéclarant:
     )
     ++ (
       transforme chaque revenu
-      parmi revenus_exceptionnels_professionnels_sans_abattement en
+      parmi revenus_exceptionnels_professionnels_sans_abattement
+      en
         (
           résultat de CalculRevenuQuotienté avec {
             -- revenu: revenu
@@ -4766,7 +4798,8 @@ champ d'application BénéficesNonCommerciauxDéclarant:
         revenus_exceptionnels_non_professionnels_abattement_micro,
         pro_rata_abattement_forfaitaire_micro.
           valeurs_proratisées_liste_2
-      ) en
+      )
+      en
         (
           résultat de CalculRevenuQuotienté avec {
             -- revenu: revenu
@@ -4776,7 +4809,8 @@ champ d'application BénéficesNonCommerciauxDéclarant:
         ).revenu_quotienté
     )
     ++ transforme chaque revenu
-    parmi revenus_exceptionnels_non_professionnels_sans_abattement en
+    parmi revenus_exceptionnels_non_professionnels_sans_abattement
+    en
       (
         résultat de CalculRevenuQuotienté avec {
           -- revenu: revenu
@@ -4794,35 +4828,40 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
     pro_rata_abattement_forfaitaire_micro_services.bases_prorata_liste_1
   égal à
     transforme chaque revenu_exceptionnel_ou_différé
-    parmi revenus_exceptionnels_professionnels_abattement_micro_services en
+    parmi revenus_exceptionnels_professionnels_abattement_micro_services
+    en
       revenu_exceptionnel_ou_différé.valeur
 
   définition
     pro_rata_abattement_forfaitaire_micro_services.bases_prorata_liste_2
   égal à
     transforme chaque revenu_exceptionnel_ou_différé
-    parmi revenus_exceptionnels_non_professionnels_abattement_micro_services en
+    parmi revenus_exceptionnels_non_professionnels_abattement_micro_services
+    en
       revenu_exceptionnel_ou_différé.valeur
 
   définition
     pro_rata_abattement_forfaitaire_micro_marchandises.bases_prorata_liste_1
   égal à
     transforme chaque revenu_exceptionnel_ou_différé
-    parmi revenus_exceptionnels_professionnels_abattement_micro_marchandises en
+    parmi revenus_exceptionnels_professionnels_abattement_micro_marchandises
+    en
       revenu_exceptionnel_ou_différé.valeur
 
   définition
     pro_rata_abattement_forfaitaire_micro_marchandises.bases_prorata_liste_2
   égal à
     transforme chaque revenu_exceptionnel_ou_différé
-    parmi revenus_exceptionnels_non_professionnels_abattement_micro_marchandises en
+    parmi revenus_exceptionnels_non_professionnels_abattement_micro_marchandises
+    en
       revenu_exceptionnel_ou_différé.valeur
 
   définition
     pro_rata_abattement_forfaitaire_micro_marchandises.bases_prorata_liste_3
   égal à
     transforme chaque revenu_exceptionnel_ou_différé
-    parmi revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales en
+    parmi revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales
+    en
       revenu_exceptionnel_ou_différé.valeur
 
   définition
@@ -4830,7 +4869,8 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
       bases_prorata_liste_1
   égal à
     transforme chaque revenu_exceptionnel_ou_différé
-    parmi revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales en
+    parmi revenus_exceptionnels_non_professionnels_locations_meublées_rurales_spéciales
+    en
       revenu_exceptionnel_ou_différé.valeur
 
   définition revenus_quotientés_professionnels égal à
@@ -4840,7 +4880,8 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
         revenus_exceptionnels_professionnels_abattement_micro_services,
         pro_rata_abattement_forfaitaire_micro_services.
           valeurs_proratisées_liste_1
-      ) en
+      )
+      en
         (
           résultat de CalculRevenuQuotienté avec {
             -- revenu: revenu
@@ -4855,7 +4896,8 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
         revenus_exceptionnels_professionnels_abattement_micro_marchandises,
         pro_rata_abattement_forfaitaire_micro_marchandises.
           valeurs_proratisées_liste_1
-      ) en
+      )
+      en
         (
           résultat de CalculRevenuQuotienté avec {
             -- revenu: revenu
@@ -4865,7 +4907,8 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
         ).revenu_quotienté
     )
     ++ transforme chaque revenu
-    parmi revenus_exceptionnels_professionnels_sans_abattement en
+    parmi revenus_exceptionnels_professionnels_sans_abattement
+    en
       (
         résultat de CalculRevenuQuotienté avec {
           -- revenu: revenu
@@ -4881,7 +4924,8 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
         revenus_exceptionnels_non_professionnels_abattement_micro_services,
         pro_rata_abattement_forfaitaire_micro_services.
           valeurs_proratisées_liste_2
-      ) en
+      )
+      en
         (
           résultat de CalculRevenuQuotienté avec {
             -- revenu: revenu
@@ -4896,7 +4940,8 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
         revenus_exceptionnels_non_professionnels_abattement_micro_marchandises,
         pro_rata_abattement_forfaitaire_micro_marchandises.
           valeurs_proratisées_liste_2
-      ) en
+      )
+      en
         (
           résultat de CalculRevenuQuotienté avec {
             -- revenu: revenu
@@ -4913,7 +4958,8 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
           valeurs_proratisées_liste_3,
         pro_rata_abattement_spécial_micro_location_meublées_rurales_spéciales.
           valeurs_proratisées_liste_1
-      ) en
+      )
+      en
         (
           résultat de CalculRevenuQuotienté avec {
             -- revenu: revenu
@@ -4923,7 +4969,8 @@ champ d'application BénéficesIndustrielsCommerciauxDéclarant:
         ).revenu_quotienté
     )
     ++ transforme chaque revenu
-    parmi revenus_exceptionnels_non_professionnels_sans_abattement en
+    parmi revenus_exceptionnels_non_professionnels_sans_abattement
+    en
       (
         résultat de CalculRevenuQuotienté avec {
           -- revenu: revenu
