@@ -242,7 +242,7 @@ scope TestHousehold:
           Individual {
             -- income: $80,000
             -- number_of_children: 2
-          }
+          };
         ]
       -- overseas_territories: false
       -- current_date: |1999-01-01|

@@ -405,10 +405,19 @@
 
 ((LBRACKET) . (RBRACKET) @prepend_antispace)
 (SEMICOLON) @prepend_antispace
+
 (collection_elements
-  (SEMICOLON) @delete
-  .
+ (#single_line_only!)
+ (SEMICOLON) @delete
+ .
 )
+
+(collection_elements
+ (#multi_line_only!)
+ (#delimiter! ";") ; we hardcode the semi-colon here...
+ (SEMICOLON)? @do_nothing
+ .
+) @append_delimiter
 
 ;; list literal
 (

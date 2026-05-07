@@ -1355,7 +1355,7 @@ champ d'application TraitementsSalaires7:
         -- régime: Article163_0_A
         -- échéance: RevenuDifféréÉchéanceNormale contenu 2018
         -- catégorie: TraitementsSalaires
-      }
+      };
     ]
   définition déclarant2.autres_revenus_imposables_chômage_préretraite égal à
     8950 €
@@ -1670,7 +1670,7 @@ champ d'application TraitementsSalaires8:
         -- régime: Article163_0_A
         -- échéance: RevenuDifféréÉchéanceNormale contenu 2017
         -- catégorie: TraitementsSalaires
-      }
+      };
     ]
   définition déclarant2.traitements_salaires égal à 46 544 €
   définition déclarant2.frais_réels égal à IR.FraisRéels.Oui contenu 5 000 €
@@ -1784,7 +1784,7 @@ champ d'application TraitementsSalaires9:
         -- régime: Article163_0_A
         -- échéance: RevenuDifféréÉchéanceNormale contenu 2017
         -- catégorie: TraitementsSalaires
-      }
+      };
     ]
 
   définition sortie égal à
@@ -2772,7 +2772,7 @@ champ d'application TraitementsSalaires11:
         -- régime: Article163_0_A
         -- échéance: RevenuDifféréÉchéanceNormale contenu 2018
         -- catégorie: TraitementsSalaires
-      }
+      };
     ]
   définition déclarant1.gains_de_levee_doptions égal à 2 345 €
   définition déclarant2.autres_revenus_imposables_chômage_préretraite égal à
@@ -2802,7 +2802,7 @@ champ d'application TraitementsSalaires11:
         [
           déclarant3.sortie;
           déclarant4.sortie;
-          déclarant5.sortie
+          déclarant5.sortie;
         ]
       -- année_revenus: 2022
       -- revenus: foyer.sortie
