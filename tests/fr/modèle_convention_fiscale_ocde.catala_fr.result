@@ -103,8 +103,7 @@ champ d'application TraitementsSalairesFoyerFiscal:
             -- valeur: revenus.rentes_étrangères_imputables_percues_70plus_ans
             -- catégorie: RenteViagèreOnéreuxPlus70Ans
           }
-        ]
-        en
+        ] en
           rente_viagère.valeur
           - calcul_déduction_rente_viagères_titre_onéreux de rente_viagère
       )

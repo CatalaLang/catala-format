@@ -753,7 +753,7 @@
 
 ((binder) @prepend_begin_scope
  (AMONG) @prepend_spaced_scoped_softline
- coll: (_) @append_spaced_scoped_softline @append_end_scope
+ coll: (_) @append_end_scope
  (#scope_id! "among")
 )
 
