@@ -405,6 +405,10 @@
 
 ((LBRACKET) . (RBRACKET) @prepend_antispace)
 (SEMICOLON) @prepend_antispace
+(collection_elements
+  (SEMICOLON) @delete
+  .
+)
 
 ;; list literal
 (
