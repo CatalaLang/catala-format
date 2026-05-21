@@ -1388,7 +1388,7 @@ champ d'application TraitementsSalairesDéclarant:
       PensionRetraiteRente {
         -- valeur_initiale: revenus.pensions_alimentaires_perçues
         -- type_pension: PensionAlimentairePercue
-      }
+      };
     ]
 # Ici on conserve une collection plutôt de calculer la somme, car les différents
 # types d'entrées vont nécessiter des calculs d'abattements différents par la
@@ -4515,7 +4515,7 @@ champ d'application TraitementsSalairesFoyerFiscal:
         RenteViagèreOnéreux {
           -- valeur: revenus.rentes_percues_70plus_ans
           -- catégorie: RenteViagèreOnéreuxPlus70Ans
-        }
+        };
       ] en
         rente_viagère.valeur
         - calcul_déduction_rente_viagères_titre_onéreux de rente_viagère
@@ -5988,7 +5988,7 @@ champ d'application TraitementsSalairesDéclarant:
       PensionRetraiteRente {
         -- valeur_initiale: revenus.autre_pensions_imposables_source_étrangère
         -- type_pension: TypePensionRetraiteRente.PensionsRetraitesRentes
-      }
+      };
     ]
 ```
 

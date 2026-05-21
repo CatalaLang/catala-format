@@ -76,7 +76,7 @@ champ d'application TraitementsSalairesDéclarant:
       PensionRetraiteRente {
         -- valeur_initiale: revenus.pensions_étrangères_impôts_imputé
         -- type_pension: TypePensionRetraiteRente.PensionsRetraitesRentes
-      }
+      };
     ]
 
 champ d'application TraitementsSalairesFoyerFiscal:
@@ -102,7 +102,7 @@ champ d'application TraitementsSalairesFoyerFiscal:
           RenteViagèreOnéreux {
             -- valeur: revenus.rentes_étrangères_imputables_percues_70plus_ans
             -- catégorie: RenteViagèreOnéreuxPlus70Ans
-          }
+          };
         ] en
           rente_viagère.valeur
           - calcul_déduction_rente_viagères_titre_onéreux de rente_viagère

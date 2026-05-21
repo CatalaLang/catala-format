@@ -153,6 +153,10 @@
  (TO)
  (INITIALLY)
  (IMPOSSIBLE)
+ (SORT)
+ (ORDER_INCREASING)
+ (ORDER_DECREASING)
+ (AND_THEN)
 
  ; Identifiers
  (variable)
@@ -401,6 +405,19 @@
 
 ((LBRACKET) . (RBRACKET) @prepend_antispace)
 (SEMICOLON) @prepend_antispace
+
+(collection_elements
+ (#single_line_only!)
+ (SEMICOLON) @delete
+ .
+)
+
+(collection_elements
+ (#multi_line_only!)
+ (#delimiter! ";") ; we hardcode the semi-colon here...
+ (SEMICOLON)? @do_nothing
+ .
+) @append_delimiter
 
 ;; list literal
 (
@@ -724,22 +741,25 @@
  dft: (_) @append_indent_end
 )
 
-;; List arg-extremum
+;; List find
 
-(e_coll_arg_extremum
+(e_coll_find
  (CONTENT)
  (OF)
  (_)
  (AMONG)
- coll: (_) @append_indent_start @append_spaced_softline
- (SUCH)
- (THAT)
+ coll: (_)
+ (SUCH) @prepend_spaced_softline
+ (THAT) @append_indent_start
  mapf: (_)
+) @append_indent_end
+
+(e_coll_find
  (IS)
  [(MAXIMUM) (MINIMUM)] @append_spaced_softline
  (OR_EMPTY)
  (THEN)
- dft: (_) @append_indent_end
+ dft: (_)
 )
 
 ;; Amongs
@@ -766,6 +786,19 @@
  mapf: (_) @append_indent_end @append_indent_end @append_end_scope
  (#scope_id! "fold")
 )
+
+;; Sort
+
+(e_coll_sort
+ (SORT) @append_indent_start
+ [ (ORDER_INCREASING) (ORDER_DECREASING) ] @prepend_indent_end @prepend_spaced_softline
+)
+
+(e_coll_sort
+ (OF) @append_indent_start @append_begin_scope @append_spaced_scoped_softline
+ (AND_THEN) @prepend_spaced_scoped_softline
+ (#scope_id! "sort")
+) @append_indent_end @append_end_scope
 
 ;; Directives
 

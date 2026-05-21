@@ -20,7 +20,7 @@ champ d'application DéficitsAntérieurs1:
           Oracles.DéficitAntérieur {
             -- année: 2019
             -- valeur: 600 €
-          }
+          };
         ]
     }
 ```
