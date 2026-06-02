@@ -102,7 +102,11 @@ let lookup_opam_optimist () =
     in
     let query_file = topiary_share_dir / "queries" / "catala.scm" in
     let config_file = topiary_share_dir / "configs" / "catala.ncl" in
-    let topiary_path = exec_dir / ".topiary-wrapped" / "topiary" in
+    let topiary_path = exec_dir / "topiary" in
+    let topiary_path =
+      if Sys.file_exists topiary_path then topiary_path
+      else exec_dir / ".topiary-wrapped" / "topiary"
+    in
     check_and_build ~query_file ~config_file ~topiary_path ()
   with _ -> None
 
@@ -114,7 +118,11 @@ let lookup_opam_slow () =
     let topiary_bin_dir = String.trim (process_out "opam" ["var"; "bin"]) in
     let query_file = topiary_share_dir / "queries" / "catala.scm" in
     let config_file = topiary_share_dir / "configs" / "catala.ncl" in
-    let topiary_path = topiary_bin_dir / ".topiary-wrapped" / "topiary" in
+    let topiary_path = topiary_bin_dir / "topiary" in
+    let topiary_path =
+      if Sys.file_exists topiary_path then topiary_path
+      else topiary_bin_dir / ".topiary-wrapped" / "topiary"
+    in
     check_and_build ~query_file ~config_file ~topiary_path ()
   with _ -> None
 
