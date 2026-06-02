@@ -11,8 +11,9 @@ depends: [
   "dune"
   "cmdliner"
   "lwt" {with-test}
-  "topiary" {= "0.5.1"}
+  "topiary" {>= "0.5.1" & < "0.6"}
   "conf-c++"
+  "re" {>= "1.11"}
 ]
 build:[
   "dune" "build"
