@@ -7,9 +7,9 @@ bug-reports: "https://github.com/CatalaLang/catala-format"
 dev-repo: "git+https://github.com/CatalaLang/catala-format.git"
 license: "Apache-2.0"
 depends: [
-  "ocaml"
-  "dune"
-  "cmdliner"
+  "ocaml" {>= "4.14.0" }
+  "dune" {>= "3.13"}
+  "cmdliner" {>= "2.0.0"}
   "lwt" {with-test}
   "topiary" {>= "0.5.1" & < "0.6"}
   "conf-c++"
