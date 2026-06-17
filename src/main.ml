@@ -49,6 +49,12 @@ let process_out cmd args =
 
 let ( / ) = Filename.concat
 
+(* On Windows, topiary passes file paths to nickel-lang-core which embeds them
+   in `import "..."` string literals. Backslashes are not valid Nickel escape
+   sequences, so we convert them to forward slashes (accepted by Windows APIs). *)
+let normalize_path s =
+  if Sys.win32 then String.map (function '\\' -> '/' | c -> c) s else s
+
 let check_and_build ?config_file ~query_file ~topiary_path () =
   let topiary_path =
     if Sys.file_exists topiary_path then topiary_path else topiary_path ^ ".exe"
@@ -57,7 +63,13 @@ let check_and_build ?config_file ~query_file ~topiary_path () =
     ([query_file; topiary_path]
     @ match config_file with None -> [] | Some x -> [x])
   |> function
-  | true -> Some { query_file; config_file; topiary_path }
+  | true ->
+    Some
+      {
+        query_file = normalize_path query_file;
+        config_file = Option.map normalize_path config_file;
+        topiary_path;
+      }
   | false -> None
 
 let lookup_windows () =
