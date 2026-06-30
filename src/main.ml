@@ -72,27 +72,6 @@ let check_and_build ?config_file ~query_file ~topiary_path () =
       }
   | false -> None
 
-let lookup_windows () =
-  try
-    let ( let*? ) b f = if not b then None else f () in
-    let*? () = Sys.win32 in
-    let*? () = Sys.getenv_opt "LOCALAPPDATA" <> None in
-    let appdata_dir = Sys.getenv "LOCALAPPDATA" in
-    let catala_install_dir = appdata_dir / "Catala" in
-    let query_file = catala_install_dir / "catala.scm" in
-    let config_file =
-      None
-      (* ignore config file on windows installation, we use the built-in value
-         set in the topiary's fork *)
-    in
-    let topiary_path = catala_install_dir / "topiary" in
-    match check_and_build ~query_file ?config_file ~topiary_path () with
-    | None -> None
-    | Some config ->
-      Unix.putenv "TOPIARY_CACHE" catala_install_dir;
-      Some config
-  with _ -> None
-
 let exec_dir =
   lazy
     (let cmd = Sys.argv.(0) in
@@ -149,7 +128,6 @@ let lookup_exec_dir () =
 
 let files_lookup () =
   let ( let* ) x f = match x with Some x -> x | None -> f () in
-  let* () = lookup_windows () in
   let* () = lookup_opam_optimist () in
   let* () = lookup_exec_dir () in
   let* () = lookup_opam_slow () in
