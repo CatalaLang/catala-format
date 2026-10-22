@@ -406,15 +406,13 @@
 ((LBRACKET) . (RBRACKET) @prepend_antispace)
 (SEMICOLON) @prepend_antispace
 
+;; FIXME ideally we would like:
+;; - singleline lists without trailing semicolon
+;; - multiline lists with a trailing semicolon
+;; However, we did not manage to find a consistent
+;; solution to express this
 (collection_elements
- (#single_line_only!)
- (SEMICOLON) @delete
- .
-)
-
-(collection_elements
- (#multi_line_only!)
- (#delimiter! ";") ; we hardcode the semi-colon here...
+ (#delimiter! ";")
  (SEMICOLON)? @do_nothing
  .
 ) @append_delimiter
