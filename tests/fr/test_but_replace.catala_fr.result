@@ -11,7 +11,7 @@ champ d'application T:
             -- y: 1
             -- z: 0€
             -- p:
-              [ b1 mais en remplaçant { -- b: vrai } ]
+              [ b1 mais en remplaçant { -- b: vrai }; ]
             -- m: 4000,00€
           }
     }
