@@ -1,6 +1,5 @@
 {
   languages = {
-
     catala_en = {
       extensions = ["catala_en", "catala_en.md"],
       grammar = {
@@ -13,7 +12,6 @@
         }
       }
     },
-
     catala_fr = {
       extensions = ["catala_fr", "catala_fr.md"],
       grammar = {
@@ -26,7 +24,6 @@
         }
       }
     },
-
     catala_pl = {
       extensions = ["catala_pl", "catala_pl.md"],
       grammar = {
@@ -39,6 +36,5 @@
         }
       }
     }
-
   }
 }
