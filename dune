@@ -1,3 +1,14 @@
+(rule
+ (target catala.ncl)
+ (deps CATALA-TREE-SITTER-HASH)
+ (mode promote)
+ (action
+  (with-stdin-from
+    CATALA-TREE-SITTER-HASH
+   (with-stdout-to
+     catala.ncl
+     (run %{exe:src/gen_ncl.exe})))))
+
 (install
  (section share_root)
  (files

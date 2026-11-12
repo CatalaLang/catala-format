@@ -12,6 +12,7 @@ depends: [
   "cmdliner" {>= "2.0.0"}
   "lwt" {with-test}
   "topiary" {>= "0.6.0" & < "0.7"}
+  "catala" {with-dev} # FIXME
   "conf-c++"
   "re" {>= "1.11"}
 ]

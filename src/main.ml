@@ -134,7 +134,8 @@ let files_lookup () =
   Format.eprintf "Error: unable to locate catala-format's config files@.";
   Stdlib.exit Cmdliner.Cmd.Exit.internal_error
 
-let supported_languages = ["catala_en"; "catala_fr"; "catala_pl"]
+let supported_languages =
+  List.map (fun (_, l) -> "catala_" ^ l.Locale.code) (Languages.languages ())
 
 let error s =
   Format.pp_print_string Format.err_formatter s;

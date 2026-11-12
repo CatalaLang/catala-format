@@ -1,9 +1,16 @@
 (executable
  (name main)
  (public_name catala-format)
- (libraries re cmdliner unix)
+ (libraries catala.languages re cmdliner unix)
  (modules Main)
 )
+
 (alias
  (name catala-format)
  (deps main.ml main.exe))
+
+(executable
+ (name gen_ncl)
+ (libraries catala.languages)
+ (modules gen_ncl)
+)
