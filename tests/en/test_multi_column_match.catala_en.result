@@ -1,0 +1,34 @@
+## Article
+
+```catala
+scope A:
+  definition without_parens equals
+    match s, i with pattern
+    -- Married content n, Present content m : n + m
+    -- Single, anything : 3
+    -- anything : 4
+
+  definition with_parens equals
+    match (s, i) with pattern
+    -- Married content (n, k), Absent : n
+    -- anything : 4
+
+  definition split equals
+    match situation_of_the_applicant,
+      professional_situation_of_the_spouse,
+      household_income
+    with pattern
+    -- MarriedOrCivilUnion content (date_of_union, regime),
+        PrivateSectorEmployee content monthly_salary,
+        Present content amount :
+      monthly_salary + amount
+    -- anything : 0
+
+  definition single_value equals
+    match (
+      some_function of
+        argument
+    ) with pattern
+    -- Foo : 1
+    -- anything : 0
+```

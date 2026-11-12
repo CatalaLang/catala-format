@@ -1,0 +1,33 @@
+## Article
+
+```catala
+champ d'application A:
+  définition sans_parenthèses égal à
+    selon s ,i sous forme
+    -- Marié contenu n,Présent contenu m : n + m
+    -- Célibataire , n'importe quel : 3
+    -- n'importe quel : 4
+
+  définition avec_parenthèses égal à
+    selon (s,i) sous forme
+    -- Marié contenu (n, k),Absent : n
+    -- n'importe quel : 4
+
+  définition découpé égal à
+    selon situation_familiale_du_demandeur,
+      situation_professionnelle_du_conjoint, revenu_du_foyer
+    sous forme
+    -- MariéOuPacsé contenu (date_union, régime),
+       SalariéDuSecteurPrivé contenu salaire_mensuel,
+       Présent contenu montant :
+      salaire_mensuel + montant
+    -- n'importe quel : 0
+
+  définition valeur_unique égal à
+    selon (
+      une_fonction de
+        argument
+    ) sous forme
+    -- Foo : 1
+    -- n'importe quel : 0
+```

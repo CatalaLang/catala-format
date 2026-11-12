@@ -489,6 +489,22 @@
 
 (e_match . ((WITH_PATT) @append_spaced_softline) (_))
 
+(e_match
+ .
+ (MATCH) @append_indent_start @append_begin_scope
+ .
+ (_)
+ .
+ (COMMA)
+ (WITH_PATT) @prepend_spaced_scoped_softline @prepend_indent_end @prepend_end_scope
+ (#scope_id! "match-args")
+)
+
+(e_match
+ (COMMA)? @append_spaced_scoped_softline
+ (#scope_id! "match-args")
+)
+
 ;; x with pattern Foo content y and ...
 (e_binop
  lhs: (e_test_match (WITH_PATT) @prepend_begin_scope @prepend_spaced_softline (CONTENT))
@@ -499,6 +515,24 @@
 ;; Pattern-matching cases
 
 ((ALT) . (match_case ((COLON) @prepend_space @append_spaced_softline @append_indent_start) (_) @append_indent_end .)) @prepend_spaced_softline
+
+(match_case
+ .
+ (_) @prepend_indent_start @prepend_begin_scope
+ (COLON) @prepend_indent_end @prepend_end_scope
+ (#scope_id! "match-patterns")
+)
+
+(match_case
+ (COMMA)? @append_spaced_scoped_softline
+ (#scope_id! "match-patterns")
+)
+
+(match_case
+ .
+ (_) @prepend_indent_start
+ (COLON) @prepend_indent_end
+)
 
 ;; Let-bindings
 (e_letin
