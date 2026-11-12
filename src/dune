@@ -1,7 +1,7 @@
 (executable
  (name main)
  (public_name catala-format)
- (libraries re cmdliner unix)
+ (libraries catala.languages re cmdliner unix)
  (modules Main)
 )
 
