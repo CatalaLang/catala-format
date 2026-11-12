@@ -141,7 +141,7 @@
  (INPUT)
  (OUTPUT)
  (INTERNAL)
- (Round)
+ (ROUND)
  (DECIMAL_LITERAL)
  (MONEY_AMOUNT)
  (MODULE_DEF)
@@ -696,7 +696,6 @@
 
 (e_coll_filter
  (LIST)
- (OF)
  (_)
  (AMONG)
  coll: (_) @append_indent_start @append_spaced_softline
