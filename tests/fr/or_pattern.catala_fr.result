@@ -1,0 +1,32 @@
+## Motifs alternatifs
+
+```catala
+déclaration énumération E:
+  -- A contenu entier
+  -- B contenu entier
+  -- C contenu (entier, argent)
+  -- D contenu (argent, entier)
+  -- F
+
+déclaration champ d'application S:
+  entrée v contenu E
+  résultat o contenu entier
+  résultat b contenu booléen
+
+champ d'application S:
+  définition o égal à
+    selon v sous forme
+    -- A contenu x ou B contenu x : x
+    -- PremierLongNomDeConstructeur contenu (a, b)
+    ou SecondLongNomDeConstructeur contenu (b, a) :
+      a
+    -- C contenu (x, y) ou D contenu (y, x) : x
+    -- n'importe quel : 0
+
+  définition b égal à
+    selon v sous forme
+    -- A ou B : vrai ou faux
+    -- C
+    ou D
+    ou F : faux
+```

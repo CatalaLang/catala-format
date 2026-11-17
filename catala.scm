@@ -498,7 +498,14 @@
 
 ;; Pattern-matching cases
 
-((ALT) . (match_case ((COLON) @prepend_space @append_spaced_softline @append_indent_start) (_) @append_indent_end .)) @prepend_spaced_softline
+((ALT) . (match_case ((COLON) @prepend_space @append_spaced_scoped_softline @append_indent_start) (_) @append_indent_end .) (#scope_id! "match_case_body")) @prepend_spaced_softline
+
+((match_case (COLON) @prepend_begin_scope) (#scope_id! "match_case_body"))
+((match_case (_) @append_end_scope .) (#scope_id! "match_case_body"))
+
+(match_case . (qconstructor) @prepend_begin_scope (#scope_id! "or_pattern"))
+(match_case (_) @append_end_scope . (COLON) (#scope_id! "or_pattern"))
+(match_case (OR) @prepend_spaced_scoped_softline (#scope_id! "or_pattern"))
 
 ;; Let-bindings
 (e_letin

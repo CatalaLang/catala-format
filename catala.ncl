@@ -7,7 +7,7 @@
         source = {
           git = {
             git = "https://github.com/CatalaLang/tree-sitter-catala.git",
-            rev = "3d87028fbda8c3a333e68c50f06aed44f0d26ee9",
+            rev = "a631aa83e6e37f94fa36db3c9cc8081147355680",
             subdir = "catala_en",
           }
         }
@@ -20,7 +20,7 @@
         source = {
           git = {
             git = "https://github.com/CatalaLang/tree-sitter-catala.git",
-            rev = "3d87028fbda8c3a333e68c50f06aed44f0d26ee9",
+            rev = "a631aa83e6e37f94fa36db3c9cc8081147355680",
             subdir = "catala_fr",
           }
         }
@@ -33,7 +33,7 @@
         source = {
           git = {
             git = "https://github.com/CatalaLang/tree-sitter-catala.git",
-            rev = "3d87028fbda8c3a333e68c50f06aed44f0d26ee9",
+            rev = "a631aa83e6e37f94fa36db3c9cc8081147355680",
             subdir = "catala_pl",
           }
         }
