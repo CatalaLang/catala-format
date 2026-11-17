@@ -12,6 +12,10 @@ declaration scope S:
   input v content E
   output o content integer
   output b content boolean
+  output t1 content boolean
+  output t2 content boolean
+  output t3 content boolean
+  output t4 content boolean
 
 scope S:
   definition o equals
@@ -29,4 +33,16 @@ scope S:
     -- C
     or D
     or F: false
+
+  definition t1 equals v with pattern (A or B)
+
+  definition t2 equals v with pattern (A or B) or v with pattern F
+
+  definition t3 equals
+    v with pattern (A content x or B content x) and x > 2
+
+  definition t4 equals
+    v with pattern (FirstLongConstructorName
+    or SecondLongConstructorName
+    or ThirdLongConstructorName)
 ```

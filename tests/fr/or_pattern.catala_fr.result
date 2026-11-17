@@ -12,6 +12,10 @@ déclaration champ d'application S:
   entrée v contenu E
   résultat o contenu entier
   résultat b contenu booléen
+  résultat t1 contenu booléen
+  résultat t2 contenu booléen
+  résultat t3 contenu booléen
+  résultat t4 contenu booléen
 
 champ d'application S:
   définition o égal à
@@ -29,4 +33,16 @@ champ d'application S:
     -- C
     ou D
     ou F : faux
+
+  définition t1 égal à v sous forme (A ou B)
+
+  définition t2 égal à v sous forme (A ou B) ou v sous forme F
+
+  définition t3 égal à
+    v sous forme (A contenu x ou B contenu x) et x > 2
+
+  définition t4 égal à
+    v sous forme (PremierLongNomDeConstructeur
+      ou SecondLongNomDeConstructeur
+      ou TroisièmeLongNomDeConstructeur)
 ```

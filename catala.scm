@@ -526,6 +526,10 @@
 
 ;; Pattern-tests
 
+((e_test_match (LPAREN) @prepend_begin_scope @append_indent_start) (#scope_id! "test_or_pattern"))
+((e_test_match (RPAREN) @prepend_indent_end @append_end_scope) (#scope_id! "test_or_pattern"))
+((e_test_match (OR) @prepend_spaced_scoped_softline) (#scope_id! "test_or_pattern"))
+
 ((e_test_match) @prepend_begin_scope           ;;
  [ (AND) (OR) (XOR) ] @prepend_spaced_softline ;;
  (_)  @append_end_scope                        ;;
