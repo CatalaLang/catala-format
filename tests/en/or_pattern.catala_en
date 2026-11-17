@@ -1,0 +1,48 @@
+## Or-patterns
+
+```catala
+declaration enumeration E:
+  -- A content integer
+  -- B content integer
+  -- C content (integer, money)
+  -- D content (money, integer)
+  -- F
+
+declaration scope S:
+  input v content E
+  output o content integer
+  output b content boolean
+  output t1 content boolean
+  output t2 content boolean
+  output t3 content boolean
+  output t4 content boolean
+
+scope S:
+  definition o equals
+    match v with pattern
+    -- A content x or B content x: x
+    -- FirstLongConstructorName content (a, b)
+       or SecondLongConstructorName content (b, a):
+      a
+    -- C content (x, y) or D content (y, x): x
+    -- anything: 0
+
+  definition b equals
+    match v with pattern
+    -- A or B: true or false
+    -- C
+    or D
+    or F: false
+
+  definition t1 equals v with pattern (A or B)
+
+  definition t2 equals v with pattern (A or B) or v with pattern F
+
+  definition t3 equals
+    v with pattern (A content x or B content x) and x > 2
+
+  definition t4 equals
+    v with pattern (FirstLongConstructorName
+    or SecondLongConstructorName
+    or ThirdLongConstructorName)
+```
